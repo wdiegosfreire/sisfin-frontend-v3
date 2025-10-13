@@ -19,6 +19,13 @@ declare module 'vue-router/auto-routes' {
    */
   export interface RouteNamedMap {
     '/': RouteRecordInfo<'/', '/', Record<never, never>, Record<never, never>>,
+    '/structure/Structure': RouteRecordInfo<'/structure/Structure', '/structure/Structure', Record<never, never>, Record<never, never>>,
+    '/structure/StructureHeader': RouteRecordInfo<'/structure/StructureHeader', '/structure/StructureHeader', Record<never, never>, Record<never, never>>,
+    '/structure/StructureMessaging': RouteRecordInfo<'/structure/StructureMessaging', '/structure/StructureMessaging', Record<never, never>, Record<never, never>>,
+    '/supermarket/Supermarket': RouteRecordInfo<'/supermarket/Supermarket', '/supermarket/Supermarket', Record<never, never>, Record<never, never>>,
+    '/user/User': RouteRecordInfo<'/user/User', '/user/User', Record<never, never>, Record<never, never>>,
+    '/vehicle/Vehicle': RouteRecordInfo<'/vehicle/Vehicle', '/vehicle/Vehicle', Record<never, never>, Record<never, never>>,
+    '/wishList/WishList': RouteRecordInfo<'/wishList/WishList', '/wishList/WishList', Record<never, never>, Record<never, never>>,
   }
 
   /**
@@ -34,6 +41,34 @@ declare module 'vue-router/auto-routes' {
   export interface _RouteFileInfoMap {
     'src/pages/index.vue': {
       routes: '/'
+      views: never
+    }
+    'src/pages/structure/Structure.vue': {
+      routes: '/structure/Structure'
+      views: never
+    }
+    'src/pages/structure/StructureHeader.vue': {
+      routes: '/structure/StructureHeader'
+      views: never
+    }
+    'src/pages/structure/StructureMessaging.vue': {
+      routes: '/structure/StructureMessaging'
+      views: never
+    }
+    'src/pages/supermarket/Supermarket.vue': {
+      routes: '/supermarket/Supermarket'
+      views: never
+    }
+    'src/pages/user/User.vue': {
+      routes: '/user/User'
+      views: never
+    }
+    'src/pages/vehicle/Vehicle.vue': {
+      routes: '/vehicle/Vehicle'
+      views: never
+    }
+    'src/pages/wishList/WishList.vue': {
+      routes: '/wishList/WishList'
       views: never
     }
   }

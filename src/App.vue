@@ -1,9 +1,9 @@
 <template>
-  <v-app>
-    <router-view />
-  </v-app>
+	<v-app>
+		<Structure />
+	</v-app>
 </template>
 
 <script setup>
-  //
+import Structure from './pages/structure/Structure.vue';
 </script>
