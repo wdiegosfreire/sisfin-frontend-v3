@@ -271,9 +271,9 @@ export default {
 
 		executeLogout() {
 			this.$_maintenance_post(`/user/executeLogout`, this.user).then(() => {
-				this.$store.commit("setUserName", "");
-				this.$store.commit("setUserIdentity", "");
-				this.$store.commit("setSessionToken", "");
+				useAppStore().setUserName("");
+				useAppStore().setUserIdentity("");
+				useAppStore().setSessionToken("");
 
 				this.$router.push("/");
 			})
