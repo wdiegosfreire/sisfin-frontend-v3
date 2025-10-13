@@ -1,3 +1,5 @@
+import { useAppStore } from '@/stores/app';
+
 import apiInstance from "../../api/apiInstance";
 import maintenanceApiInstance from "../maintenance/maintenanceApiInstance";
 import transactionApiInstance from "../transaction/transactionApiInstance";
@@ -38,11 +40,11 @@ export default {
 		},
 
 		showGlobalLoading() {
-			this.$store.commit("setGlobalLoading", true);
+			useAppStore().setGlobalLoading(true);
 		},
 
 		hideGlobalLoading() {
-			this.$store.commit("setGlobalLoading", false);
+			useAppStore().setGlobalLoading(false);
 		}
 	}
 };
