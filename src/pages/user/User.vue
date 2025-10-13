@@ -11,8 +11,8 @@
 			</v-card-text>
 
 			<v-card-actions>
-				<v-btn color="button" width="150" @click="executeAuthentication">Confirm</v-btn>
-				<v-btn color="button" width="150" @click="resetForm">Clear</v-btn>
+				<v-btn width="150" @click="executeAuthentication">Confirm</v-btn>
+				<v-btn width="150" @click="resetForm">Clear</v-btn>
 			</v-card-actions>
 
 			<v-card-actions v-if="maintenance">
@@ -26,9 +26,11 @@
 				</v-alert>
 			</v-card-actions>
 
+			<v-divider />
+
 			<v-card-text class="text-right">
-				<v-btn @click="accessResetPassword">Forgot your password?</v-btn>
-				<v-btn @click="accessRegistration" class="mt-3">Don't have an account? Sign up and get started!</v-btn>
+				<v-btn size="x-small" @click="accessResetPassword">Forgot your password?</v-btn>
+				<v-btn size="x-small" @click="accessRegistration" class="mt-3">Don't have an account? Sign up and get started!</v-btn>
 			</v-card-text>
 		</v-card>
 	</div>

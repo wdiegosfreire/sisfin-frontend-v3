@@ -1,15 +1,13 @@
 <template>
-	<div>
-		<v-snackbar v-model="showMessage" :color="severity" top right multi-line>
-			<h3 class="mb-3 text-decoration-underline">{{ summary }}</h3>
+	<v-snackbar v-model="showMessage" :color="severity" location="end top" multi-line>
+		<h3 class="mb-3 text-decoration-underline">{{ summary }}</h3>
 
-			<ul>
-				<li v-for="detail in detailList" :key="detail" class="mb-2">{{ detail }}</li>
-			</ul>
+		<ul>
+			<li v-for="detail in detailList" :key="detail" class="mb-2">{{ detail }}</li>
+		</ul>
 
-			<v-btn text @click="showMessage = false">Close</v-btn>
-		</v-snackbar>
-	</div>
+		<v-btn text @click="showMessage = false">Close</v-btn>
+	</v-snackbar>
 </template>
 
 <script>
