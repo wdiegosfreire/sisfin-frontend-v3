@@ -1,11 +1,12 @@
 import { useAppStore } from '@/stores/app';
 
-import apiInstance from "../../api/apiInstance";
+import apiInstance from "../../api/apiInstance.js"
 import maintenanceApiInstance from "../maintenance/maintenanceApiInstance";
 import transactionApiInstance from "../transaction/transactionApiInstance";
 
 export default {
 	name: "apiConfig",
+
 	methods: {
 		createInterceptors() {
 			apiInstance.interceptors.request.use((config) => {

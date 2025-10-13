@@ -6,8 +6,8 @@
 			</v-img>
 
 			<v-card-text>
-				<v-text-field label="E-mail" v-model="user.email" append-icon="mdi-mail" />
-				<v-text-field label="Password" type="password" v-model="password" append-icon="mdi-lock" />
+				<v-text-field label="E-mail" v-model="user.email" append-inner-icon="mdi-mail" />
+				<v-text-field label="Password" v-model="password" :append-inner-icon="passwordVisible ? 'mdi-eye-off' : 'mdi-eye'" :type="passwordVisible ? 'text' : 'password'" @click:append-inner="passwordVisible = !passwordVisible" />
 			</v-card-text>
 
 			<v-card-actions>
@@ -50,6 +50,7 @@ export default {
 
 	data() {
 		return {
+			passwordVisible: false,
 			maintenance: false,
 			transaction: false,
 			timeoutDelay: 30000
