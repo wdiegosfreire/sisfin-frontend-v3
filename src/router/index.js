@@ -1,4 +1,5 @@
 import User from "@/pages/user/User.vue";
+import Summary from "@/pages/summary/Summary.vue";
 import Vehicle from "@/pages/vehicle/Vehicle.vue";
 import WishList from "@/pages/wishList/WishList.vue";
 import Supermarket from "@/pages/supermarket/Supermarket.vue";
@@ -7,7 +8,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
 	{ path: '/', name: 'user', component: User },
-//   { path: '/summary', name: 'summary', component: Summary },
+	{ path: '/summary', name: 'summary', component: Summary },
 //   { path: '/objective', name: 'objective', component: Objective },
 //   { path: '/statement', name: 'statement', component: Statement },
 //   { path: '/account', name: 'account', component: Account },

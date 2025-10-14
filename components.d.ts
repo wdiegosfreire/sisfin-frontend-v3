@@ -9,9 +9,18 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AppFooter: typeof import('./src/components/AppFooter.vue')['default']
+    Bar: typeof import('./src/components/df-chart/Bar.vue')['default']
     Grid: typeof import('./src/components/grid/Grid.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
+    Icon: typeof import('./src/components/df-icon/Icon.vue')['default']
+    InputFilter: typeof import('./src/components/df-input/InputFilter.vue')['default']
+    InputMoney: typeof import('./src/components/df-input/InputMoney.vue')['default']
+    InputMoneyCopy: typeof import('./src/components/df-input/InputMoneyCopy.vue')['default']
+    InputPeriod: typeof import('./src/components/df-input/InputPeriod.vue')['default']
+    Line: typeof import('./src/components/df-chart/Line.vue')['default']
     Loading: typeof import('./src/components/loading/Loading.vue')['default']
+    Period: typeof import('./src/components/df-period/Period.vue')['default']
+    Pie: typeof import('./src/components/df-chart/Pie.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

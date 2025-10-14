@@ -4,20 +4,28 @@
  * Bootstraps Vuetify and other plugins then mounts the App`
  */
 
+// Font Awesome
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { fas } from '@fortawesome/free-solid-svg-icons'
+
 // Plugins
-import { registerPlugins } from '@/plugins'
+import { registerPlugins } from '@/plugins';
 
 // Components
-import App from './App.vue'
+import App from './App.vue';
 
 // Composables
-import { createApp } from 'vue'
+import { createApp } from 'vue';
 
 // Styles
-import 'unfonts.css'
+import 'unfonts.css';
 
-const app = createApp(App)
+const app = createApp(App);
 
-registerPlugins(app)
+library.add(fas)
+app.component('fa-icon', FontAwesomeIcon)
 
-app.mount('#app')
+registerPlugins(app);
+
+app.mount('#app');

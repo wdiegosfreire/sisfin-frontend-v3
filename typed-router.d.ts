@@ -22,6 +22,7 @@ declare module 'vue-router/auto-routes' {
     '/structure/Structure': RouteRecordInfo<'/structure/Structure', '/structure/Structure', Record<never, never>, Record<never, never>>,
     '/structure/StructureHeader': RouteRecordInfo<'/structure/StructureHeader', '/structure/StructureHeader', Record<never, never>, Record<never, never>>,
     '/structure/StructureMessaging': RouteRecordInfo<'/structure/StructureMessaging', '/structure/StructureMessaging', Record<never, never>, Record<never, never>>,
+    '/summary/Summary': RouteRecordInfo<'/summary/Summary', '/summary/Summary', Record<never, never>, Record<never, never>>,
     '/supermarket/Supermarket': RouteRecordInfo<'/supermarket/Supermarket', '/supermarket/Supermarket', Record<never, never>, Record<never, never>>,
     '/user/User': RouteRecordInfo<'/user/User', '/user/User', Record<never, never>, Record<never, never>>,
     '/vehicle/Vehicle': RouteRecordInfo<'/vehicle/Vehicle', '/vehicle/Vehicle', Record<never, never>, Record<never, never>>,
@@ -53,6 +54,10 @@ declare module 'vue-router/auto-routes' {
     }
     'src/pages/structure/StructureMessaging.vue': {
       routes: '/structure/StructureMessaging'
+      views: never
+    }
+    'src/pages/summary/Summary.vue': {
+      routes: '/summary/Summary'
       views: never
     }
     'src/pages/supermarket/Supermarket.vue': {
