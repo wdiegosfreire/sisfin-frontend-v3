@@ -1,16 +1,16 @@
 <template>
 	<df-grid>
-		<v-autocomplete label="Month" v-model="selectedMonth" :items="monthList" item-text="monthName" item-value="monthNumber" :disabled="ignoreMonth" autofocus @change="periodChange();">
-			<template v-slot:append-outer>
-				<df-icon v-if="ignoreMonth" icon="fa-toggle-off" @click="ignoreMonth = !ignoreMonth" />
-				<df-icon v-else icon="fa-toggle-on" @click="ignoreMonth = !ignoreMonth" />
-			</template>
+		<v-autocomplete label="Month" v-model="selectedMonth" :items="monthList" item-title="monthName" item-value="monthNumber" :disabled="ignoreMonth" autofocus @update:modelValue="periodChange();">
+			<!-- <template v-slot:append>
+				<fa-icon icon="fa-solid fa-toggle-off" v-if="ignoreMonth" @click="ignoreMonth = !ignoreMonth" />
+				<fa-icon icon="fa-solid fa-toggle-on" v-else @click="ignoreMonth = !ignoreMonth" />
+			</template> -->
 		</v-autocomplete>
 		<v-text-field label="Year" v-model="selectedYear" :disabled="ignoreYear" @input="periodChange();">
-			<template v-slot:append-outer>
+			<!-- <template v-slot:append>
 				<df-icon v-if="ignoreYear" icon="fa-toggle-off" @click="ignoreYear = !ignoreYear" />
 				<df-icon v-else icon="fa-toggle-on" @click="ignoreYear = !ignoreYear" />
-			</template>
+			</template> -->
 		</v-text-field>
 	</df-grid>
 </template>

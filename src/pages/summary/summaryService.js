@@ -1,3 +1,5 @@
+import { useAppStore } from '@/stores/app';
+
 import transactionApi from "../../components/axios/transaction/transactionApi.js";
 
 // Mixins
@@ -30,15 +32,15 @@ export default {
 	methods: {
 		async accessModule() {
 			try {
-				if (!this.$store.state.globalMonth || !this.$store.state.globalYear) {
+				if (!this.appStore.globalMonth || !this.appStore.globalYear) {
 					this.$_message_showError("Period not found");
 					return;
 				}
 
 				let summary = {
-					periodDate: new Date(this.$store.state.globalYear + "-" + this.$store.state.globalMonth + "-01 12:00:00"),
+					periodDate: new Date(this.appStore.globalYear + "-" + this.appStore.globalMonth + "-01 12:00:00"),
 					periodRange: this.periodRange,
-					userIdentity: this.$store.state.userIdentity,
+					userIdentity: this.appStore.userIdentity,
 					balanceAccountIdentity: this.balanceAccountSelected.identity,
 					outcomingAccountLevel: this.outcomingAccountSelected.level
 				};
@@ -63,5 +65,11 @@ export default {
 				this.$_message_handleError(error);
 			}
 		}
-	}
+	},
+
+	computed: {
+		appStore() {
+			return useAppStore()
+		},
+	},
 }

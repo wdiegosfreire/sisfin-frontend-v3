@@ -7,21 +7,25 @@
 			<v-btn icon @click.stop="accessModule()" title="Click to reload page"><df-icon icon="fa-arrows-rotate" size="lg" /></v-btn>
 		</v-app-bar>
 
-		<df-input-filter transition="slide-x-transition" v-if="showSearchField" @type="executeSearch" />
-
 		<df-period :month="month" :year="year" @periodChange="periodChange"></df-period>
 		<df-grid>
-			<v-select @change="accessModule" v-model="periodRange" label="Period Range" :items="periodRangeList" />
+			<v-autocomplete @update:modelValue="periodRangeUpdate" v-model="periodRange" label="Period Range" :items="periodRangeList" />
 		</df-grid>
 
 		<v-card class="mb-3">
 			<v-card-title>Incoming & Outcoming</v-card-title>
 			<v-card-text class="text-left">
 				<df-grid>
-					<v-autocomplete @change="accessModule" v-model="balanceAccountSelected" return-object label="Balance Account" item-text="name" item-value="identity" :items="accountListBalanceCombo" no-data-text="No data found">
-						<template v-slot:selection="{ item }">{{ traceAccount(item) }}</template>
-						<template v-slot:item="{ item }">{{ traceAccount(item) }}</template>
-					</v-autocomplete>
+					<v-autocomplete
+						return-object
+						v-model="balanceAccountSelected"
+						label="Balance Account"
+						item-value="identity"
+						no-data-text="No data found"
+						:item-title="traceAccount"
+						:items="accountListBalanceCombo"
+						@change="accessModule"
+					/>
 				</df-grid>
 
 				<df-grid class="mb-3">
@@ -32,7 +36,7 @@
 								<tr v-for="data in incomingOutcomingSummaryTableData.datasets" :key="data.label">
 									<td class="pr-0" style="width: 1px;">{{ data.identifier }}.</td>
 									<td>{{ data.label }}</td>
-									<td class="text-right">{{ data.data[index] | currency }}</td>
+									<td class="text-right">{{ currency(data.data[index]) }}</td>
 									<td class="pl-0" style="width: 1px;"><df-icon :icon="data.icon" size="1x" /></td>
 								</tr>
 							</tbody>
@@ -46,7 +50,7 @@
 			<v-card-title>Outcomming by Account</v-card-title>
 			<v-card-text class="text-left">
 				<df-grid>
-					<v-autocomplete @change="accessModule" v-model="outcomingAccountSelected" return-object label="Outcoming Account" item-text="name" item-value="level" :items="accountListOutcomingCombo" no-data-text="No data found">
+					<v-autocomplete @change="accessModule" v-model="outcomingAccountSelected" return-object label="Outcoming Account" item-title="name" item-value="level" :items="accountListOutcomingCombo" no-data-text="No data found">
 						<template v-slot:selection="{ item }">{{ traceAccount(item) }}</template>
 						<template v-slot:item="{ item }">{{ traceAccount(item) }}</template>
 					</v-autocomplete>
@@ -55,12 +59,12 @@
 				<df-grid class="mb-6">
 					<v-card v-for="(mapData, mapKey) in outcomingSummaryPieChart" :key="mapKey" elevation="8">
 						<v-card-title class="text-h5">{{ mapKey }}</v-card-title>
-						<pie-chart :chartData="mapData" />
+						<!-- <pie-chart :chartData="mapData" /> -->
 					</v-card>
 				</df-grid>
 
 				<df-grid>
-					<line-chart :chartData="outcomingSummaryLineChart" />
+					<!-- <line-chart :chartData="outcomingSummaryLineChart" /> -->
 				</df-grid>
 			</v-card-text>
 		</v-card>
@@ -75,19 +79,19 @@ import summaryService from "./summaryService.js";
 import DfGrid from "../../components/grid/Grid.vue";
 import DfIcon from "../../components/df-icon/Icon.vue";
 import DfPeriod from "../../components/df-period/Period.vue";
-import DfInputFilter from '@/components/df-input/InputFilter.vue';
 
 import message from "../../components/mixins/message.js";
 
 import PieChart from '../../components/df-chart/Pie.vue';
-import LineChart from '../../components/df-chart/Line.vue';
+// import LineChart from '../../components/df-chart/Line.vue';
 
-import { traceAccount } from '@/utils/filters.js'
+import { currency, traceAccount } from '@/utils/filters.js'
 
 export default {
 	name: "Summary",
 
-	components: { DfGrid, DfIcon, PieChart, LineChart , DfPeriod, DfInputFilter },
+	components: { DfGrid, DfIcon, PieChart, DfPeriod},
+	// components: { DfGrid, DfIcon, PieChart, LineChart , DfPeriod, DfInputFilter },
 
 	mixins: [ summaryService, message ],
 
@@ -99,6 +103,7 @@ export default {
 	},
 
 	methods: {
+		currency,
 		traceAccount,
 
 		periodChange(month, year) {
@@ -111,6 +116,11 @@ export default {
 
 				this.accessModule();
 			}
+		},
+
+		periodRangeUpdate(newValue) {
+			this.periodRange = newValue;
+			this.accessModule();
 		},
 
 		chartInstance(chart) {
