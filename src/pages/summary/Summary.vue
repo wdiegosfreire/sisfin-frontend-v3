@@ -52,8 +52,7 @@
 				</df-grid>
 
 				<df-grid>
-					Summary: {{ outcomingSummaryLineChart }}<br>
-					<!-- <line-chart :chartData="outcomingSummaryLineChart" /> -->
+					<line-chart :chartData="outcomingSummaryLineChart" />
 				</df-grid>
 			</v-card-text>
 		</v-card>

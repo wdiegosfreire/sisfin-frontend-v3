@@ -1,6 +1,14 @@
 <template>
 	<Pie
 		:data="chartData"
+		:width="width"
+		:height="height"
+		:styles="styles"
+		:options="chartOptions"
+		:plugins="plugins"
+		:chart-id="chartId"
+		:css-classes="cssClasses"
+		:dataset-id-key="datasetIdKey"
 	/>
 
 	<!-- <Pie
@@ -17,9 +25,9 @@
  </template>
 
  <script>
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend, CategoryScale, Title } from 'chart.js';
 import { Pie } from 'vue-chartjs';
-ChartJS.register(ArcElement, Tooltip, Legend);
+ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, Title);
 
 export default {
 	name: 'PieChart',
@@ -41,7 +49,7 @@ export default {
 		return {
 			chartOptions: {
 				responsive: true,
-				maintainAspectRatio: false
+				maintainAspectRatio: true
 			}
 		}
 	}
