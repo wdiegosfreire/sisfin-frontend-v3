@@ -1,5 +1,9 @@
 <template>
 	<Pie
+		:data="chartData"
+	/>
+
+	<!-- <Pie
 		:width="width"
 		:height="height"
 		:styles="styles"
@@ -9,24 +13,15 @@
 		:css-classes="cssClasses"
 		:chart-options="chartOptions"
 		:dataset-id-key="datasetIdKey"
-	/>
+	/> -->
  </template>
 
  <script>
- import { Pie } from 'vue-chartjs'
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Pie } from 'vue-chartjs';
+ChartJS.register(ArcElement, Tooltip, Legend);
 
- import {
-	Chart as ChartJS,
-	Title,
-	Legend,
-	Tooltip,
-	ArcElement,
-	CategoryScale
- } from 'chart.js'
-
- ChartJS.register(Title, Legend, Tooltip, ArcElement, CategoryScale)
-
- export default {
+export default {
 	name: 'PieChart',
 
 	components: { Pie },

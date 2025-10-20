@@ -52,6 +52,7 @@
 				</df-grid>
 
 				<df-grid>
+					Summary: {{ outcomingSummaryLineChart }}<br>
 					<!-- <line-chart :chartData="outcomingSummaryLineChart" /> -->
 				</df-grid>
 			</v-card-text>
@@ -70,14 +71,17 @@ import DfPeriod from "../../components/df-period/Period.vue";
 import message from "../../components/mixins/message.js";
 
 import PieChart from '../../components/df-chart/Pie.vue';
-// import LineChart from '../../components/df-chart/Line.vue';
+import LineChart from '../../components/df-chart/Line.vue';
 
 import { currency, traceAccount } from '@/utils/filters.js'
 
 export default {
 	name: "Summary",
 
-	components: { DfGrid, PieChart, DfPeriod},
+	components: {
+		DfGrid, DfPeriod,
+		PieChart, LineChart
+	},
 	// components: { DfGrid, DfIcon, PieChart, LineChart , DfPeriod, DfInputFilter },
 
 	mixins: [ summaryService, message ],
