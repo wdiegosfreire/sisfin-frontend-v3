@@ -4,7 +4,7 @@
 			<v-toolbar-title>Summary</v-toolbar-title>
 			<v-spacer></v-spacer>
 
-			<v-btn icon @click.stop="accessModule()" title="Click to reload page"><df-icon icon="fa-arrows-rotate" size="lg" /></v-btn>
+			<v-btn icon @click.stop="accessModule()" title="Click to reload page"><fa-icon icon="fa-arrows-rotate" size="lg" /></v-btn>
 		</v-app-bar>
 
 		<df-period :month="month" :year="year" @periodChange="periodChange"></df-period>
@@ -16,16 +16,7 @@
 			<v-card-title>Incoming & Outcoming</v-card-title>
 			<v-card-text class="text-left">
 				<df-grid>
-					<v-autocomplete
-						return-object
-						v-model="balanceAccountSelected"
-						label="Balance Account"
-						item-value="identity"
-						no-data-text="No data found"
-						:item-title="traceAccount"
-						:items="accountListBalanceCombo"
-						@change="accessModule"
-					/>
+					<v-autocomplete @update:modelValue="balanceAccountSelectedUpdate" v-model="balanceAccountSelected" label="Balance Account" item-value="identity" no-data-text="No data found" :item-title="traceAccount" :items="accountListBalanceCombo" return-object />
 				</df-grid>
 
 				<df-grid class="mb-3">
@@ -37,7 +28,7 @@
 									<td class="pr-0" style="width: 1px;">{{ data.identifier }}.</td>
 									<td>{{ data.label }}</td>
 									<td class="text-right">{{ currency(data.data[index]) }}</td>
-									<td class="pl-0" style="width: 1px;"><df-icon :icon="data.icon" size="1x" /></td>
+									<td class="pl-0" style="width: 1px;"><fa-icon :icon="`fa-solid ${data.icon}`" /></td>
 								</tr>
 							</tbody>
 						</v-table>
@@ -50,16 +41,13 @@
 			<v-card-title>Outcomming by Account</v-card-title>
 			<v-card-text class="text-left">
 				<df-grid>
-					<v-autocomplete @change="accessModule" v-model="outcomingAccountSelected" return-object label="Outcoming Account" item-title="name" item-value="level" :items="accountListOutcomingCombo" no-data-text="No data found">
-						<template v-slot:selection="{ item }">{{ traceAccount(item) }}</template>
-						<template v-slot:item="{ item }">{{ traceAccount(item) }}</template>
-					</v-autocomplete>
+					<v-autocomplete @update:modelValue="outcomingAccountSelectedUpdate" v-model="outcomingAccountSelected" label="Outcoming Account" item-value="level" no-data-text="No data found" :item-title="traceAccount" :items="accountListOutcomingCombo" return-object />
 				</df-grid>
 
 				<df-grid class="mb-6">
 					<v-card v-for="(mapData, mapKey) in outcomingSummaryPieChart" :key="mapKey" elevation="8">
 						<v-card-title class="text-h5">{{ mapKey }}</v-card-title>
-						<!-- <pie-chart :chartData="mapData" /> -->
+						<pie-chart :chartData="mapData" />
 					</v-card>
 				</df-grid>
 
@@ -77,7 +65,6 @@ import { useAppStore } from '@/stores/app';
 import summaryService from "./summaryService.js";
 
 import DfGrid from "../../components/grid/Grid.vue";
-import DfIcon from "../../components/df-icon/Icon.vue";
 import DfPeriod from "../../components/df-period/Period.vue";
 
 import message from "../../components/mixins/message.js";
@@ -90,7 +77,7 @@ import { currency, traceAccount } from '@/utils/filters.js'
 export default {
 	name: "Summary",
 
-	components: { DfGrid, DfIcon, PieChart, DfPeriod},
+	components: { DfGrid, PieChart, DfPeriod},
 	// components: { DfGrid, DfIcon, PieChart, LineChart , DfPeriod, DfInputFilter },
 
 	mixins: [ summaryService, message ],
@@ -120,6 +107,16 @@ export default {
 
 		periodRangeUpdate(newValue) {
 			this.periodRange = newValue;
+			this.accessModule();
+		},
+
+		balanceAccountSelectedUpdate(newValue) {
+			this.balanceAccountSelected = newValue;
+			this.accessModule();
+		},
+
+		outcomingAccountSelectedUpdate(newValue) {
+			this.outcomingAccountSelected = newValue;
 			this.accessModule();
 		},
 

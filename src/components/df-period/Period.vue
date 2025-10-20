@@ -17,12 +17,11 @@
 
 <script>
 import DfGrid from "../../components/grid/Grid.vue";
-import DfIcon from "../../components/df-icon/Icon.vue";
 
 export default {
 	name: "DfPeriod",
 
-	components: { DfGrid, DfIcon },
+	components: { DfGrid },
 
 	props: {
 		month: {
