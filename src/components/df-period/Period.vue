@@ -13,7 +13,9 @@
 			@click:append-inner="ignoreMonth = !ignoreMonth"
 		/>
 		<v-text-field v-model="selectedYear"
+			type="number"
 			label="Year"
+			maxlength="4"
 			:style="ignoreYear ? 'opacity: 0.5' : 'opacity: 1'"
 			:readonly="ignoreYear"
 			:append-inner-icon="ignoreYear ? 'mdi-toggle-switch-off-outline' : 'mdi-toggle-switch-outline'"
@@ -25,11 +27,14 @@
 
 <script>
 import DfGrid from "../../components/grid/Grid.vue";
+import message from "../../components/mixins/message.js";
 
 export default {
 	name: "DfPeriod",
 
 	components: { DfGrid },
+
+	mixins: [ message ],
 
 	props: {
 		month: {
@@ -70,8 +75,16 @@ export default {
 
 	methods: {
 		periodChange() {
+			const lowerLimit = 2000;
+			const upperLimit = 2100;
+
+			if (this.selectedYear.length > 4 || (this.selectedYear.length === 4 && this.selectedYear <= lowerLimit || this.selectedYear > upperLimit)) {
+				this.$_message_showWarning(`The year must a four-digit number between ${lowerLimit} and ${upperLimit}.`);
+				return;
+			}
+
 			this.$emit("periodChange", this.ignoreMonth ? "" : this.selectedMonth, this.ignoreYear ? "" : this.selectedYear);
-		}
+		},
 	},
 }
 </script>
