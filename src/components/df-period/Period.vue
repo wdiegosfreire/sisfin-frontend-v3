@@ -1,17 +1,25 @@
 <template>
 	<df-grid>
-		<v-autocomplete label="Month" v-model="selectedMonth" :items="monthList" item-title="monthName" item-value="monthNumber" :disabled="ignoreMonth" autofocus @update:modelValue="periodChange();">
-			<!-- <template v-slot:append>
-				<fa-icon icon="fa-solid fa-toggle-off" v-if="ignoreMonth" @click="ignoreMonth = !ignoreMonth" />
-				<fa-icon icon="fa-solid fa-toggle-on" v-else @click="ignoreMonth = !ignoreMonth" />
-			</template> -->
-		</v-autocomplete>
-		<v-text-field label="Year" v-model="selectedYear" :disabled="ignoreYear" @input="periodChange();">
-			<!-- <template v-slot:append>
-				<df-icon v-if="ignoreYear" icon="fa-toggle-off" @click="ignoreYear = !ignoreYear" />
-				<df-icon v-else icon="fa-toggle-on" @click="ignoreYear = !ignoreYear" />
-			</template> -->
-		</v-text-field>
+		<v-autocomplete v-model="selectedMonth"
+			autofocus
+			label="Month"
+			item-title="monthName"
+			item-value="monthNumber"
+			:items="monthList"
+			:style="ignoreMonth ? 'opacity: 0.5' : 'opacity: 1'"
+			:readonly="ignoreMonth"
+			:append-inner-icon="ignoreMonth ? 'mdi-toggle-switch-off-outline' : 'mdi-toggle-switch-outline'"
+			@update:modelValue="periodChange();"
+			@click:append-inner="ignoreMonth = !ignoreMonth"
+		/>
+		<v-text-field v-model="selectedYear"
+			label="Year"
+			:style="ignoreYear ? 'opacity: 0.5' : 'opacity: 1'"
+			:readonly="ignoreYear"
+			:append-inner-icon="ignoreYear ? 'mdi-toggle-switch-off-outline' : 'mdi-toggle-switch-outline'"
+			@input="periodChange();"
+			@click:append-inner="ignoreYear = !ignoreYear"
+		/>
 	</df-grid>
 </template>
 
