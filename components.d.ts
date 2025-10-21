@@ -19,8 +19,10 @@ declare module 'vue' {
     InputPeriod: typeof import('./src/components/df-input/InputPeriod.vue')['default']
     Line: typeof import('./src/components/df-chart/Line.vue')['default']
     Loading: typeof import('./src/components/loading/Loading.vue')['default']
+    OutputText: typeof import('./src/components/df-output/OutputText.vue')['default']
     Period: typeof import('./src/components/df-period/Period.vue')['default']
     Pie: typeof import('./src/components/df-chart/Pie.vue')['default']
+    ResultLayout: typeof import('./src/components/df-layout/ResultLayout.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

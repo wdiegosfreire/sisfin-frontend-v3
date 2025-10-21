@@ -19,6 +19,9 @@ declare module 'vue-router/auto-routes' {
    */
   export interface RouteNamedMap {
     '/': RouteRecordInfo<'/', '/', Record<never, never>, Record<never, never>>,
+    '/location/Location': RouteRecordInfo<'/location/Location', '/location/Location', Record<never, never>, Record<never, never>>,
+    '/location/LocationForm': RouteRecordInfo<'/location/LocationForm', '/location/LocationForm', Record<never, never>, Record<never, never>>,
+    '/location/LocationResult': RouteRecordInfo<'/location/LocationResult', '/location/LocationResult', Record<never, never>, Record<never, never>>,
     '/structure/Structure': RouteRecordInfo<'/structure/Structure', '/structure/Structure', Record<never, never>, Record<never, never>>,
     '/structure/StructureHeader': RouteRecordInfo<'/structure/StructureHeader', '/structure/StructureHeader', Record<never, never>, Record<never, never>>,
     '/structure/StructureMessaging': RouteRecordInfo<'/structure/StructureMessaging', '/structure/StructureMessaging', Record<never, never>, Record<never, never>>,
@@ -42,6 +45,18 @@ declare module 'vue-router/auto-routes' {
   export interface _RouteFileInfoMap {
     'src/pages/index.vue': {
       routes: '/'
+      views: never
+    }
+    'src/pages/location/Location.vue': {
+      routes: '/location/Location'
+      views: never
+    }
+    'src/pages/location/LocationForm.vue': {
+      routes: '/location/LocationForm'
+      views: never
+    }
+    'src/pages/location/LocationResult.vue': {
+      routes: '/location/LocationResult'
       views: never
     }
     'src/pages/structure/Structure.vue': {
