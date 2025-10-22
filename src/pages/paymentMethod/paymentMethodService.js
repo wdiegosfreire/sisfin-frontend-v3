@@ -85,7 +85,7 @@ export default {
 		},
 
 		executeExclusion(paymentMethod) {
-			this.$confirm(Constants.message.DELETE).then(() => {
+			this.$vueAlert.confirm(Constants.message.DELETE).then(() => {
 				paymentMethod.userIdentity = this.appStore.userIdentity;
 
 				this.$_transaction_post("/paymentMethod/executeExclusion", paymentMethod).then(response => {
