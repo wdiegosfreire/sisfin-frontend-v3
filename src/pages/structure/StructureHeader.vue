@@ -37,7 +37,7 @@
 						<v-list-item v-bind="props">ACTIVITIES</v-list-item>
 					</template>
 
-					<v-list-item link @click="accessModuleSummary()" prepend-icon="mdi-text">Summary</v-list-item>
+					<v-list-item link @click="accessModuleSummary()" prepend-icon="mdi-text">Summary (OK)</v-list-item>
 					<v-list-item link @click="accessModuleObjective()" prepend-icon="mdi-cash-multiple">Objectives</v-list-item>
 					<v-list-item link @click="accessModuleStatement()" prepend-icon="mdi-notebook-plus">Statements</v-list-item>
 				</v-list-group>

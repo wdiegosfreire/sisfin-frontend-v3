@@ -22,6 +22,9 @@ declare module 'vue-router/auto-routes' {
     '/location/Location': RouteRecordInfo<'/location/Location', '/location/Location', Record<never, never>, Record<never, never>>,
     '/location/LocationForm': RouteRecordInfo<'/location/LocationForm', '/location/LocationForm', Record<never, never>, Record<never, never>>,
     '/location/LocationResult': RouteRecordInfo<'/location/LocationResult', '/location/LocationResult', Record<never, never>, Record<never, never>>,
+    '/paymentMethod/PaymentMethod': RouteRecordInfo<'/paymentMethod/PaymentMethod', '/paymentMethod/PaymentMethod', Record<never, never>, Record<never, never>>,
+    '/paymentMethod/PaymentMethodForm': RouteRecordInfo<'/paymentMethod/PaymentMethodForm', '/paymentMethod/PaymentMethodForm', Record<never, never>, Record<never, never>>,
+    '/paymentMethod/PaymentMethodResult': RouteRecordInfo<'/paymentMethod/PaymentMethodResult', '/paymentMethod/PaymentMethodResult', Record<never, never>, Record<never, never>>,
     '/structure/Structure': RouteRecordInfo<'/structure/Structure', '/structure/Structure', Record<never, never>, Record<never, never>>,
     '/structure/StructureHeader': RouteRecordInfo<'/structure/StructureHeader', '/structure/StructureHeader', Record<never, never>, Record<never, never>>,
     '/structure/StructureMessaging': RouteRecordInfo<'/structure/StructureMessaging', '/structure/StructureMessaging', Record<never, never>, Record<never, never>>,
@@ -57,6 +60,18 @@ declare module 'vue-router/auto-routes' {
     }
     'src/pages/location/LocationResult.vue': {
       routes: '/location/LocationResult'
+      views: never
+    }
+    'src/pages/paymentMethod/PaymentMethod.vue': {
+      routes: '/paymentMethod/PaymentMethod'
+      views: never
+    }
+    'src/pages/paymentMethod/PaymentMethodForm.vue': {
+      routes: '/paymentMethod/PaymentMethodForm'
+      views: never
+    }
+    'src/pages/paymentMethod/PaymentMethodResult.vue': {
+      routes: '/paymentMethod/PaymentMethodResult'
       views: never
     }
     'src/pages/structure/Structure.vue': {
