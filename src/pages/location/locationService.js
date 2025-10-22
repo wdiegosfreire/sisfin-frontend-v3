@@ -95,7 +95,7 @@ export default {
 
 		async executeExclusion(location) {
 			try {
-				await this.$confirm(Constants.message.DELETE);
+				await this.$vueAlert.confirm(Constants.message.DELETE);
 
 				location.userIdentity = this.appStore.userIdentity;
 				const response = await this.$_transaction_post("/location/executeExclusion", location);
