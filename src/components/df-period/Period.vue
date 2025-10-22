@@ -13,7 +13,7 @@
 			@click:append-inner="ignoreMonth = !ignoreMonth"
 		/>
 		<v-text-field v-model="selectedYear"
-			type="number"
+			type="text"
 			label="Year"
 			maxlength="4"
 			:style="ignoreYear ? 'opacity: 0.5' : 'opacity: 1'"
@@ -55,6 +55,8 @@ export default {
 			selectedYear: this.year,
 			ignoreMonth: false,
 			ignoreYear: false,
+			lowerLimit: 2000,
+			upperLimit: 2100,
 
 			monthList: [
 				{monthName: "January", monthNumber: "01"},
@@ -75,15 +77,16 @@ export default {
 
 	methods: {
 		periodChange() {
-			const lowerLimit = 2000;
-			const upperLimit = 2100;
-
-			if (this.selectedYear.length > 4 || (this.selectedYear.length === 4 && this.selectedYear <= lowerLimit || this.selectedYear > upperLimit)) {
-				this.$_message_showWarning(`The year must a four-digit number between ${lowerLimit} and ${upperLimit}.`);
+			if (this.selectedYear.length > 4 || this.isYearOutOfRange() || isNaN(this.selectedYear)) {
+				this.$_message_showWarning(`The year must be a four-digit number between ${this.lowerLimit} and ${this.upperLimit}.`);
 				return;
 			}
 
 			this.$emit("periodChange", this.ignoreMonth ? "" : this.selectedMonth, this.ignoreYear ? "" : this.selectedYear);
+		},
+
+		isYearOutOfRange() {
+			return this.selectedYear.length === 4 && (this.selectedYear < this.lowerLimit || this.selectedYear > this.upperLimit);
 		},
 	},
 }

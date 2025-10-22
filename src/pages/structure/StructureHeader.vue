@@ -39,7 +39,7 @@
 
 					<v-list-item link @click="accessModuleSummary()" prepend-icon="mdi-text">Summary</v-list-item>
 					<v-list-item link @click="accessModuleObjective()" prepend-icon="mdi-cash-multiple">Objectives</v-list-item>
-					<v-list-item link @click="accessModuleStatement()" prepend-icon="mdi-notebook-plus-outline">Statements</v-list-item>
+					<v-list-item link @click="accessModuleStatement()" prepend-icon="mdi-notebook-plus">Statements</v-list-item>
 				</v-list-group>
 
 				<v-list-group value="registrations">
@@ -48,11 +48,11 @@
 					</template>
 
 					<v-list-item link @click="accessModuleAccount()" prepend-icon="mdi-bank-outline">Accounts</v-list-item>
-					<v-list-item link @click="accessModuleLocation()" prepend-icon="mdi-office-building-marker-outline">Locations</v-list-item>
-					<v-list-item link @click="accessModulePaymentMethod()" prepend-icon="mdi-credit-card-check-outline">Payment Methods</v-list-item>
-					<v-list-item link @click="accessModuleBank()" prepend-icon="mdi-credit-card-check-outline">Banks</v-list-item>
-					<v-list-item link @click="accessModuleStatementType()" prepend-icon="mdi-credit-card-check-outline">Statement Types</v-list-item>
-					<v-list-item link @click="accessModuleStatementPattern()" prepend-icon="mdi-credit-card-check-outline">Statement Patterns</v-list-item>
+					<v-list-item link @click="accessModuleLocation()" prepend-icon="mdi-office-building-marker">Locations (OK)</v-list-item>
+					<v-list-item link @click="accessModulePaymentMethod()" prepend-icon="mdi-credit-card-check">Payment Methods</v-list-item>
+					<v-list-item link @click="accessModuleBank()" prepend-icon="mdi-bank">Banks</v-list-item>
+					<v-list-item link @click="accessModuleStatementType()" prepend-icon="mdi-format-list-bulleted-type">Statement Types</v-list-item>
+					<v-list-item link @click="accessModuleStatementPattern()" prepend-icon="mdi-lock-pattern">Statement Patterns</v-list-item>
 				</v-list-group>
 			</v-list-group>
 
@@ -83,7 +83,7 @@
 					<v-list-item v-bind="props">COMING SOON</v-list-item>
 				</template>
 
-				<v-list-item link @click="accessModuleWishList()" prepend-icon="mdi-heart-half-full">Wish List</v-list-item>
+				<v-list-item link @click="accessModuleWishList()" prepend-icon="mdi-heart-plus">Wish List</v-list-item>
 				<v-list-item link @click="accessModuleVehicle()" prepend-icon="mdi-car">Car Management</v-list-item>
 			</v-list-group>
 

@@ -4,7 +4,7 @@
 			<v-toolbar-title>Summary</v-toolbar-title>
 			<v-spacer></v-spacer>
 
-			<v-btn icon @click.stop="accessModule()" title="Click to reload page"><v-icon icon="mdi-rotate-3d-variant"></v-icon></v-btn>
+			<v-btn icon @click.stop="accessModule()" title="Click to reload page"><v-icon icon="mdi-rotate-3d-variant" /></v-btn>
 		</v-app-bar>
 
 		<df-period :month="month" :year="year" @periodChange="periodChange"></df-period>

@@ -4,9 +4,9 @@
 			<v-toolbar-title>Locations</v-toolbar-title>
 			<v-spacer></v-spacer>
 
-			<v-btn icon @click.stop="accessModule()" title="Click to reload page"><df-icon icon="fa-arrows-rotate" size="lg" /></v-btn>
-			<v-btn icon @click.stop="toggleFilterField()" title="Click to search"><df-icon icon="fa-magnifying-glass" size="lg" /></v-btn>
-			<v-btn icon @click.stop="accessRegistration()" title="Click to register a new location"><df-icon icon="fa-plus" /></v-btn>
+			<v-btn icon @click.stop="accessModule()" title="Click to reload page"><v-icon icon="mdi-rotate-3d-variant" /></v-btn>
+			<v-btn icon @click.stop="toggleFilterField()" title="Click to search"><v-icon icon="mdi-magnify" /></v-btn>
+			<v-btn icon @click.stop="accessRegistration()" title="Click to register a new location"><v-icon icon="mdi-plus" /></v-btn>
 		</v-app-bar>
 
 		<df-input-filter transition="slide-x-transition" v-if="showSearchField" @type="executeSearch" />
@@ -25,17 +25,16 @@
 </template>
 
 <script lang="js">
-import locationService from "./locationService.js";
-import LocationResult from "./LocationResult.vue";
-import LocationForm from "./LocationForm.vue";
+import locationService from "@/pages/location/locationService.js";
+import LocationResult from "@/pages/location/LocationResult.vue";
+import LocationForm from "@/pages/location/LocationForm.vue";
 
-import DfIcon from "../../components/df-icon/Icon.vue";
-import DfInputFilter from "../../components/df-input/InputFilter.vue";
+import DfInputFilter from "@/components/df-input/InputFilter.vue";
 
 export default {
 	name: "Location",
 
-	components: { LocationResult, LocationForm, DfInputFilter, DfIcon },
+	components: { LocationResult, LocationForm, DfInputFilter },
 
 	mixins: [locationService],
 
