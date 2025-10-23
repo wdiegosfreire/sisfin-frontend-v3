@@ -23,8 +23,8 @@
 
 		<v-list dense>
 			<v-list-item>
-				<v-autocomplete v-model="themeSelected" label="Theme" :items="themeList" item-title="name" item-value="value" @change="themeChange();" return-object />
-				<v-autocomplete v-model="themeDark" label="Dark Theme" :items="decisionList" item-title="label" item-value="value" @change="themeChange();" />
+				<v-autocomplete v-model="themeSelected" label="Theme" :items="themeList" item-title="name" item-value="value" @update:modelValue="themeChange();" return-object />
+				<v-autocomplete v-model="themeDark" label="Dark Theme" :items="decisionList" item-title="label" item-value="value" @update:modelValue="themeChange();" />
 			</v-list-item>
 
 			<v-list-group value="finances">
@@ -114,6 +114,7 @@ export default {
 
 			themeDark: false,
 			themeSelected: {},
+			themeRef: null,
 
 			decisionList: [
 				{ label: 'No', value: false },
@@ -165,13 +166,6 @@ export default {
 				},
 			],
 		}
-	},
-
-	created() {
-		const theme = useTheme();
-
-		this.themeSelected = this.themeList[3];
-		// theme.themes.value.light = this.themeSelected.light;
 	},
 
 	computed: {
@@ -283,12 +277,33 @@ export default {
 		},
 
 		themeChange() {
-			const theme = useTheme();
+			if (!this.themeRef)
+				return;
 
-			theme.global.name.value = this.themeDark ? 'dark' : 'light';
-			theme.themes.value.light = this.themeSelected.light;
-			theme.themes.value.dark = this.themeSelected.dark;
+			this.themeRef.change(this.themeDark ? 'dark' : 'light');
+
+			this.themeRef.themes.light.colors.primary = this.themeSelected.light.primary;
+			this.themeRef.themes.light.colors.secondary = this.themeSelected.light.secondary;
+			this.themeRef.themes.light.colors.accent = this.themeSelected.light.accent;
+			this.themeRef.themes.light.colors.success = this.themeSelected.light.success;
+			this.themeRef.themes.light.colors.info = this.themeSelected.light.info;
+			this.themeRef.themes.light.colors.warning = this.themeSelected.light.warning;
+			this.themeRef.themes.light.colors.error = this.themeSelected.light.error;
+
+			this.themeRef.themes.dark.colors.primary = this.themeSelected.dark.primary;
+			this.themeRef.themes.dark.colors.secondary = this.themeSelected.dark.secondary;
+			this.themeRef.themes.dark.colors.accent = this.themeSelected.dark.accent;
+			this.themeRef.themes.dark.colors.success = this.themeSelected.dark.success;
+			this.themeRef.themes.dark.colors.info = this.themeSelected.dark.info;
+			this.themeRef.themes.dark.colors.warning = this.themeSelected.dark.warning;
+			this.themeRef.themes.dark.colors.error = this.themeSelected.dark.error;
 		},
-	}
+	},
+
+	created() {
+		this.themeRef = useTheme();
+		this.themeSelected = this.themeList[3];
+		this.themeChange();
+	},
 };
 </script>
