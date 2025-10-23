@@ -10,8 +10,6 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 
-import { MaskInput } from 'vue-3-mask';
-
 import 'unfonts.css';
 
 const app = createApp(App);
@@ -22,7 +20,6 @@ app.use(VueSimpleAlert)
 
 library.add(fas)
 app.component('fa-icon', FontAwesomeIcon);
-app.component('MaskInput', MaskInput);
 
 registerPlugins(app);
 app.mount('#app');
