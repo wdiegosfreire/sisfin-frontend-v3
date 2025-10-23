@@ -25,6 +25,9 @@ declare module 'vue-router/auto-routes' {
     '/paymentMethod/PaymentMethod': RouteRecordInfo<'/paymentMethod/PaymentMethod', '/paymentMethod/PaymentMethod', Record<never, never>, Record<never, never>>,
     '/paymentMethod/PaymentMethodForm': RouteRecordInfo<'/paymentMethod/PaymentMethodForm', '/paymentMethod/PaymentMethodForm', Record<never, never>, Record<never, never>>,
     '/paymentMethod/PaymentMethodResult': RouteRecordInfo<'/paymentMethod/PaymentMethodResult', '/paymentMethod/PaymentMethodResult', Record<never, never>, Record<never, never>>,
+    '/statement/bank/Bank': RouteRecordInfo<'/statement/bank/Bank', '/statement/bank/Bank', Record<never, never>, Record<never, never>>,
+    '/statement/bank/BankForm': RouteRecordInfo<'/statement/bank/BankForm', '/statement/bank/BankForm', Record<never, never>, Record<never, never>>,
+    '/statement/bank/BankResult': RouteRecordInfo<'/statement/bank/BankResult', '/statement/bank/BankResult', Record<never, never>, Record<never, never>>,
     '/structure/Structure': RouteRecordInfo<'/structure/Structure', '/structure/Structure', Record<never, never>, Record<never, never>>,
     '/structure/StructureHeader': RouteRecordInfo<'/structure/StructureHeader', '/structure/StructureHeader', Record<never, never>, Record<never, never>>,
     '/structure/StructureMessaging': RouteRecordInfo<'/structure/StructureMessaging', '/structure/StructureMessaging', Record<never, never>, Record<never, never>>,
@@ -72,6 +75,18 @@ declare module 'vue-router/auto-routes' {
     }
     'src/pages/paymentMethod/PaymentMethodResult.vue': {
       routes: '/paymentMethod/PaymentMethodResult'
+      views: never
+    }
+    'src/pages/statement/bank/Bank.vue': {
+      routes: '/statement/bank/Bank'
+      views: never
+    }
+    'src/pages/statement/bank/BankForm.vue': {
+      routes: '/statement/bank/BankForm'
+      views: never
+    }
+    'src/pages/statement/bank/BankResult.vue': {
+      routes: '/statement/bank/BankResult'
       views: never
     }
     'src/pages/structure/Structure.vue': {

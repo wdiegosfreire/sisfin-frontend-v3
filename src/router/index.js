@@ -1,4 +1,5 @@
 import User from "@/pages/user/User.vue";
+import Bank from "@/pages/statement/bank/Bank.vue";
 import Summary from "@/pages/summary/Summary.vue";
 import Vehicle from "@/pages/vehicle/Vehicle.vue";
 import Location from "@/pages/location/Location.vue";
@@ -10,6 +11,7 @@ import { createRouter, createWebHistory } from "vue-router";
 
 const routes = [
 	{ path: "/", name: "user", component: User },
+	{ path: "/bank", name: "bank", component: Bank },
 	{ path: "/summary", name: "summary", component: Summary },
 	{ path: "/vehicle", name: "vehicle", component: Vehicle },
 	{ path: "/location", name: "location", component: Location },
@@ -19,7 +21,6 @@ const routes = [
 //   { path: "/objective", name: "objective", component: Objective },
 //   { path: "/statement", name: "statement", component: Statement },
 //   { path: "/account", name: "account", component: Account },
-//   { path: "/bank", name: "bank", component: Bank },
 //   { path: "/statementType", name: "statementType", component: StatementType },
 //   { path: "/statementPattern", name: "statementPattern", component: StatementPattern },
 ]
