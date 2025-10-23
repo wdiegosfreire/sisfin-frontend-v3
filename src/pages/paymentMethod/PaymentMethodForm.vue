@@ -16,7 +16,7 @@
 					<v-text-field label="Name" v-model="paymentMethod.name" autofocus />
 				</df-grid>
 				<df-grid>
-					<v-text-field label="Acronym" v-model="paymentMethod.acronym" v-mask="['AAA']" />
+					<v-text-field label="Acronym" v-model="paymentMethod.acronym" maxlength="3" />
 				</df-grid>
 			</v-card-text>
 
