@@ -28,6 +28,9 @@ declare module 'vue-router/auto-routes' {
     '/statement/bank/Bank': RouteRecordInfo<'/statement/bank/Bank', '/statement/bank/Bank', Record<never, never>, Record<never, never>>,
     '/statement/bank/BankForm': RouteRecordInfo<'/statement/bank/BankForm', '/statement/bank/BankForm', Record<never, never>, Record<never, never>>,
     '/statement/bank/BankResult': RouteRecordInfo<'/statement/bank/BankResult', '/statement/bank/BankResult', Record<never, never>, Record<never, never>>,
+    '/statement/statementPattern/StatementPattern': RouteRecordInfo<'/statement/statementPattern/StatementPattern', '/statement/statementPattern/StatementPattern', Record<never, never>, Record<never, never>>,
+    '/statement/statementPattern/StatementPatternForm': RouteRecordInfo<'/statement/statementPattern/StatementPatternForm', '/statement/statementPattern/StatementPatternForm', Record<never, never>, Record<never, never>>,
+    '/statement/statementPattern/StatementPatternResult': RouteRecordInfo<'/statement/statementPattern/StatementPatternResult', '/statement/statementPattern/StatementPatternResult', Record<never, never>, Record<never, never>>,
     '/statement/statementType/StatementType': RouteRecordInfo<'/statement/statementType/StatementType', '/statement/statementType/StatementType', Record<never, never>, Record<never, never>>,
     '/statement/statementType/StatementTypeForm': RouteRecordInfo<'/statement/statementType/StatementTypeForm', '/statement/statementType/StatementTypeForm', Record<never, never>, Record<never, never>>,
     '/statement/statementType/StatementTypeResult': RouteRecordInfo<'/statement/statementType/StatementTypeResult', '/statement/statementType/StatementTypeResult', Record<never, never>, Record<never, never>>,
@@ -90,6 +93,18 @@ declare module 'vue-router/auto-routes' {
     }
     'src/pages/statement/bank/BankResult.vue': {
       routes: '/statement/bank/BankResult'
+      views: never
+    }
+    'src/pages/statement/statementPattern/StatementPattern.vue': {
+      routes: '/statement/statementPattern/StatementPattern'
+      views: never
+    }
+    'src/pages/statement/statementPattern/StatementPatternForm.vue': {
+      routes: '/statement/statementPattern/StatementPatternForm'
+      views: never
+    }
+    'src/pages/statement/statementPattern/StatementPatternResult.vue': {
+      routes: '/statement/statementPattern/StatementPatternResult'
       views: never
     }
     'src/pages/statement/statementType/StatementType.vue': {

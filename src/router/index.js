@@ -7,6 +7,7 @@ import WishList from "@/pages/wishList/WishList.vue";
 import Supermarket from "@/pages/supermarket/Supermarket.vue";
 import PaymentMethod from "@/pages/paymentMethod/PaymentMethod.vue";
 import StatementType from "@/pages/statement/statementType/StatementType.vue";
+import StatementPattern from "@/pages/statement/statementPattern/StatementPattern.vue";
 
 import { createRouter, createWebHistory } from "vue-router";
 
@@ -20,10 +21,10 @@ const routes = [
 	{ path: "/supermarket", name: "supermarket", component: Supermarket },
 	{ path: "/paymentMethod", name: "paymentMethod", component: PaymentMethod },
 	{ path: "/statementType", name: "statementType", component: StatementType },
+	{ path: "/statementPattern", name: "statementPattern", component: StatementPattern },
 //   { path: "/objective", name: "objective", component: Objective },
 //   { path: "/statement", name: "statement", component: Statement },
 //   { path: "/account", name: "account", component: Account },
-//   { path: "/statementPattern", name: "statementPattern", component: StatementPattern },
 ]
 
 const router = createRouter({
