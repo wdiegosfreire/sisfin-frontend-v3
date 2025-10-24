@@ -51,7 +51,7 @@
 					<v-list-item link @click="accessModuleLocation()" prepend-icon="mdi-office-building-marker">Locations (OK)</v-list-item>
 					<v-list-item link @click="accessModulePaymentMethod()" prepend-icon="mdi-credit-card-check">Payment Methods (OK)</v-list-item>
 					<v-list-item link @click="accessModuleBank()" prepend-icon="mdi-bank">Banks (OK)</v-list-item>
-					<v-list-item link @click="accessModuleStatementType()" prepend-icon="mdi-format-list-bulleted-type">Statement Types</v-list-item>
+					<v-list-item link @click="accessModuleStatementType()" prepend-icon="mdi-format-list-bulleted-type">Statement Types (OK)</v-list-item>
 					<v-list-item link @click="accessModuleStatementPattern()" prepend-icon="mdi-lock-pattern">Statement Patterns</v-list-item>
 				</v-list-group>
 			</v-list-group>

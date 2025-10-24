@@ -8,7 +8,7 @@ import Constants from "../../plugins/Constants";
 export default {
 	name: "paymentMethodService",
 
-	mixins: [transactionApi, message ],
+	mixins: [ transactionApi, message ],
 
 	data() {
 		return {

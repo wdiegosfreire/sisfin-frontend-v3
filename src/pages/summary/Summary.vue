@@ -72,7 +72,7 @@ import message from "../../components/mixins/message.js";
 import PieChart from '../../components/df-chart/Pie.vue';
 import LineChart from '../../components/df-chart/Line.vue';
 
-import { currency, traceAccount } from '@/utils/filters.js'
+import { currency, traceAccount } from '@/utils/filters.js';
 
 export default {
 	name: "Summary",

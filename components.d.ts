@@ -9,6 +9,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AppFooter: typeof import('./src/components/AppFooter.vue')['default']
+    AutocompleteAccount: typeof import('./src/components/df-autocomplete/AutocompleteAccount.vue')['default']
     Bar: typeof import('./src/components/df-chart/Bar.vue')['default']
     Grid: typeof import('./src/components/grid/Grid.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']

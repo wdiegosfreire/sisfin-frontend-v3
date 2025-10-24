@@ -28,6 +28,9 @@ declare module 'vue-router/auto-routes' {
     '/statement/bank/Bank': RouteRecordInfo<'/statement/bank/Bank', '/statement/bank/Bank', Record<never, never>, Record<never, never>>,
     '/statement/bank/BankForm': RouteRecordInfo<'/statement/bank/BankForm', '/statement/bank/BankForm', Record<never, never>, Record<never, never>>,
     '/statement/bank/BankResult': RouteRecordInfo<'/statement/bank/BankResult', '/statement/bank/BankResult', Record<never, never>, Record<never, never>>,
+    '/statement/statementType/StatementType': RouteRecordInfo<'/statement/statementType/StatementType', '/statement/statementType/StatementType', Record<never, never>, Record<never, never>>,
+    '/statement/statementType/StatementTypeForm': RouteRecordInfo<'/statement/statementType/StatementTypeForm', '/statement/statementType/StatementTypeForm', Record<never, never>, Record<never, never>>,
+    '/statement/statementType/StatementTypeResult': RouteRecordInfo<'/statement/statementType/StatementTypeResult', '/statement/statementType/StatementTypeResult', Record<never, never>, Record<never, never>>,
     '/structure/Structure': RouteRecordInfo<'/structure/Structure', '/structure/Structure', Record<never, never>, Record<never, never>>,
     '/structure/StructureHeader': RouteRecordInfo<'/structure/StructureHeader', '/structure/StructureHeader', Record<never, never>, Record<never, never>>,
     '/structure/StructureMessaging': RouteRecordInfo<'/structure/StructureMessaging', '/structure/StructureMessaging', Record<never, never>, Record<never, never>>,
@@ -87,6 +90,18 @@ declare module 'vue-router/auto-routes' {
     }
     'src/pages/statement/bank/BankResult.vue': {
       routes: '/statement/bank/BankResult'
+      views: never
+    }
+    'src/pages/statement/statementType/StatementType.vue': {
+      routes: '/statement/statementType/StatementType'
+      views: never
+    }
+    'src/pages/statement/statementType/StatementTypeForm.vue': {
+      routes: '/statement/statementType/StatementTypeForm'
+      views: never
+    }
+    'src/pages/statement/statementType/StatementTypeResult.vue': {
+      routes: '/statement/statementType/StatementTypeResult'
       views: never
     }
     'src/pages/structure/Structure.vue': {
