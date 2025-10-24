@@ -181,10 +181,10 @@ export default {
 			if (this.appStore.userName) {
 				splittedName = this.appStore.userName.split(" ");
 				firstChar = splittedName[0].substring(0, 1);
-				lastChar = splittedName[splittedName.length - 1].substr(0, 1);
+				lastChar = splittedName[splittedName.length - 1].substring(0, 1);
 			}
 
-			return firstChar + lastChar;
+			return (firstChar + lastChar).toUpperCase();
 		},
 
 		computedName() {
@@ -194,8 +194,12 @@ export default {
 
 			if (this.appStore.userName) {
 				splittedName = this.appStore.userName.split(" ");
+
 				firstName = splittedName[0];
+				firstName = firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase();
+
 				lastName = splittedName[splittedName.length - 1];
+				lastName = lastName.charAt(0).toUpperCase() + lastName.slice(1).toLowerCase();
 			}
 
 			return `${firstName} ${lastName}`;
