@@ -211,53 +211,18 @@ export default {
 	},
 
 	methods: {
-		accessModuleSummary() {
-			this.navigateTo("/summary");
-		},
-
-		accessModuleObjective() {
-			this.navigateTo("/objective");
-		},
-
-		accessModuleStatement() {
-			this.navigateTo("/statement");
-		},
-
-		accessModuleAccount() {
-			this.navigateTo("/account");
-		},
-
-		accessModuleLocation() {
-			this.navigateTo("/location");
-		},
-
-		accessModulePaymentMethod() {
-			this.navigateTo("/paymentMethod");
-		},
-
-		accessModuleBank() {
-			this.navigateTo("/bank");
-		},
-
-		accessModuleStatementType() {
-			this.navigateTo("/statementType");
-		},
-
-		accessModuleStatementPattern() {
-			this.navigateTo("/statementPattern");
-		},
-
-		accessModuleWishList() {
-			this.navigateTo("/wishList");
-		},
-
-		accessModuleVehicle() {
-			this.navigateTo("/vehicle");
-		},
-
-		accessModuleSupermarket() {
-			this.navigateTo("/supermarket");
-		},
+		accessModuleBank() { this.navigateTo("/bank"); },
+		accessModuleAccount() { this.navigateTo("/account"); },
+		accessModuleSummary() { this.navigateTo("/summary"); },
+		accessModuleVehicle() { this.navigateTo("/vehicle"); },
+		accessModuleLocation() { this.navigateTo("/location"); },
+		accessModuleWishList() { this.navigateTo("/wishList"); },
+		accessModuleObjective() { this.navigateTo("/objective"); },
+		accessModuleStatement() { this.navigateTo("/statement"); },
+		accessModuleSupermarket() { this.navigateTo("/supermarket"); },
+		accessModulePaymentMethod() { this.navigateTo("/paymentMethod"); },
+		accessModuleStatementType() { this.navigateTo("/statementType"); },
+		accessModuleStatementPattern() { this.navigateTo("/statementPattern"); },
 
 		navigateTo(path) {
 			this.$router.push(path).catch(error => {
