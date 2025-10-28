@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<v-app-bar color="primary" dense dark>
-			<v-toolbar-title>Banks</v-toolbar-title>
+			<v-toolbar-title>Accounts</v-toolbar-title>
 			<v-spacer></v-spacer>
 
 			<v-btn icon @click.stop="accessModule()" title="Click to reload page"><v-icon icon="mdi-rotate-3d-variant" /></v-btn>
@@ -11,33 +11,36 @@
 
 		<df-input-filter transition="slide-x-transition" v-if="showSearchField" @type="executeSearch" />
 
-		<bank-result :collection="appStore.globalResult"
+		<account-result :collection="accountListResult"
 			@accessEdition="accessEdition"
 			@executeExclusion="executeExclusion"
 		/>
 
-		<bank-form :bank="appStore.globalEntity"
+		<account-form :account="accountForm"
+			:account-list-combo-level-one="accountListComboLevelOne"
+			:account-list-combo-level-two="accountListComboLevelTwo"
+
 			@executeRegistration="executeRegistration"
+			@accessRegistration="accessRegistration"
 			@executeEdition="executeEdition"
-			@cleanForm="cleanForm"
 			@closeForm="closeForm"
 		/>
 	</div>
 </template>
 
 <script lang="js">
-import bankService from "@/pages/statement/bank/bankService.js";
-import BankResult from "@/pages/statement/bank/BankResult.vue";
-import BankForm from "@/pages/statement/bank/BankForm.vue";
+import accountService from "@/pages/transaction/account/accountService.js";
+import AccountResult from "@/pages/transaction/account/AccountResult.vue";
+import AccountForm from "@/pages/transaction/account/AccountForm.vue";
 
 import DfInputFilter from "@/components/df-input/InputFilter.vue";
 
 export default {
-	name: "Bank",
+	name: "Account",
 
-	components: { BankResult, BankForm, DfInputFilter },
+	components: { AccountResult, AccountForm, DfInputFilter },
 
-	mixins: [bankService],
+	mixins: [accountService],
 
 	methods: {
 		toggleFilterField() {

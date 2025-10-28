@@ -34,13 +34,12 @@ import statementTypeService from "@/pages/statement/statementType/statementTypeS
 import StatementTypeResult from "@/pages/statement/statementType/StatementTypeResult.vue";
 import StatementTypeForm from "@/pages/statement/statementType/StatementTypeForm.vue";
 
-import DfIcon from "@/components/df-icon/Icon.vue";
 import DfInputFilter from "@/components/df-input/InputFilter.vue";
 
 export default {
 	name: "StatementType",
 
-	components: { StatementTypeResult, StatementTypeForm, DfInputFilter, DfIcon },
+	components: { StatementTypeResult, StatementTypeForm, DfInputFilter },
 
 	mixins: [statementTypeService],
 

@@ -39,6 +39,9 @@ declare module 'vue-router/auto-routes' {
     '/structure/StructureMessaging': RouteRecordInfo<'/structure/StructureMessaging', '/structure/StructureMessaging', Record<never, never>, Record<never, never>>,
     '/summary/Summary': RouteRecordInfo<'/summary/Summary', '/summary/Summary', Record<never, never>, Record<never, never>>,
     '/supermarket/Supermarket': RouteRecordInfo<'/supermarket/Supermarket', '/supermarket/Supermarket', Record<never, never>, Record<never, never>>,
+    '/transaction/account/Account': RouteRecordInfo<'/transaction/account/Account', '/transaction/account/Account', Record<never, never>, Record<never, never>>,
+    '/transaction/account/AccountForm': RouteRecordInfo<'/transaction/account/AccountForm', '/transaction/account/AccountForm', Record<never, never>, Record<never, never>>,
+    '/transaction/account/AccountResult': RouteRecordInfo<'/transaction/account/AccountResult', '/transaction/account/AccountResult', Record<never, never>, Record<never, never>>,
     '/user/User': RouteRecordInfo<'/user/User', '/user/User', Record<never, never>, Record<never, never>>,
     '/vehicle/Vehicle': RouteRecordInfo<'/vehicle/Vehicle', '/vehicle/Vehicle', Record<never, never>, Record<never, never>>,
     '/wishList/WishList': RouteRecordInfo<'/wishList/WishList', '/wishList/WishList', Record<never, never>, Record<never, never>>,
@@ -137,6 +140,18 @@ declare module 'vue-router/auto-routes' {
     }
     'src/pages/supermarket/Supermarket.vue': {
       routes: '/supermarket/Supermarket'
+      views: never
+    }
+    'src/pages/transaction/account/Account.vue': {
+      routes: '/transaction/account/Account'
+      views: never
+    }
+    'src/pages/transaction/account/AccountForm.vue': {
+      routes: '/transaction/account/AccountForm'
+      views: never
+    }
+    'src/pages/transaction/account/AccountResult.vue': {
+      routes: '/transaction/account/AccountResult'
       views: never
     }
     'src/pages/user/User.vue': {

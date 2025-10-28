@@ -37,7 +37,6 @@
 import DfResultLayout from "@/components/df-layout/ResultLayout.vue";
 
 import DfGrid from "@/components/grid/Grid.vue";
-import DfIcon from "@/components/df-icon/Icon.vue";
 import DfOutputText from "@/components/df-output/OutputText.vue";
 
 import { traceAccount } from '@/utils/filters.js';
@@ -45,7 +44,7 @@ import { traceAccount } from '@/utils/filters.js';
 export default {
 	name: "StatementTypeResult",
 
-	components: { DfResultLayout, DfGrid, DfOutputText, DfIcon },
+	components: { DfResultLayout, DfGrid, DfOutputText },
 
 	props: {
 		collection: {
