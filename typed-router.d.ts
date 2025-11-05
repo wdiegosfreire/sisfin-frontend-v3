@@ -42,6 +42,11 @@ declare module 'vue-router/auto-routes' {
     '/transaction/account/Account': RouteRecordInfo<'/transaction/account/Account', '/transaction/account/Account', Record<never, never>, Record<never, never>>,
     '/transaction/account/AccountForm': RouteRecordInfo<'/transaction/account/AccountForm', '/transaction/account/AccountForm', Record<never, never>, Record<never, never>>,
     '/transaction/account/AccountResult': RouteRecordInfo<'/transaction/account/AccountResult', '/transaction/account/AccountResult', Record<never, never>, Record<never, never>>,
+    '/transaction/objective/Objective': RouteRecordInfo<'/transaction/objective/Objective', '/transaction/objective/Objective', Record<never, never>, Record<never, never>>,
+    '/transaction/objective/ObjectiveForm': RouteRecordInfo<'/transaction/objective/ObjectiveForm', '/transaction/objective/ObjectiveForm', Record<never, never>, Record<never, never>>,
+    '/transaction/objective/ObjectiveItemResult': RouteRecordInfo<'/transaction/objective/ObjectiveItemResult', '/transaction/objective/ObjectiveItemResult', Record<never, never>, Record<never, never>>,
+    '/transaction/objective/ObjectiveMovementResult': RouteRecordInfo<'/transaction/objective/ObjectiveMovementResult', '/transaction/objective/ObjectiveMovementResult', Record<never, never>, Record<never, never>>,
+    '/transaction/objective/ObjectiveResult': RouteRecordInfo<'/transaction/objective/ObjectiveResult', '/transaction/objective/ObjectiveResult', Record<never, never>, Record<never, never>>,
     '/user/User': RouteRecordInfo<'/user/User', '/user/User', Record<never, never>, Record<never, never>>,
     '/vehicle/Vehicle': RouteRecordInfo<'/vehicle/Vehicle', '/vehicle/Vehicle', Record<never, never>, Record<never, never>>,
     '/wishList/WishList': RouteRecordInfo<'/wishList/WishList', '/wishList/WishList', Record<never, never>, Record<never, never>>,
@@ -152,6 +157,26 @@ declare module 'vue-router/auto-routes' {
     }
     'src/pages/transaction/account/AccountResult.vue': {
       routes: '/transaction/account/AccountResult'
+      views: never
+    }
+    'src/pages/transaction/objective/Objective.vue': {
+      routes: '/transaction/objective/Objective'
+      views: never
+    }
+    'src/pages/transaction/objective/ObjectiveForm.vue': {
+      routes: '/transaction/objective/ObjectiveForm'
+      views: never
+    }
+    'src/pages/transaction/objective/ObjectiveItemResult.vue': {
+      routes: '/transaction/objective/ObjectiveItemResult'
+      views: never
+    }
+    'src/pages/transaction/objective/ObjectiveMovementResult.vue': {
+      routes: '/transaction/objective/ObjectiveMovementResult'
+      views: never
+    }
+    'src/pages/transaction/objective/ObjectiveResult.vue': {
+      routes: '/transaction/objective/ObjectiveResult'
       views: never
     }
     'src/pages/user/User.vue': {

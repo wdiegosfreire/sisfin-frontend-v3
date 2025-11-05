@@ -1,11 +1,14 @@
-import User from "@/pages/user/User.vue";
 import Account from "@/pages/transaction/account/Account.vue";
+import Objective from "@/pages/transaction/objective/Objective.vue";
+
+import User from "@/pages/user/User.vue";
 import Summary from "@/pages/summary/Summary.vue";
 import Vehicle from "@/pages/vehicle/Vehicle.vue";
 import Location from "@/pages/location/Location.vue";
 import WishList from "@/pages/wishList/WishList.vue";
 import Supermarket from "@/pages/supermarket/Supermarket.vue";
 import PaymentMethod from "@/pages/paymentMethod/PaymentMethod.vue";
+
 
 import Bank from "@/pages/statement/bank/Bank.vue";
 import StatementType from "@/pages/statement/statementType/StatementType.vue";
@@ -21,11 +24,11 @@ const routes = [
 	{ path: "/vehicle", name: "vehicle", component: Vehicle },
 	{ path: "/location", name: "location", component: Location },
 	{ path: "/wishList", name: "wishList", component: WishList },
+	{ path: "/objective", name: "objective", component: Objective },
 	{ path: "/supermarket", name: "supermarket", component: Supermarket },
 	{ path: "/paymentMethod", name: "paymentMethod", component: PaymentMethod },
 	{ path: "/statementType", name: "statementType", component: StatementType },
 	{ path: "/statementPattern", name: "statementPattern", component: StatementPattern },
-//   { path: "/objective", name: "objective", component: Objective },
 //   { path: "/statement", name: "statement", component: Statement },
 ]
 
