@@ -37,8 +37,7 @@ export default {
 			let objective = {
 				userIdentity: this.appStore.userIdentity,
 				filterMap: {
-					// periodDate: new Date(this.appStore.globalYear + "-" + this.appStore.globalMonth + "-01 12:00:00"),
-					periodDate: new Date(2024 + "-" + 12 + "-01 12:00:00"),
+					periodDate: new Date(this.appStore.globalYear + "-" + this.appStore.globalMonth + "-01 12:00:00"),
 					locationIdentity: this.filter.location ? this.filter.location.identity : null,
 					accountSourceIdentity: this.filter.accountSource ? this.filter.accountSource.identity : null,
 					valueEnd: this.filter.valueEnd ? this.filter.valueEnd : null,
@@ -75,11 +74,6 @@ export default {
 		executeRegistration(objective) {
 			objective.userIdentity = this.appStore.userIdentity;
 
-			for (let objectiveMovement of objective.objectiveMovementList) {
-				objectiveMovement.dueDate = new Date(this.$_format_toAmericanDate(objectiveMovement.dueDate) + " 12:00:00");
-				objectiveMovement.paymentDate = new Date(this.$_format_toAmericanDate(objectiveMovement.paymentDate) + " 12:00:00");
-			}
-
 			this.$_transaction_post("/objective/executeRegistration", objective).then(response => {
 				this.appStore.setGlobalResult(response.data.map.objectiveList);
 				this.$_message_showSuccess();
@@ -91,7 +85,7 @@ export default {
 
 		cleanForm(objective) {
 			objective.description = "";
-			objective.location = {};
+			objective.location = null;
 			objective.objectiveItemList = [];
 			objective.objectiveMovementList = [];
 		},
@@ -138,7 +132,7 @@ export default {
 		},
 
 		executeExclusion(objective) {
-			this.$confirm(Constants.message.DELETE).then(() => {
+			this.$vueAlert.confirm(Constants.message.DELETE).then(() => {
 				let objectiveDelete = {
 					identity: objective.identity,
 					userIdentity: this.appStore.userIdentity

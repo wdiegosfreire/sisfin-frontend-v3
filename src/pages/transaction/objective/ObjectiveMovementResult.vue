@@ -23,11 +23,11 @@
 				<td>{{ objectiveMovement.paymentMethod.name }}</td>
 				<td class="text-right">{{ currency(objectiveMovement.value) }}</td>
 				<td v-if="enableEdit"><df-icon @click="$emit('editOneMovement', objectiveMovement)" icon="fa-pen" size="sm" title="Click to edit this movement." /></td>
-				<td v-if="enableDelete"><df-icon @click="deleteOneMovement(objectiveMovement)" icon="fa-trash" size="sm" title="Click to delete this movement." /></td>
+				<td v-if="enableDelete"><df-icon @click="$emit('deleteOneMovement', objectiveMovement)" icon="fa-trash" size="sm" title="Click to delete this movement." /></td>
 			</tr>
 			<tr>
 				<td colspan="6"></td>
-				<td class="text-right">{{ currency(movementTotalValue) }}</td>
+				<td class="text-right">{{ totalValueMovements }}</td>
 			</tr>
 		</tbody>
 	</v-table>
@@ -71,35 +71,13 @@ export default {
 		currency,
 		traceAccount,
 		toBrasilianDate,
+	},
 
-		calculateTotalValueForEachItem() {
-			this.movementTotalValue = 0;
-			for (let objectiveMovement of this.collection) {
-				this.movementTotalValue += objectiveMovement.value;
-				objectiveMovement.currentInstallment = this.installment == objectiveMovement.installment;
-			}
-
-			this.$emit("setMovementTotalValue", this.movementTotalValue);
-		},
-
-		deleteOneMovement(movement) {
-			let index = this.collection.indexOf(movement);
-			this.collection.splice(index, 1);
-
-			let i = 0;
-			for (const objectiveMovement of this.collection) {
-				objectiveMovement.installment = ++i;
-			}
+	computed: {
+		totalValueMovements() {
+			return this.currency(this.collection.reduce((acc, item) => acc + item.value, 0));
 		}
 	},
-
-	beforeUpdate() {
-		this.calculateTotalValueForEachItem();
-	},
-
-	beforeMount() {
-		this.calculateTotalValueForEachItem();
-	}
 };
 </script>
 

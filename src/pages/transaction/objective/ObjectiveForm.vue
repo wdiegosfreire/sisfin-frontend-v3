@@ -11,38 +11,26 @@
 			<v-card-text>
 				<input type="hidden" v-model.number="objective.value" />
 
-				<v-tabs>
+				<v-tabs v-model="tab" color="primary" class="mb-5" grow>
 					<v-tab value="tabObj">Objectives</v-tab>
 					<v-tab value="tabObm">Movements</v-tab>
 					<v-tab value="tabObi">Items</v-tab>
 				</v-tabs>
 
-				<!-- <v-tabs fixed-tabs>
-					<v-tab>Objective</v-tab>
-					<v-tab-item>
+				<v-tabs-window v-model="tab">
+					<v-tabs-window-item value="tabObj">
 						<v-text-field v-if="objective.identity" label="Identity" readonly v-model="objective.identity" />
 						<v-text-field label="Description" v-model="objective.description" :readonly="isIdentityPresent" />
+						<v-autocomplete label="Location" v-model="objective.location" item-title="name" item-value="identity" :items="locationListCombo" return-object clearable />
+					</v-tabs-window-item>
 
-						<v-autocomplete label="Location" v-model="objective.location" item-text="name" item-value="identity" :items="locationListCombo" return-object>
-							<template v-slot:selection="{ item }">{{ item.name }}</template>
-							<template v-slot:item="{ item }">{{ item.name }}</template>
-						</v-autocomplete>
-					</v-tab-item>
-
-					<v-tab>Movements</v-tab>
-					<v-tab-item>
+					<v-tabs-window-item value="tabObm">
 						<df-grid column="frac-15">
-							<v-text-field label="Installment" v-model.number="objectiveMovementForm.installment"></v-text-field>
-							<v-autocomplete label="Payment Method" v-model="objectiveMovementForm.paymentMethod" item-text="name" item-value="identity" :items="paymentMethodListCombo" return-object>
-								<template v-slot:selection="{ item }">{{ item.name }} - {{ item.acronym }}</template>
-								<template v-slot:item="{ item }">{{ item.name }} - {{ item.acronym }}</template>
-							</v-autocomplete>
+							<v-text-field label="Installment" v-model.number="objectiveMovementForm.installment" />
+							<v-autocomplete label="Payment Method" v-model="objectiveMovementForm.paymentMethod" :item-title="tracePaymentMethod" item-value="identity" :items="paymentMethodListCombo" return-object clearable />
 						</df-grid>
 						<df-grid>
-							<v-autocomplete label="Source" v-model="objectiveMovementForm.accountSource" item-text="name" item-value="identity" :items="accountListComboSource" return-object @change="validateSelectedSource()">
-								<template v-slot:selection="{ item }">{{ item.level }} {{ item | traceAccount }}</template>
-								<template v-slot:item="{ item }">{{ item.level }} {{ item | traceAccount }}</template>
-							</v-autocomplete>
+							<v-autocomplete label="Source" v-model="objectiveMovementForm.accountSource" :item-title="traceAccountWithLevel" item-value="identity" :items="accountListComboSource" return-object @change="validateSelectedSource()" clearable />
 						</df-grid>
 						<df-grid column="auto-sm">
 							<v-text-field label="Due Date" v-model="objectiveMovementForm.dueDate" />
@@ -51,50 +39,48 @@
 							<v-btn @click="addNewMovement()">Add</v-btn>
 						</df-grid>
 
-						<objective-movement-result enable-delete
+						<objective-movement-result
+							enable-delete
 							:collection="objective.objectiveMovementList"
-
-							@setMovementTotalValue="getMovementTotalValue"
+							@deleteOneMovement="deleteOneMovement"
 						/>
-					</v-tab-item>
+					</v-tabs-window-item>
 
-					<v-tab>Items</v-tab>
-					<v-tab-item>
+					<v-tabs-window-item value="tabObi">
 						<df-grid column="frac-15">
-							<v-text-field label="Sequential" v-model="objectiveItemForm.sequential" tabindex="-1" v-mask="['####']"></v-text-field>
-							<v-text-field label="Description" v-model="objectiveItemForm.description" append-icon="mdi-map-marker" @click:append="copyDescriptionFromObjective()"></v-text-field>
+							<v-text-field label="Sequential" v-model="objectiveItemForm.sequential" tabindex="-1" />
+							<v-text-field label="Description" v-model="objectiveItemForm.description" append-icon="mdi-map-marker" @click:append="copyDescriptionFromObjective()" />
 						</df-grid>
 						<df-grid column="auto-sm">
-							<v-autocomplete label="Target" v-model="objectiveItemForm.accountTarget" item-text="name" item-value="identity" :items="accountListComboTarget" return-object @change="validateSelectedTarget()">
-								<template v-slot:selection="{ item }">{{ item.level }} {{ item | traceAccount }}</template>
-								<template v-slot:item="{ item }">{{ item.level }} {{ item | traceAccount }}</template>
-							</v-autocomplete>
+							<v-autocomplete label="Target" v-model="objectiveItemForm.accountTarget" :item-title="traceAccountWithLevel" item-value="identity" :items="accountListComboTarget" return-object @change="validateSelectedTarget()" clearable />
 						</df-grid>
 						<df-grid column="auto-sm">
-							<v-text-field label="Amount" v-model.number="objectiveItemForm.amount" @blur="calculateItemTotalValue()"></v-text-field>
-							<v-text-field label="Unitary Value" v-model.number="objectiveItemForm.unitaryValue" @blur="calculateItemTotalValue()"></v-text-field>
+							<v-text-field label="Amount" v-model.number="objectiveItemForm.amount" @blur="calculateItemTotalValue()" />
+							<v-text-field label="Unitary Value" v-model.number="objectiveItemForm.unitaryValue" @blur="calculateItemTotalValue()" />
 							<v-text-field label="Total" v-model.number="objectiveItemForm.totalValue" readonly tabindex="-1" />
 							<v-btn @click="addNewItem()">Add</v-btn>
 						</df-grid>
 
-						<objective-item-result enable-delete
+						<objective-item-result
+							enable-delete
 							:collection="objective.objectiveItemList"
-
-							@setItemTotalValue="getItemTotalValue"
+							@deleteOneItem="deleteOneItem"
 						/>
-					</v-tab-item>
-				</v-tabs> -->
+					</v-tabs-window-item>
+				</v-tabs-window>
 			</v-card-text>
 
 			<v-card-text>
 				<table>
-					<tr>
-						<td><h3>Total of Movements: {{ currency(totalAllMovements) }}</h3></td>
-						<td rowspan="2"><df-icon v-if="showTotalAlert" icon="fa-warning" size="3x" color="orange" title="Total of movements is diferent of total of items!" /></td>
-					</tr>
-					<tr>
-						<td><h3>Total of Items: {{ currency(totalAllItems) }}</h3></td>
-					</tr>
+					<tbody>
+						<tr>
+							<td><h3>Total of Movements: {{ calculateTotalValueOfMovements }}</h3></td>
+							<td rowspan="2"><df-icon v-if="showTotalAlert" icon="fa-warning" size="3x" color="orange" title="Total of movements is diferent of total of items!" /></td>
+						</tr>
+						<tr>
+							<td><h3>Total of Items: {{ calculateTotalValueOfItems }}</h3></td>
+						</tr>
+					</tbody>
 				</table>
 			</v-card-text>
 
@@ -122,7 +108,7 @@ import ObjectiveMovementResult from "@/pages/transaction/objective/ObjectiveMove
 import format from "@/components/mixins/format.js";
 import message from "@/components/mixins/message.js";
 
-import { currency } from '@/utils/filters.js';
+import { currency, traceAccount, toUtcDate } from '@/utils/filters.js';
 
 export default {
 	name: "ObjectiveForm",
@@ -133,6 +119,7 @@ export default {
 
 	data() {
 		return {
+			tab: null,
 			totalAllMovements: 0,
 			totalAllItems: 0,
 			showTotalAlert: false,
@@ -142,7 +129,7 @@ export default {
 				dueDate: "",
 				paymentDate: "",
 				installment: this.objective.objectiveMovementList.length + 1,
-				paymentMethod: {}
+				paymentMethod: null
 			},
 
 			objectiveItemForm: {
@@ -180,6 +167,8 @@ export default {
 
 	methods: {
 		currency,
+		toUtcDate,
+		traceAccount,
 
 		calculateItemTotalValue() {
 			if (this.objectiveItemForm) {
@@ -221,8 +210,8 @@ export default {
 					installment: this.objectiveMovementForm.installment,
 					paymentMethod: this.objectiveMovementForm.paymentMethod,
 					accountSource: this.objectiveMovementForm.accountSource,
-					dueDate: this.objectiveMovementForm.dueDate,
-					paymentDate: this.objectiveMovementForm.paymentDate,
+					dueDate: this.toUtcDate(this.objectiveMovementForm.dueDate),
+					paymentDate: this.toUtcDate(this.objectiveMovementForm.paymentDate),
 					value: this.objectiveMovementForm.value
 				}
 			);
@@ -331,8 +320,9 @@ export default {
 
 		resetObjectiveMovementForm() {
 			this.objectiveMovementForm = {
-				paymentMethod: {},
-				accountSource: {},
+				installment: this.objective.objectiveMovementList.length + 1,
+				paymentMethod: null,
+				accountSource: null,
 				dueDate: "",
 				paymentDate: "",
 				value: 0
@@ -342,7 +332,8 @@ export default {
 		resetObjectiveItemForm() {
 			this.objectiveItemForm = {
 				description: "",
-				accountTarget: {},
+				sequential: this.objective.objectiveItemList.length + 1,
+				accountTarget: null,
 				amount: 0,
 				unitaryValue: 0,
 				totalValue: 0
@@ -392,24 +383,36 @@ export default {
 			return `${day}/${month}/${year}`;
 		},
 
-		getItemTotalValue(itemTotalValue) {
-			this.totalAllItems = itemTotalValue;
-			this.showTotalAlert = this.totalAllMovements !== this.totalAllItems;
+		deleteOneMovement(selectedMovement) {
+			this.objective.objectiveMovementList = this.objective.objectiveMovementList.filter(item => item !== selectedMovement);
+			this.objectiveMovementForm.installment = this.objective.objectiveMovementList.length + 1;
+
+			this.objective.objectiveMovementList.forEach((item, index) => {
+    			item.installment = index + 1;
+  			});
 		},
 
-		getMovementTotalValue(movementTotalValue) {
-			this.totalAllMovements = movementTotalValue;
-			this.showTotalAlert = this.totalAllMovements !== this.totalAllItems;
-		}
-	},
+		deleteOneItem(selectedItem) {
+			this.objective.objectiveItemList = this.objective.objectiveItemList.filter(item => item !== selectedItem);
+			this.objectiveItemForm.sequential = this.objective.objectiveItemList.length + 1;
 
-	beforeUpdate() {
-		this.objectiveItemForm.sequential = this.objective.objectiveItemList.length + 1;
-		this.objectiveMovementForm.installment = this.objective.objectiveMovementList.length + 1;
+			this.objective.objectiveItemList.forEach((item, index) => {
+    			item.sequential = index + 1;
+  			});
+		},
 
-		for (let objectiveMovement of this.objective.objectiveMovementList) {
-			objectiveMovement.dueDate = this.formatToBrazilianDate(objectiveMovement.dueDate);
-			objectiveMovement.paymentDate = this.formatToBrazilianDate(objectiveMovement.paymentDate);
+		tracePaymentMethod(item) {
+			if (!item)
+				return "";
+
+			return `${item.name} - ${item.acronym}`;
+		},
+
+		traceAccountWithLevel(item) {
+			if (!item)
+				return "";
+
+			return `${item.level} ${this.traceAccount(item)}`;
 		}
 	},
 
@@ -420,7 +423,21 @@ export default {
 
 		isIdentityPresent() {
 			return this.objective.identity ? true : false;
-		}
+		},
+
+		calculateTotalValueOfMovements() {
+			this.totalAllMovements = this.objective.objectiveMovementList.reduce((acc, item) => acc + item.value, 0);
+			this.showTotalAlert = this.totalAllMovements !== this.totalAllItems;
+
+			return this.currency(this.totalAllMovements);
+		},
+
+		calculateTotalValueOfItems() {
+			this.totalAllItems = this.objective.objectiveItemList.reduce((acc, item) => acc + item.totalValue, 0);
+			this.showTotalAlert = this.totalAllMovements !== this.totalAllItems;
+
+			return this.currency(this.totalAllItems);
+		},
 	}
 };
 </script>

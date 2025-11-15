@@ -33,10 +33,7 @@ export default {
 		},
 
 		$_format_toAmericanDate(value) {
-			// 10/10/2020
-
 			let dateSplited = value.split("/");
-		
 			return `${dateSplited[2]}-${dateSplited[1]}-${dateSplited[0]}`;
 		}
 	}

@@ -1,5 +1,5 @@
 <template>
-	<v-table :dense="dense">
+	<v-table :density="density">
 		<thead>
 			<tr>
 				<th>#</th>
@@ -23,13 +23,13 @@
 				<td class="text-right">x</td>
 				<td class="text-right">{{ currency(objectiveItem.unitaryValue) }}</td>
 				<td class="text-right">=</td>
-				<td class="text-right">{{ currency(objectiveItem.totalValue) }}</td>
+				<td class="text-right">{{ calculateItemTotalValue(objectiveItem) }}</td>
 				<td v-if="enableEdit"><df-icon @click="$emit('editOneMovement', objectiveItem)" icon="fa-pen" size="sm" title="Click to edit this movement." /></td>
-				<td v-if="enableDelete"><df-icon @click="deleteOneItem(objectiveItem)" icon="fa-trash" size="sm" title="Click to delete this item." /></td>
+				<td v-if="enableDelete"><df-icon @click="$emit('deleteOneItem', objectiveItem)" icon="fa-trash" size="sm" title="Click to delete this item." /></td>
 			</tr>
 			<tr>
 				<td colspan="7"></td>
-				<td class="text-right">{{ currency(itemTotalValue) }}</td>
+				<td class="text-right">{{ totalValueItems }}</td>
 			</tr>
 		</tbody>
 	</v-table>
@@ -50,9 +50,9 @@ export default {
 			type: Array,
 			required: true
 		},
-		dense: {
-			type: Boolean,
-			default: false
+		density: {
+			type: String,
+			default: "default"
 		},
 		enableEdit: {
 			type: Boolean,
@@ -74,16 +74,6 @@ export default {
 		currency,
 		traceAccount,
 
-		calculateTotalValueForEachItem() {
-			this.itemTotalValue = 0;
-			for (let objectiveItem of this.collection) {
-				objectiveItem.totalValue = Number((objectiveItem.unitaryValue * objectiveItem.amount).toFixed(2));
-				this.itemTotalValue += objectiveItem.totalValue;
-			}
-
-			this.$emit("setItemTotalValue", this.itemTotalValue);
-		},
-
 		deleteOneItem(item) {
 			let index = this.collection.indexOf(item);
 			this.collection.splice(index, 1);
@@ -92,16 +82,22 @@ export default {
 			for (const objectiveItem of this.collection) {
 				objectiveItem.sequential = ++i;
 			}
+		},
+
+		calculateItemTotalValue(objectiveItem) {
+			let amount = objectiveItem.amount;
+			let unitaryValue = objectiveItem.unitaryValue;
+
+			objectiveItem.totalValue = Number((unitaryValue * amount).toFixed(2));
+			return currency(Number(objectiveItem.totalValue));
 		}
 	},
 
-	beforeUpdate() {
-		this.calculateTotalValueForEachItem();
+	computed: {
+		totalValueItems() {
+			return this.currency(this.collection.reduce((acc, item) => acc + item.totalValue, 0));
+		}
 	},
-
-	beforeMount() {
-		this.calculateTotalValueForEachItem();
-	}
 };
 </script>
 

@@ -110,7 +110,7 @@ export default {
 		this.appStore.setGlobalEntity({
 			identity: null,
 			description: null,
-			location: {},
+			location: null,
 			objectiveMovementList: [],
 			objectiveItemList: []
 		});
