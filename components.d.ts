@@ -16,7 +16,6 @@ declare module 'vue' {
     Icon: typeof import('./src/components/df-icon/Icon.vue')['default']
     InputFilter: typeof import('./src/components/df-input/InputFilter.vue')['default']
     InputMoney: typeof import('./src/components/df-input/InputMoney.vue')['default']
-    InputMoneyCopy: typeof import('./src/components/df-input/InputMoneyCopy.vue')['default']
     InputPeriod: typeof import('./src/components/df-input/InputPeriod.vue')['default']
     Line: typeof import('./src/components/df-chart/Line.vue')['default']
     Loading: typeof import('./src/components/loading/Loading.vue')['default']

@@ -26,8 +26,8 @@
 
 					<v-tabs-window-item value="tabObm">
 						<df-grid column="frac-15">
-							<v-text-field label="Installment" v-model.number="objectiveMovementForm.installment" />
-							<v-autocomplete label="Payment Method" v-model="objectiveMovementForm.paymentMethod" :item-title="tracePaymentMethod" item-value="identity" :items="paymentMethodListCombo" return-object clearable />
+							<v-text-field v-model.number="objectiveMovementForm.installment" label="Installment" readonly />
+							<v-autocomplete v-model="objectiveMovementForm.paymentMethod" label="Payment Method" :item-title="tracePaymentMethod" item-value="identity" :items="paymentMethodListCombo" return-object clearable />
 						</df-grid>
 						<df-grid>
 							<v-autocomplete label="Source" v-model="objectiveMovementForm.accountSource" :item-title="traceAccountWithLevel" item-value="identity" :items="accountListComboSource" return-object @change="validateSelectedSource()" clearable />
@@ -35,7 +35,7 @@
 						<df-grid column="auto-sm">
 							<v-text-field label="Due Date" v-model="objectiveMovementForm.dueDate" />
 							<v-text-field label="Payment date" v-model="objectiveMovementForm.paymentDate" />
-							<v-text-field label="Value" v-model.number="objectiveMovementForm.value" />
+							<df-input-money v-model="objectiveMovementForm.value" label="Value" />
 							<v-btn @click="addNewMovement()">Add</v-btn>
 						</df-grid>
 
@@ -48,16 +48,16 @@
 
 					<v-tabs-window-item value="tabObi">
 						<df-grid column="frac-15">
-							<v-text-field label="Sequential" v-model="objectiveItemForm.sequential" tabindex="-1" />
+							<v-text-field label="Sequential" v-model="objectiveItemForm.sequential" tabindex="-1" readonly />
 							<v-text-field label="Description" v-model="objectiveItemForm.description" append-icon="mdi-map-marker" @click:append="copyDescriptionFromObjective()" />
 						</df-grid>
 						<df-grid column="auto-sm">
 							<v-autocomplete label="Target" v-model="objectiveItemForm.accountTarget" :item-title="traceAccountWithLevel" item-value="identity" :items="accountListComboTarget" return-object @change="validateSelectedTarget()" clearable />
 						</df-grid>
 						<df-grid column="auto-sm">
-							<v-text-field label="Amount" v-model.number="objectiveItemForm.amount" @blur="calculateItemTotalValue()" />
-							<v-text-field label="Unitary Value" v-model.number="objectiveItemForm.unitaryValue" @blur="calculateItemTotalValue()" />
-							<v-text-field label="Total" v-model.number="objectiveItemForm.totalValue" readonly tabindex="-1" />
+							<df-input-money v-model="objectiveItemForm.amount" label="Amount" @blur="calculateItemTotalValue()" precision="3" clearable />
+							<df-input-money v-model="objectiveItemForm.unitaryValue" label="Unitary Value" @blur="calculateItemTotalValue()" clearable />
+							<df-input-money v-model="objectiveItemForm.totalValue" label="Total" readonly tabindex="-1" />
 							<v-btn @click="addNewItem()">Add</v-btn>
 						</df-grid>
 
@@ -101,6 +101,7 @@ import { useAppStore } from '@/stores/app';
 //Components
 import DfGrid from "@/components/grid/Grid.vue";
 import DfIcon from "@/components/df-icon/Icon.vue";
+import DfInputMoney from "@/components/df-input/InputMoney.vue";
 import ObjectiveItemResult from "@/pages/transaction/objective/ObjectiveItemResult.vue";
 import ObjectiveMovementResult from "@/pages/transaction/objective/ObjectiveMovementResult.vue";
 
@@ -113,7 +114,7 @@ import { currency, traceAccount, toUtcDate } from '@/utils/filters.js';
 export default {
 	name: "ObjectiveForm",
 
-	components: { DfGrid, DfIcon, ObjectiveItemResult, ObjectiveMovementResult },
+	components: { DfGrid, DfIcon, DfInputMoney, ObjectiveItemResult, ObjectiveMovementResult },
 
 	mixins: [ format, message ],
 
