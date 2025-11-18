@@ -17,19 +17,19 @@ export default {
 	props: {
 		modelValue: {
 			type: [Number, String],
-			default: ''
+			default: ""
 		},
 		label: {
 			type: String,
-			default: 'Valor'
+			default: "Valor"
 		},
 		currency: {
 			type: String,
-			default: 'BRL'
+			default: "BRL"
 		},
 		precision: {
-			type: Number,
-			default: 2
+			type: String,
+			default: "2"
 		},
 		clearable: {
 			type: Boolean,
@@ -47,7 +47,7 @@ export default {
 		modelValue: {
 			immediate: true,
 			handler(newVal) {
-				this.displayValue = this.formatCurrency(newVal)
+				this.displayValue = this.formatCurrency(newVal);
 			}
 		}
 	},
@@ -55,22 +55,22 @@ export default {
 	methods: {
 		formatCurrency(value) {
 			if (value === null || value === "" || isNaN(value))
-				return ""
+				return "";
 
 			return new Intl.NumberFormat('pt-BR', {
 				style: 'currency',
 				currency: this.currency,
 				minimumFractionDigits: this.precision,
 				maximumFractionDigits: this.precision
-			}).format(value)
+			}).format(value);
 		},
 
 		onInput(event) {
-			const raw = event.target.value.replace(/[^\d]/g, '') // só dígitos
-			const divisor = Math.pow(10, this.precision)
-			const number = parseFloat(raw) / divisor
-			this.$emit('update:modelValue', number)
-			this.displayValue = this.formatCurrency(number)
+			const raw = event.target.value.replace(/[^\d]/g, '');
+			const divisor = Math.pow(10, this.precision);
+			const number = parseFloat(raw) / divisor;
+			this.$emit('update:modelValue', number);
+			this.displayValue = this.formatCurrency(number);
 		}
 	}
 }
