@@ -14,6 +14,7 @@ declare module 'vue' {
     Grid: typeof import('./src/components/grid/Grid.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     Icon: typeof import('./src/components/df-icon/Icon.vue')['default']
+    InputDate: typeof import('./src/components/df-input/InputDate.vue')['default']
     InputFilter: typeof import('./src/components/df-input/InputFilter.vue')['default']
     InputMoney: typeof import('./src/components/df-input/InputMoney.vue')['default']
     InputPeriod: typeof import('./src/components/df-input/InputPeriod.vue')['default']

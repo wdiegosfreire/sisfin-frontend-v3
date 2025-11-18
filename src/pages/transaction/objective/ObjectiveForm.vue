@@ -33,8 +33,9 @@
 							<v-autocomplete label="Source" v-model="objectiveMovementForm.accountSource" :item-title="traceAccountWithLevel" item-value="identity" :items="accountListComboSource" return-object @change="validateSelectedSource()" clearable />
 						</df-grid>
 						<df-grid column="auto-sm">
-							<v-text-field label="Due Date" v-model="objectiveMovementForm.dueDate" />
-							<v-text-field label="Payment date" v-model="objectiveMovementForm.paymentDate" />
+							<!-- <v-text-field label="Due Date" v-model="objectiveMovementForm.dueDate" /> -->
+							<df-input-date v-model="objectiveMovementForm.dueDate" label="Due Date" />
+							<df-input-date v-model="objectiveMovementForm.paymentDate" label="Payment Date" />
 							<df-input-money v-model="objectiveMovementForm.value" label="Value" />
 							<v-btn @click="addNewMovement()">Add</v-btn>
 						</df-grid>
@@ -101,7 +102,9 @@ import { useAppStore } from '@/stores/app';
 //Components
 import DfGrid from "@/components/grid/Grid.vue";
 import DfIcon from "@/components/df-icon/Icon.vue";
+import DfInputDate from "@/components/df-input/InputDate.vue";
 import DfInputMoney from "@/components/df-input/InputMoney.vue";
+
 import ObjectiveItemResult from "@/pages/transaction/objective/ObjectiveItemResult.vue";
 import ObjectiveMovementResult from "@/pages/transaction/objective/ObjectiveMovementResult.vue";
 
@@ -114,7 +117,7 @@ import { currency, traceAccount, toUtcDate } from '@/utils/filters.js';
 export default {
 	name: "ObjectiveForm",
 
-	components: { DfGrid, DfIcon, DfInputMoney, ObjectiveItemResult, ObjectiveMovementResult },
+	components: { DfGrid, DfIcon, DfInputDate, DfInputMoney, ObjectiveItemResult, ObjectiveMovementResult },
 
 	mixins: [ format, message ],
 
