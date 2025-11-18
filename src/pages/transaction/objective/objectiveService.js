@@ -117,11 +117,6 @@ export default {
 		executeEdition(objective) {
 			objective.userIdentity = this.appStore.userIdentity;
 
-			for (let objectiveMovement of objective.objectiveMovementList) {
-				objectiveMovement.dueDate = new Date(this.$_format_toAmericanDate(objectiveMovement.dueDate) + " 12:00:00");
-				objectiveMovement.paymentDate = new Date(this.$_format_toAmericanDate(objectiveMovement.paymentDate) + " 12:00:00");
-			}
-
 			this.$_transaction_post("/objective/executeEdition", objective).then(response => {
 				this.appStore.setGlobalResult(response.data.map.objectiveList);
 				this.$_message_showSuccess();

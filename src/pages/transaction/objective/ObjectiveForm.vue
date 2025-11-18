@@ -85,7 +85,7 @@
 			</v-card-text>
 
 			<v-card-actions>
-				<v-btn v-if="this.objective.identity" color="button" width="150" @click="$emit('executeEdition', objective)">Confirm</v-btn>
+				<v-btn v-if="this.objective.identity" color="button" width="150" @click="executeEdition">Confirm</v-btn>
 				<v-btn v-else width="150" @click="executeRegistration">Confirm</v-btn>
 
 				<v-btn width="150" @click="cleanForm">Clear</v-btn>
@@ -433,11 +433,15 @@ export default {
 		},
 
 		calculateTotalValueOfItems() {
+			this.objective.objectiveItemList.forEach(objectiveItem => {
+				objectiveItem.totalValue = objectiveItem.unitaryValue * objectiveItem.amount;
+			});
+
 			this.totalAllItems = this.objective.objectiveItemList.reduce((acc, item) => acc + item.totalValue, 0);
 			this.showTotalAlert = this.totalAllMovements !== this.totalAllItems;
 
 			return this.currency(this.totalAllItems);
-		},
+		}
 	}
 };
 </script>
