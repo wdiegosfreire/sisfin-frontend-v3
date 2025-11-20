@@ -117,6 +117,24 @@ export default {
 		executeEdition(objective) {
 			objective.userIdentity = this.appStore.userIdentity;
 
+			/**
+			 * Explicação para o bloco FOR abaixo:
+			 *
+			 * No início do sistema todos os movimentos foram importados através dos arquivos de extratos, criando objetivos com apenas 1 movimento.
+			 * Devido a isso, coincidentemente, os IDs dos objetivos e dos movimentos ficaram iguais. Ex.: Objetivo ID 10 possui Movimento ID 10.
+			 * Essa característica causou um problema na edição dos objetivos, pois a biblioteca Jackson se perde quando encontra um objetivo
+			 * com o mesmo ID do movimento.
+			 *
+			 * Assim, faz-se necessário verificar se os IDs são iguais e, se forem, inverter o sinal do ID do movimento para que o Jackson consiga
+			 * diferenciar os dois objetos.
+			 *
+			 * No backend o ID do movimento é convertido novamente para um valor positivo, permitindo assim a edição correta do objetivo.
+			 */
+			for (let objectiveMovement of objective.objectiveMovementList) {
+				if (objective.identity === objectiveMovement.identity)
+					objectiveMovement.identity = objectiveMovement.identity * -1;
+			}
+
 			this.$_transaction_post("/objective/executeEdition", objective).then(response => {
 				this.appStore.setGlobalResult(response.data.map.objectiveList);
 				this.$_message_showSuccess();
