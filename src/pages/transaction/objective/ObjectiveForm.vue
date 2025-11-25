@@ -33,7 +33,6 @@
 							<v-autocomplete label="Source" v-model="objectiveMovementForm.accountSource" :item-title="traceAccountWithLevel" item-value="identity" :items="accountListComboSource" return-object @change="validateSelectedSource()" clearable />
 						</df-grid>
 						<df-grid column="auto-sm">
-							<!-- <v-text-field label="Due Date" v-model="objectiveMovementForm.dueDate" /> -->
 							<df-input-date v-model="objectiveMovementForm.dueDate" label="Due Date" />
 							<df-input-date v-model="objectiveMovementForm.paymentDate" label="Payment Date" />
 							<df-input-money v-model="objectiveMovementForm.value" label="Value" />
@@ -76,7 +75,7 @@
 					<tbody>
 						<tr>
 							<td><h3>Total of Movements: {{ calculateTotalValueOfMovements }}</h3></td>
-							<td rowspan="2"><df-icon v-if="showTotalAlert" icon="fa-warning" size="3x" color="orange" title="Total of movements is diferent of total of items!" /></td>
+							<td rowspan="2"><v-icon v-if="showTotalAlert" size="56" color="orange" title="Total of movements is diferent of total of items!">mdi-comment-alert</v-icon></td>
 						</tr>
 						<tr>
 							<td><h3>Total of Items: {{ calculateTotalValueOfItems }}</h3></td>
@@ -101,7 +100,6 @@ import { useAppStore } from '@/stores/app';
 
 //Components
 import DfGrid from "@/components/grid/Grid.vue";
-import DfIcon from "@/components/df-icon/Icon.vue";
 import DfInputDate from "@/components/df-input/InputDate.vue";
 import DfInputMoney from "@/components/df-input/InputMoney.vue";
 

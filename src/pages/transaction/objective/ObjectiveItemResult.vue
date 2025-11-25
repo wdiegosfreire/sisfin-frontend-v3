@@ -24,8 +24,8 @@
 				<td class="text-right">{{ currency(objectiveItem.unitaryValue) }}</td>
 				<td class="text-right">=</td>
 				<td class="text-right">{{ calculateItemTotalValue(objectiveItem) }}</td>
-				<td v-if="enableEdit"><df-icon @click="$emit('editOneMovement', objectiveItem)" icon="fa-pen" size="sm" title="Click to edit this movement." /></td>
-				<td v-if="enableDelete"><df-icon @click="$emit('deleteOneItem', objectiveItem)" icon="fa-trash" size="sm" title="Click to delete this item." /></td>
+				<td v-if="enableEdit"><v-icon @click="$emit('editOneMovement', objectiveItem)" title="Click to edit this movement.">mdi-playlist-edit</v-icon></td>
+				<td v-if="enableDelete"><v-icon @click="$emit('deleteOneItem', objectiveItem)" title="Click to delete this item.">mdi-delete</v-icon></td>
 			</tr>
 			<tr>
 				<td colspan="7"></td>
@@ -36,14 +36,10 @@
 </template>
 
 <script lang="js">
-import DfIcon from "@/components/df-icon/Icon.vue";
-
 import { currency, traceAccount } from '@/utils/filters.js';
 
 export default {
 	name: "ObjectiveItemResult",
-
-	components: { DfIcon },
 
 	props: {
 		collection: {

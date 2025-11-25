@@ -48,12 +48,11 @@
 </template>
 
 <script>
-import objectiveService from "./objectiveService.js";
-import ObjectiveResult from "./ObjectiveResult.vue";
-import ObjectiveForm from "./ObjectiveForm";
+import objectiveService from "@/pages/transaction/objective/objectiveService.js";
+import ObjectiveResult from "@/pages/transaction/objective/ObjectiveResult.vue";
+import ObjectiveForm from "@/pages/transaction/objective/ObjectiveForm";
 
 import DfGrid from "@/components/grid/Grid.vue";
-import DfIcon from "@/components/df-icon/Icon.vue";
 import DfPeriod from "@/components/df-period/Period.vue";
 
 import message from "@/components/mixins/message.js";
@@ -63,7 +62,7 @@ import { traceAccount } from '@/utils/filters.js';
 export default {
 	name: "Objective",
 
-	components: { ObjectiveResult, ObjectiveForm, DfGrid, DfIcon, DfPeriod },
+	components: { ObjectiveResult, ObjectiveForm, DfGrid, DfPeriod },
 
 	mixins: [ objectiveService, message ],
 
