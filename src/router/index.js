@@ -11,6 +11,7 @@ import PaymentMethod from "@/pages/paymentMethod/PaymentMethod.vue";
 
 
 import Bank from "@/pages/statement/bank/Bank.vue";
+import Statement from "@/pages/statement/statement/Statement.vue";
 import StatementType from "@/pages/statement/statementType/StatementType.vue";
 import StatementPattern from "@/pages/statement/statementPattern/StatementPattern.vue";
 
@@ -25,11 +26,11 @@ const routes = [
 	{ path: "/location", name: "location", component: Location },
 	{ path: "/wishList", name: "wishList", component: WishList },
 	{ path: "/objective", name: "objective", component: Objective },
+	{ path: "/statement", name: "statement", component: Statement },
 	{ path: "/supermarket", name: "supermarket", component: Supermarket },
 	{ path: "/paymentMethod", name: "paymentMethod", component: PaymentMethod },
 	{ path: "/statementType", name: "statementType", component: StatementType },
 	{ path: "/statementPattern", name: "statementPattern", component: StatementPattern },
-//   { path: "/statement", name: "statement", component: Statement },
 ]
 
 const router = createRouter({

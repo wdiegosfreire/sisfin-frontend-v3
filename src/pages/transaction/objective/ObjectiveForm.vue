@@ -115,7 +115,7 @@ import { currency, traceAccount, toUtcDate } from '@/utils/filters.js';
 export default {
 	name: "ObjectiveForm",
 
-	components: { DfGrid, DfIcon, DfInputDate, DfInputMoney, ObjectiveItemResult, ObjectiveMovementResult },
+	components: { DfGrid, DfInputDate, DfInputMoney, ObjectiveItemResult, ObjectiveMovementResult },
 
 	mixins: [ format, message ],
 
