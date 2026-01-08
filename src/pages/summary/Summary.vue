@@ -81,7 +81,7 @@ export default {
 		DfGrid, DfPeriod,
 		PieChart, LineChart
 	},
-	// components: { DfGrid, DfIcon, PieChart, LineChart , DfPeriod, DfInputFilter },
+	// components: { DfGrid, PieChart, LineChart , DfPeriod, DfInputFilter },
 
 	mixins: [ summaryService, message ],
 

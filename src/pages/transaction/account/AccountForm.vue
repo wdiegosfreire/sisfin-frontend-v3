@@ -32,7 +32,7 @@
 				Icons (experimental) {{ this.account.icon }} {{ getIconIndex(this.account.icon) }}
 				<v-btn-toggle :v-model="getIconIndex(this.account.icon)" color="secondary" mandatory>
 					<v-btn v-for="icon in iconList" @click="setIcon(icon.name)">
-						<df-icon :icon="icon.name" />
+						<v-icon :icon="icon.name" size="28" />
 					</v-btn>
 				</v-btn-toggle>
 			</v-card-text>
@@ -84,31 +84,32 @@ export default {
 			accountComboLevelTwoSelected: null,
 
 			iconList: [
-				{ name: 'fa-magnifying-glass' },
-				{ name: "fa-font-awesome" },
-				{ name: 'fa-heart-pulse' },
-				{ name: 'fa-lightbulb' },
-				{ name: 'fa-gas-pump' },
-				{ name: 'fa-utensils' },
-				{ name: 'fa-wrench' },
-				{ name: 'fa-car' },
-				{ name: 'fa-broom' },
-				{ name: 'fa-wifi' },
-				{ name: 'fa-building' },
-				{ name: 'fa-bolt' },
-				{ name: 'fa-oil-can' },
-				{ name: 'fa-plane-departure' },
-				{ name: 'fa-taxi' },
-				{ name: 'fa-credit-card' },
-				{ name: 'fa-computer' },
-				{ name: 'fa-plug-circle-bolt' },
-				{ name: 'fa-hammer' },
-				{ name: 'fa-basketball' },
-				{ name: 'fa-mobile' },
-				{ name: 'fa-bicycle' },
-				{ name: 'fa-tv' },
-				{ name: 'fa-burger' },
-				{ name: 'fa-film' }
+				{ name: "mdi-cube-outline" },
+				{ name: "mdi-magnify" },
+				{ name: "mdi-vuetify" },
+				{ name: "mdi-heart-pulse" },
+				{ name: "mdi-lightbulb" },
+				{ name: "mdi-gas-station" },
+				{ name: "mdi-silverware-fork-knife" },
+				{ name: "mdi-wrench" },
+				{ name: "mdi-car" },
+				{ name: "mdi-broom" },
+				{ name: "mdi-wifi" },
+				{ name: "mdi-office-building" },
+				{ name: "mdi-lightning-bolt" },
+				{ name: "mdi-oil" },
+				{ name: "mdi-airplane-takeoff" },
+				{ name: "mdi-taxi" },
+				{ name: "mdi-credit-card" },
+				{ name: "mdi-desktop-classic" },
+				{ name: "mdi-power-plug" },
+				{ name: "mdi-hammer" },
+				{ name: "mdi-basketball" },
+				{ name: "mdi-cellphone" },
+				{ name: "mdi-bicycle" },
+				{ name: "mdi-television" },
+				{ name: "mdi-hamburger" },
+				{ name: "mdi-filmstrip" },
 			]
 		}
 	},

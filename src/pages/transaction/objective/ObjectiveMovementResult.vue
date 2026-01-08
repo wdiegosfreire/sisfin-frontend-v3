@@ -17,13 +17,13 @@
 			<tr v-for="objectiveMovement in collection" :key="objectiveMovement.identity">
 				<td class="sign-column">{{ objectiveMovement.installment }}</td>
 				<td>{{ traceAccount(objectiveMovement.accountSource) }}</td>
-				<td class="sign-column"><df-icon v-if="objectiveMovement.inPeriod" size="lg" icon="fa-check" color="green" title="Selected Installment" /></td>
+				<td class="sign-column"><v-icon v-if="objectiveMovement.inPeriod" icon="mdi-check" size="28" color="green" title="Selected Installment" /></td>
 				<td>{{ toBrasilianDate(objectiveMovement.dueDate) }}</td>
 				<td>{{ toBrasilianDate(objectiveMovement.paymentDate) }}</td>
 				<td>{{ objectiveMovement.paymentMethod.name }}</td>
 				<td class="text-right">{{ currency(objectiveMovement.value) }}</td>
-				<td v-if="enableEdit"><df-icon @click="$emit('editOneMovement', objectiveMovement)" icon="fa-pen" size="sm" title="Click to edit this movement." /></td>
-				<td v-if="enableDelete"><df-icon @click="$emit('deleteOneMovement', objectiveMovement)" icon="fa-trash" size="sm" title="Click to delete this movement." /></td>
+				<td v-if="enableEdit"><v-icon @click="$emit('editOneMovement', objectiveMovement)" icon="mdi-pen" title="Click to edit this movement." /></td>
+				<td v-if="enableDelete"><v-icon @click="$emit('deleteOneMovement', objectiveMovement)" icon="mdi-trash-can-outline" title="Click to delete this movement." /></td>
 			</tr>
 			<tr>
 				<td colspan="6"></td>
@@ -34,13 +34,10 @@
 </template>
 
 <script lang="js">
-import DfIcon from "@/components/df-icon/Icon.vue";
 import { currency, traceAccount, toBrasilianDate } from "@/utils/filters";
 
 export default {
 	name: "ObjectiveMovementResult",
-
-	components: { DfIcon },
 
 	props: {
 		collection: {
