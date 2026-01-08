@@ -4,8 +4,8 @@
 			<v-toolbar-title>Statements</v-toolbar-title>
 			<v-spacer></v-spacer>
 
-			<v-btn icon @click.stop="accessModule()" title="Click to reload page"><df-icon icon="fa-arrows-rotate" size="lg" /></v-btn>
-			<v-btn icon @click.stop="accessRegistration()" title="Click to register a new statement"><df-icon icon="fa-plus" /></v-btn>
+			<v-btn icon @click.stop="accessModule()" title="Click to reload page"><v-icon icon="mdi-rotate-3d-variant" /></v-btn>
+			<v-btn icon @click.stop="accessRegistration()" title="Click to register a new location"><v-icon icon="mdi-plus" /></v-btn>
 		</v-app-bar>
 
 		<df-period :month="month" :year="year" @periodChange="periodChange"></df-period>
@@ -38,14 +38,12 @@ import statementService from "@/pages/statement/statement/statementService.js";
 import StatementResult from "@/pages/statement/statement/StatementResult.vue";
 import StatementForm from "@/pages/statement/statement/StatementForm.vue";
 
-import DfIcon from "@/components/df-icon/Icon.vue";
 import DfPeriod from "@/components/df-period/Period.vue";
-import DfInputFilter from "@/components/df-input/InputFilter.vue";
 
 export default {
 	name: "Statement",
 
-	components: { StatementResult, StatementForm, DfInputFilter, DfIcon, DfPeriod },
+	components: { StatementResult, StatementForm, DfPeriod },
 
 	mixins: [statementService],
 
