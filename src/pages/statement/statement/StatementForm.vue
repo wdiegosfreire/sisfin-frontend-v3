@@ -24,6 +24,7 @@
 						<df-output-text label="Source">{{ traceAccount(statement.statementType.accountSource) }}</df-output-text>
 					</df-grid>
 				</v-card-text>
+
 				<v-expansion-panels variant="accordion">
 					<v-expansion-panel title="Statement Items">
 						<v-expansion-panel-text>
@@ -52,7 +53,6 @@
 								<v-card-text>
 									<v-chip small color="success" class="mr-3" v-if="statementItem.operationType == 'C'">Incoming</v-chip>
 									<v-chip small color="error" class="mr-3" v-else>Outcoming</v-chip>
-
 									<v-chip small color="success" v-if="statementItem.isExported">Exported</v-chip>
 									<v-chip small color="error" v-else>Pending</v-chip>
 								</v-card-text>
@@ -74,13 +74,12 @@
 											</df-grid>
 											<df-grid column="auto-lg" fluid>
 												<df-grid column="fixed-2">
-													<v-autocomplete label="Location" item-text="name" item-value="identity" v-model="statementItem.location" :items="locationListCombo" clearable return-object dense></v-autocomplete>
-													<v-autocomplete label="Payment Method" item-text="name" item-value="identity" v-model="statementItem.paymentMethod" :items="paymentMethodListCombo" clearable return-object dense></v-autocomplete>
+													<v-autocomplete label="Location" item-title="name" item-value="identity" v-model="statementItem.location" :items="locationListCombo" clearable return-object></v-autocomplete>
+													<v-autocomplete label="Payment Method" item-title="name" item-value="identity" v-model="statementItem.paymentMethod" :items="paymentMethodListCombo" clearable return-object></v-autocomplete>
 												</df-grid>
 												<df-grid column="fixed-2">
 													<v-btn small @click="executeEdition(statementItem, true)" class="mr-3">Export and Create Movement</v-btn>
 													<v-btn small @click="executeEdition(statementItem, false)">Export without Create Movement</v-btn>
-
 												</df-grid>
 											</df-grid>
 										</v-card-text>
