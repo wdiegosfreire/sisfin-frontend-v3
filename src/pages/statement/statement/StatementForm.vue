@@ -18,10 +18,10 @@
 				<v-card-text>
 					<df-grid column="auto-md" spaced>
 						<df-output-text label="Identity">{{ statement.identity }}</df-output-text>
-						<df-output-text label="Opening Balance">{{ statement.openingBalance | currency }}</df-output-text>
-						<df-output-text label="Closing Balance">{{ statement.closingBalance | currency }}</df-output-text>
+						<df-output-text label="Opening Balance">{{ currency(statement.openingBalance) }}</df-output-text>
+						<df-output-text label="Closing Balance">{{ currency(statement.closingBalance) }}</df-output-text>
 						<df-output-text label="Status" class="bold" :color="statement.isClosed ? 'green' : 'red'">{{ statement.isClosed ? "Closed" : "Opened" }}</df-output-text>
-						<df-output-text label="Source">{{ statement.statementType.accountSource | traceAccount }}</df-output-text>
+						<df-output-text label="Source">{{ traceAccount(statement.statementType.accountSource) }}</df-output-text>
 					</df-grid>
 				</v-card-text>
 				<v-expansion-panels variant="accordion">
@@ -32,8 +32,8 @@
 
 								<v-card-text>
 									<df-grid column="auto-sm" spaced>
-										<df-output-text label="Date">{{ statementItem.movementDate | moment("DD/MM/YYYY") }}</df-output-text>
-										<df-output-text label="Value">{{ statementItem.movementValue | currency }}</df-output-text>
+										<df-output-text label="Date">{{ toBrasilianDate(statementItem.movementDate) }}</df-output-text>
+										<df-output-text label="Value">{{ currency(statementItem.movementValue) }}</df-output-text>
 										<df-output-text label="Document Number">{{ statementItem.documentNumber ? statementItem.documentNumber : "-"}}</df-output-text>
 									</df-grid>
 								</v-card-text>
@@ -109,6 +109,8 @@ import { useAppStore } from '@/stores/app';
 
 import message from "../../../components/mixins/message.js";
 
+import { currency, traceAccount, toBrasilianDate } from '@/utils/filters.js';
+
 import DfGrid from "@/components/grid/Grid.vue";
 import DfOutputText from "@/components/df-output/OutputText.vue";
 import DfAutocompleteAccount from "@/components/df-autocomplete/AutocompleteAccount.vue";
@@ -159,6 +161,10 @@ export default {
 	},
 
 	methods: {
+		currency,
+		traceAccount,
+		toBrasilianDate,
+
 		executeRegistration(statement) {
 			statement.statementType = this.statementTypeComboSelected;
 			this.$emit("executeRegistration", statement);
