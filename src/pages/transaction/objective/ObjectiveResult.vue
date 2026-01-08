@@ -7,8 +7,8 @@
 				<v-card v-if="objectiveMovement.inPeriod" class="mb-4">
 					<v-card-title class="d-flex align-center">
 						<span>
-							<df-icon icon="fa-circle" size="xs" color="purple" /> {{ traceAccount(objectiveMovement.accountSource) }}
-							<df-icon icon="fa-arrow-right-long" size="sm" /> {{ objective.description }}: R$ {{ currency(objectiveMovement.value) }}
+							<v-icon icon="mdi-circle" color="purple" size="20" /> {{ traceAccount(objectiveMovement.accountSource) }}
+							<v-icon icon="mdi-arrow-right-thin" /> {{ objective.description }}: R$ {{ currency(objectiveMovement.value) }}
 						</span>
 
 						<v-spacer></v-spacer>
@@ -66,7 +66,6 @@
 import DfResultLayout from "@/components/df-layout/ResultLayout.vue";
 
 import DfGrid from "@/components/grid/Grid.vue";
-import DfIcon from "@/components/df-icon/Icon.vue";
 import DfOutputText from "@/components/df-output/OutputText.vue";
 
 import ObjectiveItemResult from "@/pages/transaction/objective/ObjectiveItemResult.vue";
@@ -77,7 +76,7 @@ import { currency, traceAccount, toBrasilianDate } from '@/utils/filters.js';
 export default {
 	name: "ObjectiveResult",
 
-	components: { DfResultLayout, DfGrid, DfOutputText, DfIcon, ObjectiveItemResult, ObjectiveMovementResult },
+	components: { DfResultLayout, DfGrid, DfOutputText, ObjectiveItemResult, ObjectiveMovementResult },
 
 	props: {
 		collection: {
