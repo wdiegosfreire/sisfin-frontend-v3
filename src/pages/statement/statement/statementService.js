@@ -62,9 +62,12 @@ export default {
 		},
 
 		accessEdition(statement) {
-			statement.userIdentity = this.appStore.userIdentity;
+			let statementForEdition = {
+				identity: statement.identity,
+				userIdentity: this.appStore.userIdentity
+			}
 
-			this.$_transaction_post("/statement/accessEdition", statement).then(response => {
+			this.$_transaction_post("/statement/accessEdition", statementForEdition).then(response => {
 				this.appStore.setGlobalEntity(response.data.map.statement);
 				this.appStore.setGlobalLocationListCombo(response.data.map.locationListCombo);
 				this.appStore.setGlobalAccountListComboSource(response.data.map.accountListComboSource);
