@@ -52,14 +52,13 @@
 import { useAppStore } from '@/stores/app';
 
 import DfGrid from "@/components/grid/Grid.vue";
-import DfIcon from "@/components/df-icon/Icon.vue";
 
 import message from "@/components/mixins/message.js";
 
 export default {
 	name: "AccountForm",
 
-	components: { DfGrid, DfIcon },
+	components: { DfGrid },
 
 	mixins: [ message ],
 

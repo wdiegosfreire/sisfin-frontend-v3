@@ -28,12 +28,10 @@
 <script>
 import DfResultLayout from "@/components/df-layout/ResultLayout.vue";
 
-import DfIcon from "@/components/df-icon/Icon.vue";
-
 export default {
 	name: "AccountResult",
 
-	components: { DfResultLayout, DfIcon },
+	components: { DfResultLayout },
 
 	props: {
 		collection: {
