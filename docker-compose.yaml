@@ -1,0 +1,22 @@
+version: "3.3"
+
+services:
+  sisfin-frontend:
+    build: ../sisfin-frontend/
+    image: img_sisfin_frontend_dev:0.1
+    container_name: con_sisfin_frontend_dev
+    restart: always
+    env_file:
+      - ../sisfin-config/sisfin-frontend.env
+    ports:
+      - 80:8180
+    networks:
+      - net_sisfin_dev
+    volumes:
+      - .:/app
+      - /app/node_modules
+    working_dir: /app
+
+networks:
+  net_sisfin_dev:
+    name: net_sisfin_dev
