@@ -325,7 +325,7 @@ export default {
 				installment: this.objective.objectiveMovementList.length + 1,
 				paymentMethod: null,
 				accountSource: null,
-				dueDate: "",
+				dueDate: null,
 				paymentDate: "",
 				value: 0
 			};
