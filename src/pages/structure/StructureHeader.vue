@@ -4,7 +4,7 @@
 			<v-app-bar-nav-icon v-if="appStore.sessionToken" @click.stop="showNavigationDrawer = !showNavigationDrawer"></v-app-bar-nav-icon>
 		</template>
 
-		<v-app-bar-title :title="computedEnviroment">
+		<v-app-bar-title :title="'Environment ' + computedEnviroment">
 			Financial Control System - FCS <span class="text-caption">2026-02-22 V3</span>
 		</v-app-bar-title>
 
@@ -211,7 +211,7 @@ export default {
 		},
 
 		computedEnviroment() {
-			return `Environment ${import.meta.env.VITE_SISFIN_FRONTEND_ENVIROMENT}`;
+			return import.meta.env.VITE_SISFIN_FRONTEND_ENVIROMENT;
 		}
 	},
 
