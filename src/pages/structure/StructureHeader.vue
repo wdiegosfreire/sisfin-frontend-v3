@@ -251,7 +251,7 @@ export default {
 		},
 
 		async executeBackendAppStart() {
-			if (computedEnviroment() !== "aws" || sessionStorage.getItem('BACKEND_APP_STARTED') === "true") {
+			if (this.computedEnviroment !== "aws" || sessionStorage.getItem('BACKEND_APP_STARTED') === "true") {
 				return;
 			}
 
@@ -261,7 +261,7 @@ export default {
 		},
 
 		async executeBackendAppStop() {
-			if (computedEnviroment() !== "aws") {
+			if (this.computedEnviroment !== "aws") {
 				return;
 			}
 
