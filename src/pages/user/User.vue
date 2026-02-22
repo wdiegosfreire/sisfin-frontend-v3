@@ -82,8 +82,6 @@ export default {
 	},
 
 	created: function () {
-		this.$_message_console(import.meta.env.VITE_SISFIN_FRONTEND_ENVIROMENT);
-
 		this.checkMicroServiceMaintenance();
 		this.checkMicroServiceTransaction();
 	}

@@ -89,6 +89,11 @@
 
 			<v-divider></v-divider>
 
+			<v-list-item link @click="executeBackendAppStart()" prepend-icon="mdi-play-circle-outline">Start</v-list-item>
+			<v-list-item link @click="executeBackendAppStop()" prepend-icon="mdi-stop-circle-outline">Stop</v-list-item>
+
+			<v-divider></v-divider>
+
 			<v-list-item link @click="executeLogout()" prepend-icon="mdi-logout">Log Out</v-list-item>
 		</v-list>
 	</v-navigation-drawer>
@@ -245,6 +250,26 @@ export default {
 			});
 		},
 
+		async executeBackendAppStart() {
+			if (computedEnviroment() !== "aws" || sessionStorage.getItem('BACKEND_APP_STARTED') === "true") {
+				return;
+			}
+
+			window.open(import.meta.env.VITE_SISFIN_BACKEND_URL_APP_START, "_blank");
+			sessionStorage.setItem('BACKEND_APP_STARTED', true);
+			this.$_message_showInfo("Backend app start executed.");
+		},
+
+		async executeBackendAppStop() {
+			if (computedEnviroment() !== "aws") {
+				return;
+			}
+
+			window.open(import.meta.env.VITE_SISFIN_BACKEND_URL_APP_STOP, "_blank");
+			sessionStorage.setItem('BACKEND_APP_STARTED', false);
+			this.$_message_showInfo("Backend app stop executed");
+		},
+
 		themeChange() {
 			if (!this.themeRef)
 				return;
@@ -273,6 +298,8 @@ export default {
 		this.themeRef = useTheme();
 		this.themeSelected = this.themeList[3];
 		this.themeChange();
+
+		this.executeBackendAppStart();
 	},
 };
 </script>
