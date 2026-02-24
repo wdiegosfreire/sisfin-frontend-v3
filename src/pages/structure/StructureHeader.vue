@@ -5,7 +5,7 @@
 		</template>
 
 		<v-app-bar-title :title="'Environment ' + computedEnviroment">
-			Financial Control System - FCS <span class="text-caption">2026-02-22 V3</span>
+			Financial Control System - FCS <span class="text-caption">2026-02-24 V3 Boga</span>
 		</v-app-bar-title>
 
 		<template v-slot:append>
