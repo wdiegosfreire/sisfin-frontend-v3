@@ -16,7 +16,8 @@
 			@executeExclusion="executeExclusion"
 		/>
 
-		<location-form :location="locationForm"
+		<location-form v-if="appStore.globalDialog"
+			:location="locationForm"
 			@executeRegistration="executeRegistration"
 			@executeEdition="executeEdition"
 			@closeForm="closeForm"

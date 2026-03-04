@@ -32,7 +32,7 @@
 			@executeExclusion="executeExclusion"
 		/>
 
-		<objective-form
+		<objective-form v-if="appStore.globalDialog"
 			:objective="appStore.globalEntity"
 			:location-list-combo="appStore.globalLocationListCombo"
 			:payment-method-list-combo="appStore.globalPaymentMethodListCombo"

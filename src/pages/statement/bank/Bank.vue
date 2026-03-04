@@ -16,7 +16,8 @@
 			@executeExclusion="executeExclusion"
 		/>
 
-		<bank-form :bank="appStore.globalEntity"
+		<bank-form v-if="appStore.globalDialog"
+			:bank="appStore.globalEntity"
 			@executeRegistration="executeRegistration"
 			@executeEdition="executeEdition"
 			@cleanForm="cleanForm"

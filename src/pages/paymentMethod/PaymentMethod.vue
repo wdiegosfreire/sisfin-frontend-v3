@@ -16,7 +16,8 @@
 			@executeExclusion="executeExclusion"
 		/>
 
-		<payment-method-form :payment-method="appStore.globalEntity"
+		<payment-method-form v-if="appStore.globalDialog"
+			:payment-method="appStore.globalEntity"
 			@executeRegistration="executeRegistration"
 			@executeEdition="executeEdition"
 			@cleanForm="cleanForm"
