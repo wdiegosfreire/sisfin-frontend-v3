@@ -74,25 +74,13 @@ export default {
 		executeRegistration(objective) {
 			objective.userIdentity = this.appStore.userIdentity;
 
-			this.$_transaction_post("/objective/executeRegistration", objective).then(response => {
-				this.appStore.setGlobalResult(response.data.map.objectiveList);
+			this.$_transaction_post("/objective/executeRegistration", objective).then(() => {
+				this.closeForm(objective);
 				this.$_message_showSuccess();
 				this.accessModule();
 			}).catch(error => {
 				this.$_message_handleError(error);
 			});
-		},
-
-		cleanForm(objective) {
-			objective.description = "";
-			objective.location = null;
-			objective.objectiveItemList = [];
-			objective.objectiveMovementList = [];
-		},
-
-		closeForm(objective) {
-			this.cleanForm(objective);
-			this.appStore.showGlobalDialog(false);
 		},
 
 		accessEdition(objective) {
@@ -135,8 +123,8 @@ export default {
 					objectiveMovement.identity = objectiveMovement.identity * -1;
 			}
 
-			this.$_transaction_post("/objective/executeEdition", objective).then(response => {
-				this.appStore.setGlobalResult(response.data.map.objectiveList);
+			this.$_transaction_post("/objective/executeEdition", objective).then(() => {
+				this.closeForm(objective);
 				this.$_message_showSuccess();
 				this.accessModule();
 			}).catch(error => {
@@ -158,7 +146,17 @@ export default {
 					this.$_message_handleError(error);
 				});
 			});
-		}
+		},
+
+		closeForm(objective) {
+			objective.identity = null;
+			objective.description = "";
+			objective.location = null;
+			objective.objectiveItemList = [];
+			objective.objectiveMovementList = [];
+
+			this.appStore.showGlobalDialog(false);
+		},
 	},
 
 	computed: {

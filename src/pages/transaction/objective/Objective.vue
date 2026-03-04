@@ -41,7 +41,6 @@
 
 			@executeRegistration="executeRegistration"
 			@executeEdition="executeEdition"
-			@cleanForm="cleanForm"
 			@closeForm="closeForm"
 		/>
 	</div>
