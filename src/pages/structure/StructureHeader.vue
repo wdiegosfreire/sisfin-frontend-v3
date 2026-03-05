@@ -5,7 +5,7 @@
 		</template>
 
 		<v-app-bar-title :title="'Environment ' + computedEnviroment">
-			Financial Control System - FCS <span class="text-caption">2026-02-24 V3 Boga</span>
+			Financial Control System - FCS <span class="text-caption">{{ computedVersion }}</span>
 		</v-app-bar-title>
 
 		<template v-slot:append>
@@ -212,6 +212,10 @@ export default {
 
 		computedEnviroment() {
 			return import.meta.env.VITE_SISFIN_FRONTEND_ENVIROMENT;
+		},
+
+		computedVersion() {
+			return import.meta.env.VITE_SISFIN_FRONTEND_VERSION;
 		}
 	},
 
