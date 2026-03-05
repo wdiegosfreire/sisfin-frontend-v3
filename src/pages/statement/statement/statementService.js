@@ -23,7 +23,8 @@ export default {
 			let statement = {
 				userIdentity: this.appStore.userIdentity,
 				filterMap: {
-					periodDate: new Date(this.appStore.globalYear + "-" + this.appStore.globalMonth + "-01 12:00:00")
+					year: this.appStore.globalYear,
+					month: this.appStore.globalMonth
 				}
 			}
 

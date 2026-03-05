@@ -16,7 +16,8 @@
 			@executeExclusion="executeExclusion"
 		/>
 
-		<account-form :account="accountForm"
+		<account-form v-if="appStore.globalDialog"
+			:account="accountForm"
 			:account-list-combo-level-one="accountListComboLevelOne"
 			:account-list-combo-level-two="accountListComboLevelTwo"
 

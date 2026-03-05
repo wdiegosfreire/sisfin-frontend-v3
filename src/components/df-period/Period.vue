@@ -8,9 +8,9 @@
 			:items="monthList"
 			:style="ignoreMonth ? 'opacity: 0.5' : 'opacity: 1'"
 			:readonly="ignoreMonth"
-			:append-inner-icon="ignoreMonth ? 'mdi-toggle-switch-off-outline' : 'mdi-toggle-switch-outline'"
+			:append-inner-icon="getMonthAppendInnerIcon()"
 			@update:modelValue="periodChange();"
-			@click:append-inner="ignoreMonth = !ignoreMonth"
+			@click:append-inner="ignoreMonthChange()"
 		/>
 		<v-text-field v-model="selectedYear"
 			type="text"
@@ -18,9 +18,9 @@
 			maxlength="4"
 			:style="ignoreYear ? 'opacity: 0.5' : 'opacity: 1'"
 			:readonly="ignoreYear"
-			:append-inner-icon="ignoreYear ? 'mdi-toggle-switch-off-outline' : 'mdi-toggle-switch-outline'"
+			:append-inner-icon="getYearAppendInnerIcon()"
 			@input="periodChange();"
-			@click:append-inner="ignoreYear = !ignoreYear"
+			@click:append-inner="ignoreYearChange()"
 		/>
 	</df-grid>
 </template>
@@ -46,7 +46,12 @@ export default {
 			type: String,
 			default: "",
 			required: true
-		}
+		},
+		allowPartialSearch: {
+			type: Boolean,
+			default: true,
+			required: false
+		},
 	},
 
 	data() {
@@ -85,8 +90,32 @@ export default {
 			this.$emit("periodChange", this.ignoreMonth ? "" : this.selectedMonth, this.ignoreYear ? "" : this.selectedYear);
 		},
 
+		ignoreMonthChange() {
+			this.ignoreMonth = !this.ignoreMonth;
+			this.periodChange();
+		},
+
+		ignoreYearChange() {
+			this.ignoreYear = !this.ignoreYear;
+			this.periodChange();
+		},
+
 		isYearOutOfRange() {
 			return this.selectedYear.length === 4 && (this.selectedYear < this.lowerLimit || this.selectedYear > this.upperLimit);
+		},
+
+		getYearAppendInnerIcon() {
+			if (!this.allowPartialSearch)
+				return "";
+
+			return this.ignoreYear ? 'mdi-toggle-switch-off-outline' : 'mdi-toggle-switch-outline'
+		},
+
+		getMonthAppendInnerIcon() {
+			if (!this.allowPartialSearch)
+				return "";
+
+			return this.ignoreMonth ? 'mdi-toggle-switch-off-outline' : 'mdi-toggle-switch-outline'
 		},
 	},
 }

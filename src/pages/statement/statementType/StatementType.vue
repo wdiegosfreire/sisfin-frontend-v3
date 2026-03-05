@@ -16,7 +16,7 @@
 			@executeExclusion="executeExclusion"
 		/>
 
-		<statement-type-form
+		<statement-type-form v-if="appStore.globalDialog"
 			:statementType="appStore.globalEntity"
 			:bank-list-combo="appStore.globalBankListCombo"
 			:account-list-combo-source="appStore.globalAccountListComboSource"

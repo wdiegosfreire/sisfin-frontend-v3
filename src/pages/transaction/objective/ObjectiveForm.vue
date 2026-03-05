@@ -89,7 +89,7 @@
 				<v-btn v-else width="150" @click="executeRegistration">Confirm</v-btn>
 
 				<v-btn width="150" @click="cleanForm">Clear</v-btn>
-				<v-btn width="150" @click="closeForm">Close</v-btn>
+				<v-btn width="150" @click="$emit('closeForm', objective)">Close</v-btn>
 			</v-card-actions>
 		</v-card>
 	</v-dialog>
@@ -310,14 +310,16 @@ export default {
 		},
 
 		cleanForm() {
+			if (!this.objective.identity) {
+				this.objective.description = "";
+			}
+
+			this.objective.location = null;
+			this.objective.objectiveItemList = [];
+			this.objective.objectiveMovementList = [];
+
 			this.resetObjectiveMovementForm();
 			this.resetObjectiveItemForm();
-			this.$emit("cleanForm", this.objective);
-		},
-
-		closeForm() {
-			this.cleanForm();
-			this.$emit('closeForm', this.objective);
 		},
 
 		resetObjectiveMovementForm() {
@@ -345,14 +347,12 @@ export default {
 		executeRegistration() {
 			if (this.validateFormData()) {
 				this.$emit("executeRegistration", this.objective);
-				this.closeForm();
 			}
 		},
 
 		executeEdition() {
 			if (this.validateFormData()) {
 				this.$emit("executeEdition", this.objective);
-				this.closeForm();
 			}
 		},
 

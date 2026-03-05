@@ -15,7 +15,7 @@
 			@executeExclusion="executeExclusion"
 		/>
 
-		<statement-form
+		<statement-form v-if="appStore.globalDialog"
 			:statement="appStore.globalEntity"
 			:bank-list-combo="appStore.globalBankListCombo"
 			:location-list-combo="appStore.globalLocationListCombo"
@@ -52,12 +52,13 @@ export default {
 			this.month = month;
 			this.year = year;
 
-			if (this.month && this.year && this.year.length == 4) {
-				this.appStore.setGlobalMonth(this.month);
-				this.appStore.setGlobalYear(this.year);
-
-				this.accessModule();
+			if (this.year && this.year.length !== 4) {
+				return;
 			}
+
+			this.appStore.setGlobalMonth(this.month);
+			this.appStore.setGlobalYear(this.year);
+			this.accessModule();
 		},
 	},
 

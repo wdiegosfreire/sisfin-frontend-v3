@@ -7,7 +7,7 @@
 			<v-btn icon @click.stop="accessModule()" title="Click to reload page"><v-icon icon="mdi-rotate-3d-variant" /></v-btn>
 		</v-app-bar>
 
-		<df-period :month="month" :year="year" @periodChange="periodChange"></df-period>
+		<df-period :month="month" :year="year" @periodChange="periodChange" :allowPartialSearch="false"></df-period>
 		<df-grid>
 			<v-autocomplete @update:modelValue="periodRangeUpdate" v-model="periodRange" label="Period Range" :items="periodRangeList" />
 		</df-grid>
