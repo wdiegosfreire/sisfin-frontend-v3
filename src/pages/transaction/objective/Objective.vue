@@ -9,7 +9,7 @@
 			<v-btn icon @click.stop="accessRegistration()" title="Click to register a new location"><v-icon icon="mdi-plus" /></v-btn>
 		</v-app-bar>
 
-		<df-period :month="month" :year="year" @periodChange="periodChange"></df-period>
+		<df-period :month="month" :year="year" @periodChange="periodChange" :allowPartialSearch="false"></df-period>
 		<span v-if="showSearchField">
 			<df-grid>
 				<v-autocomplete v-model="filter.accountSource" label="Source Account" :item-title="traceAccount" item-value="identity" :items="accountListBalanceCombo" no-data-text="No data found" clearable return-object />

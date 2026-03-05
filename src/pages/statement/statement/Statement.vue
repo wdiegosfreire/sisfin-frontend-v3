@@ -52,12 +52,13 @@ export default {
 			this.month = month;
 			this.year = year;
 
-			if (this.month && this.year && this.year.length == 4) {
-				this.appStore.setGlobalMonth(this.month);
-				this.appStore.setGlobalYear(this.year);
-
-				this.accessModule();
+			if (this.year && this.year.length !== 4) {
+				return;
 			}
+
+			this.appStore.setGlobalMonth(this.month);
+			this.appStore.setGlobalYear(this.year);
+			this.accessModule();
 		},
 	},
 
