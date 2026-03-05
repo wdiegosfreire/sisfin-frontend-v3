@@ -19,12 +19,20 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
+
+      - name: Generate build version
+        run: echo "VITE_SISFIN_FRONTEND_VERSION=$(date +'%Y.%m.%d-%H%M')" >> $GITHUB_ENV
+
+      - name: Show version
+        run: |
+          echo "Build version: $VITE_SISFIN_FRONTEND_VERSION"
 
       - name: Build Vue project
         run: npm run build
         env:
           VITE_SISFIN_FRONTEND_ENVIROMENT: ${{ secrets.VITE_SISFIN_FRONTEND_ENVIROMENT }}
+          VITE_SISFIN_FRONTEND_VERSION: ${{ env.VITE_SISFIN_FRONTEND_VERSION }}
           VITE_SISFIN_BACKEND_URL_MAINTENANCE: ${{ secrets.VITE_SISFIN_BACKEND_URL_MAINTENANCE }}
           VITE_SISFIN_BACKEND_URL_TRANSACTION: ${{ secrets.VITE_SISFIN_BACKEND_URL_TRANSACTION }}
           VITE_SISFIN_BACKEND_URL_APP_START: ${{ secrets.VITE_SISFIN_BACKEND_URL_APP_START }}
