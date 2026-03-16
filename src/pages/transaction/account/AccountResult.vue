@@ -2,7 +2,7 @@
 	<df-result-layout :collection-length="collection.length">
 		<v-treeview :items="collection" :item-title="traceAccountName" item-children="accountListChild" open-on-click>
 			<template v-slot:prepend="{ item }">
-				<v-icon v-if="item.icon" size="28" :icon="item.icon" />
+				<v-icon v-if="item.icon" size="28" :icon="item.icon" color="primary" />
 			</template>
 			<template v-slot:append="{ item }">
 				<div v-if="item.level.length > 3">
