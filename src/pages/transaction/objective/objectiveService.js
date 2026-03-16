@@ -37,7 +37,8 @@ export default {
 			let objective = {
 				userIdentity: this.appStore.userIdentity,
 				filterMap: {
-					periodDate: new Date(this.appStore.globalYear + "-" + this.appStore.globalMonth + "-01 12:00:00"),
+					year: this.appStore.globalYear || null,
+					month: this.appStore.globalMonth || null,
 					locationIdentity: this.filter.location ? this.filter.location.identity : null,
 					accountSourceIdentity: this.filter.accountSource ? this.filter.accountSource.identity : null,
 					valueEnd: this.filter.valueEnd ? this.filter.valueEnd : null,

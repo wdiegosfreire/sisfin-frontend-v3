@@ -2,9 +2,9 @@
 	<df-result-layout :collection-length="collection ? collection.length : 0">
 		<span v-for="objective in collection" :key="objective.identity">
 			<span v-for="objectiveMovement in objective.objectiveMovementList" :key="objectiveMovement.identity">
-				<v-card v-if="objectiveMovement.props.isNewHeader" :title="toBrasilianDate(objectiveMovement.paymentDate)" class="mb-4" color="primary" prepend-icon="mdi-clock" />
+				<v-card v-if="objectiveMovement.props.isInPeriod && objectiveMovement.props.isNewHeader" :title="toBrasilianDate(objectiveMovement.paymentDate)" class="mb-4" color="primary" prepend-icon="mdi-clock" />
 
-				<v-card v-if="objectiveMovement.inPeriod" class="mb-4">
+				<v-card v-if="objectiveMovement.props.isInPeriod" class="mb-4">
 					<v-card-title class="d-flex align-center">
 						<span>
 							<v-icon icon="mdi-circle" color="purple" size="20" /> {{ traceAccount(objectiveMovement.accountSource) }}

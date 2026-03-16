@@ -29,12 +29,14 @@
 				<v-text-field label="Name" v-model="account.name" />
 				<v-text-field label="Notes" v-model="account.note" />
 
-				Icons (experimental) {{ this.account.icon }} {{ getIconIndex(this.account.icon) }}
-				<v-btn-toggle :v-model="getIconIndex(this.account.icon)" color="secondary" mandatory>
-					<v-btn v-for="icon in iconList" @click="setIcon(icon.name)">
-						<v-icon :icon="icon.name" size="28" />
-					</v-btn>
-				</v-btn-toggle>
+				<v-autocomplete v-model="account.icon" item-title="name" item-value="name" label="Icon" :items="iconList">
+					<template v-slot:item="{ props, item }">
+						<v-list-item v-bind="props" :title="item.raw.description" :prepend-icon="item.raw.name" />
+					</template>
+					<template #selection="{ props, item }">
+						<v-list-item v-bind="props" :title="item.raw.description" :prepend-icon="item.raw.name" class="pa-0" />
+					</template>
+				</v-autocomplete>
 			</v-card-text>
 
 			<v-card-actions>
@@ -83,34 +85,74 @@ export default {
 			accountComboLevelTwoSelected: null,
 
 			iconList: [
-				{ name: "mdi-cube-outline" },
-				{ name: "mdi-magnify" },
-				{ name: "mdi-vuetify" },
-				{ name: "mdi-heart-pulse" },
-				{ name: "mdi-lightbulb" },
-				{ name: "mdi-gas-station" },
-				{ name: "mdi-silverware-fork-knife" },
-				{ name: "mdi-wrench" },
-				{ name: "mdi-car" },
-				{ name: "mdi-broom" },
-				{ name: "mdi-wifi" },
-				{ name: "mdi-office-building" },
-				{ name: "mdi-lightning-bolt" },
-				{ name: "mdi-oil" },
-				{ name: "mdi-airplane-takeoff" },
-				{ name: "mdi-taxi" },
-				{ name: "mdi-credit-card" },
-				{ name: "mdi-desktop-classic" },
-				{ name: "mdi-power-plug" },
-				{ name: "mdi-hammer" },
-				{ name: "mdi-basketball" },
-				{ name: "mdi-cellphone" },
-				{ name: "mdi-bicycle" },
-				{ name: "mdi-television" },
-				{ name: "mdi-hamburger" },
-				{ name: "mdi-filmstrip" },
+				{ name: "mdi-car", description: "Car" },
+				{ name: "mdi-oil", description: "Oil" },
+				{ name: "mdi-cart", description: "Cart" },
+				{ name: "mdi-cash", description: "Cash" },
+				{ name: "mdi-food", description: "Food" },
+				{ name: "mdi-gift", description: "Gift" },
+				{ name: "mdi-taxi", description: "Taxi" },
+				{ name: "mdi-wifi", description: "WiFi" },
+				{ name: "mdi-alarm", description: "Alarm" },
+				{ name: "mdi-alien", description: "Alien" },
+				{ name: "mdi-broom", description: "Broom" },
+				{ name: "mdi-shape", description: "Shape" },
+				{ name: "mdi-water", description: "Water" },
+				{ name: "mdi-abacus", description: "Abacus" },
+				{ name: "mdi-hammer", description: "Hammer" },
+				{ name: "mdi-pencil", description: "Pencil" },
+				{ name: "mdi-school", description: "School" },
+				{ name: "mdi-wrench", description: "Wrench" },
+				{ name: "mdi-account", description: "Account" },
+				{ name: "mdi-bicycle", description: "Bicycle" },
+				{ name: "mdi-magnify", description: "Magnify" },
+				{ name: "mdi-vuetify", description: "Vuetify" },
+				{ name: "mdi-arm-flex", description: "Arm Flex" },
+				{ name: "mdi-cash-fast", description: "Cash Fast" },
+				{ name: "mdi-hamburger", description: "Hamburger" },
+				{ name: "mdi-lightbulb", description: "Lightbulb" },
+				{ name: "mdi-cellphone", description: "Cell Phone" },
+				{ name: "mdi-filmstrip", description: "Film Strip" },
+				{ name: "mdi-basketball", description: "Basketball" },
+				{ name: "mdi-power-plug", description: "Power Plug" },
+				{ name: "mdi-television", description: "Television" },
+				{ name: "mdi-credit-card", description: "Credit Card" },
+				{ name: "mdi-gas-station", description: "Gas Station" },
+				{ name: "mdi-guitar-pick", description: "Guitar Pick" },
+				{ name: "mdi-heart-pulse", description: "Heart Pulse" },
+				{ name: "mdi-sofa-single", description: "Sofa Single" },
+				{ name: "mdi-tshirt-crew", description: "T-Shirt Crew" },
+				{ name: "mdi-bank-outline", description: "Bank Outline" },
+				{ name: "mdi-cart-outline", description: "Cart Outline" },
+				{ name: "mdi-cube-outline", description: "Cube Outline" },
+				{ name: "mdi-gas-cylinder", description: "Gas Cylinder" },
+				{ name: "mdi-gift-outline", description: "Gift Outline" },
+				{ name: "mdi-alien-outline", description: "Alien Outline" },
+				{ name: "mdi-shape-outline", description: "Shape Outline" },
+				{ name: "mdi-water-outline", description: "Water Outline" },
+				{ name: "mdi-lightning-bolt", description: "Lightning Bolt" },
+				{ name: "mdi-pencil-outline", description: "Pencil Outline" },
+				{ name: "mdi-school-outline", description: "School Outline" },
+				{ name: "mdi-desktop-classic", description: "Desktop Classic" },
+				{ name: "mdi-office-building", description: "Office Building" },
+				{ name: "mdi-airplane-takeoff", description: "Airplane Takeoff" },
+				{ name: "mdi-arm-flex-outline", description: "Arm Flex Outline" },
+				{ name: "mdi-piggy-bank-outline", description: "Piggy Bank Outline" },
+				{ name: "mdi-credit-card-outline", description: "Credit Card Outline" },
+				{ name: "mdi-gas-station-outline", description: "Gas Station Outline" },
+				{ name: "mdi-guitar-pick-outline", description: "Guitar Pick Outline" },
+				{ name: "mdi-tshirt-crew-outline", description: "T-Shirt Crew Outline" },
+				{ name: "mdi-file-question-outline", description: "File Question Outline" },
+				{ name: "mdi-silverware-fork-knife", description: "Silverware Fork Knife" },
+				{ name: "mdi-book-open-page-variant", description: "Book Open Page Variant" },
+				{ name: "mdi-human-male-female-child", description: "Human Male Female Child" },
+				{ name: "mdi-book-open-page-variant-outline", description: "Book Open Page Variant Outline" },
 			]
 		}
+	},
+
+	created() {
+		this.iconList.sort((a, b) => a.description.localeCompare(b.description))
 	},
 
 	methods: {
@@ -151,14 +193,6 @@ export default {
 			}
 
 			return false;
-		},
-
-		setIcon(iconName) {
-			this.account.icon = iconName;
-		},
-
-		getIconIndex(iconName) {
-			return this.iconList.findIndex(icon => icon.name === iconName);
 		},
 
 		updateParentAccount(accountParent) {
