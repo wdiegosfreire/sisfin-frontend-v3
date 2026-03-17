@@ -1,6 +1,6 @@
 <template>
 	<df-result-layout :collection-length="collection.length">
-		<v-card outlined class="mb-4" v-for="statementPattern in collection" :key="statementPattern.identity">
+		<v-card class="mb-4" v-for="statementPattern in collection" :key="statementPattern.identity">
 			<v-card-title class="d-flex align-center">
 				<span>{{ statementPattern.comparator }}</span>
 

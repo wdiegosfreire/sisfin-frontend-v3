@@ -1,6 +1,6 @@
 <template>
 	<df-result-layout :collection-length="collection.length">
-		<v-card outlined class="mb-4" v-for="statementType in collection" :key="statementType.identity">
+		<v-card class="mb-4" v-for="statementType in collection" :key="statementType.identity">
 			<v-card-title class="d-flex align-center">
 				<span>{{ statementType.name }}</span>
 

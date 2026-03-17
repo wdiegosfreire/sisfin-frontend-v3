@@ -28,7 +28,7 @@
 				<v-expansion-panels variant="accordion">
 					<v-expansion-panel title="Statement Items">
 						<v-expansion-panel-text>
-							<v-card class="mt-3" v-for="(statementItem, index) in statement.statementItemList" :key="statementItem.identity" outlined>
+							<v-card class="mt-3" v-for="(statementItem, index) in statement.statementItemList" :key="statementItem.identity">
 								<v-card-title>{{ index + 1 }}. {{ statementItem.description }}</v-card-title>
 
 								<v-card-text>
@@ -39,7 +39,7 @@
 									</df-grid>
 								</v-card-text>
 
-								<span v-if="!statementItem.isExported && statementItem.props.similarMovementList.length > 0" outlined>
+								<span v-if="!statementItem.isExported && statementItem.props.similarMovementList.length > 0">
 									<v-divider />
 									<v-card-text style="color: red;">
 										<div>Movements were found for the same date and value for this item. Please review the information below before exporting.</div>
