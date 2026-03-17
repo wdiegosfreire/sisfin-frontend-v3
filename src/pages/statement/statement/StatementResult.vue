@@ -3,7 +3,7 @@
 		<span v-for="statement in collection" :key="statement.identity">
 			<v-card v-if="statement.props.isNewHeader" :title="statement.month + '/' + statement.year" class="mb-4" color="primary" prepend-icon="mdi-clock" />
 
-			<v-card class="mb-4">
+			<v-card variant="outlined" border="sm opacity-20" class="mb-4">
 				<v-card-title class="d-flex align-center">
 					<span>{{ statement.month }}/{{ statement.year }} :: {{ statement.statementType ? statement.statementType.bank.name : "" }} :: {{ statement.statementType ? statement.statementType.name : "" }}</span>
 

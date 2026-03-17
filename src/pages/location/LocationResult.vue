@@ -1,6 +1,6 @@
 <template>
 	<df-result-layout :collection-length="collection.length">
-		<v-card class="mb-4" v-for="location in collection" :key="location.identity">
+		<v-card variant="outlined" border="sm opacity-20" class="mb-4" v-for="location in collection" :key="location.identity">
 			<v-card-title class="d-flex align-center">
 				<span>{{ location.name }}</span>
 

@@ -1,5 +1,5 @@
 <template>
-	<v-card>
+	<v-card variant="elevated" elevation="3">
 		<v-card-text>
 			<h3 v-if="collectionLength > 0" class="text-left pb-3">Results in This Page: {{ collectionLength }}</h3>
 			<slot></slot>
