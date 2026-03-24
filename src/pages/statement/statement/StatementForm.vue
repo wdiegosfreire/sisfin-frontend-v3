@@ -23,72 +23,72 @@
 						<df-output-text label="Status" class="bold" :color="statement.isClosed ? 'green' : 'red'">{{ statement.isClosed ? "Closed" : "Opened" }}</df-output-text>
 						<df-output-text label="Source">{{ traceAccount(statement.statementType.accountSource) }}</df-output-text>
 					</df-grid>
+					<v-expansion-panels variant="accordion">
+						<v-expansion-panel title="Statement Items">
+							<v-expansion-panel-text>
+								<v-card  variant="outlined" border="sm opacity-20" class="mt-3" v-for="(statementItem, index) in statement.statementItemList" :key="statementItem.identity">
+									<v-card-title>{{ index + 1 }}. {{ statementItem.description }}</v-card-title>
+
+									<v-card-text>
+										<df-grid column="auto-sm" spaced>
+											<df-output-text label="Date">{{ toBrasilianDate(statementItem.movementDate) }}</df-output-text>
+											<df-output-text label="Value">{{ currency(statementItem.movementValue) }}</df-output-text>
+											<df-output-text label="Document Number">{{ statementItem.documentNumber ? statementItem.documentNumber : "-"}}</df-output-text>
+										</df-grid>
+									</v-card-text>
+
+									<span v-if="!statementItem.isExported && statementItem.props.similarMovementList.length > 0">
+										<v-divider />
+										<v-card-text style="color: red;">
+											<div>Movements were found for the same date and value for this item. Please review the information below before exporting.</div>
+											<ul>
+												<li v-for="similarMovement in statementItem.props.similarMovementList" :key="similarMovement">{{ similarMovement }}</li>
+											</ul>
+										</v-card-text>
+									</span>
+
+									<v-divider />
+									<v-card-text>
+										<v-chip small color="success" class="mr-3" v-if="statementItem.operationType == 'C'">Incoming</v-chip>
+										<v-chip small color="error" class="mr-3" v-else>Outcoming</v-chip>
+										<v-chip small color="success" v-if="statementItem.isExported">Exported</v-chip>
+										<v-chip small color="error" v-else>Pending</v-chip>
+									</v-card-text>
+
+									<span v-if="!statementItem.isExported">
+										<v-divider />
+										<v-card-actions>
+											<v-btn text @click="statementItem.isVisible = !statementItem.isVisible">SHOW FORM</v-btn>
+											<v-spacer />
+											<v-btn icon @click="statementItem.isVisible = !statementItem.isVisible"><v-icon>{{ statementItem.isVisible ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon></v-btn>
+										</v-card-actions>
+
+										<v-expand-transition>
+											<v-card-text v-show="statementItem.isVisible">
+												<df-grid column="auto-lg" fluid>
+													<v-text-field label="New Description" v-model="statementItem.descriptionNew" dense />
+													<df-autocomplete-account v-if="statementItem.operationType == 'C'" label="Source Account" v-model="statementItem.accountSource" :items="accountListComboSource" validate-as="source" clearable dense></df-autocomplete-account>
+													<df-autocomplete-account v-if="statementItem.operationType == 'D'" label="Target Account" v-model="statementItem.accountTarget" :items="accountListComboTarget" validate-as="target" clearable dense></df-autocomplete-account>
+												</df-grid>
+												<df-grid column="auto-lg" fluid>
+													<df-grid column="fixed-2">
+														<v-autocomplete label="Location" item-title="name" item-value="identity" v-model="statementItem.location" :items="locationListCombo" clearable return-object></v-autocomplete>
+														<v-autocomplete label="Payment Method" item-title="name" item-value="identity" v-model="statementItem.paymentMethod" :items="paymentMethodListCombo" clearable return-object></v-autocomplete>
+													</df-grid>
+													<df-grid column="fixed-2">
+														<v-btn small @click="executeEdition(statementItem, true)" class="mr-3">Export and Create Movement</v-btn>
+														<v-btn small @click="executeEdition(statementItem, false)">Export without Create Movement</v-btn>
+													</df-grid>
+												</df-grid>
+											</v-card-text>
+										</v-expand-transition>
+									</span>
+								</v-card>
+							</v-expansion-panel-text>
+						</v-expansion-panel>
+					</v-expansion-panels>
 				</v-card-text>
 
-				<v-expansion-panels variant="accordion">
-					<v-expansion-panel title="Statement Items">
-						<v-expansion-panel-text>
-							<v-card class="mt-3" v-for="(statementItem, index) in statement.statementItemList" :key="statementItem.identity">
-								<v-card-title>{{ index + 1 }}. {{ statementItem.description }}</v-card-title>
-
-								<v-card-text>
-									<df-grid column="auto-sm" spaced>
-										<df-output-text label="Date">{{ toBrasilianDate(statementItem.movementDate) }}</df-output-text>
-										<df-output-text label="Value">{{ currency(statementItem.movementValue) }}</df-output-text>
-										<df-output-text label="Document Number">{{ statementItem.documentNumber ? statementItem.documentNumber : "-"}}</df-output-text>
-									</df-grid>
-								</v-card-text>
-
-								<span v-if="!statementItem.isExported && statementItem.props.similarMovementList.length > 0">
-									<v-divider />
-									<v-card-text style="color: red;">
-										<div>Movements were found for the same date and value for this item. Please review the information below before exporting.</div>
-										<ul>
-											<li v-for="similarMovement in statementItem.props.similarMovementList" :key="similarMovement">{{ similarMovement }}</li>
-										</ul>
-									</v-card-text>
-								</span>
-
-								<v-divider />
-								<v-card-text>
-									<v-chip small color="success" class="mr-3" v-if="statementItem.operationType == 'C'">Incoming</v-chip>
-									<v-chip small color="error" class="mr-3" v-else>Outcoming</v-chip>
-									<v-chip small color="success" v-if="statementItem.isExported">Exported</v-chip>
-									<v-chip small color="error" v-else>Pending</v-chip>
-								</v-card-text>
-
-								<span v-if="!statementItem.isExported">
-									<v-divider />
-									<v-card-actions>
-										<v-btn text @click="statementItem.isVisible = !statementItem.isVisible">SHOW FORM</v-btn>
-										<v-spacer />
-										<v-btn icon @click="statementItem.isVisible = !statementItem.isVisible"><v-icon>{{ statementItem.isVisible ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon></v-btn>
-									</v-card-actions>
-
-									<v-expand-transition>
-										<v-card-text v-show="statementItem.isVisible">
-											<df-grid column="auto-lg" fluid>
-												<v-text-field label="New Description" v-model="statementItem.descriptionNew" dense />
-												<df-autocomplete-account v-if="statementItem.operationType == 'C'" label="Source Account" v-model="statementItem.accountSource" :items="accountListComboSource" validate-as="source" clearable dense></df-autocomplete-account>
-												<df-autocomplete-account v-if="statementItem.operationType == 'D'" label="Target Account" v-model="statementItem.accountTarget" :items="accountListComboTarget" validate-as="target" clearable dense></df-autocomplete-account>
-											</df-grid>
-											<df-grid column="auto-lg" fluid>
-												<df-grid column="fixed-2">
-													<v-autocomplete label="Location" item-title="name" item-value="identity" v-model="statementItem.location" :items="locationListCombo" clearable return-object></v-autocomplete>
-													<v-autocomplete label="Payment Method" item-title="name" item-value="identity" v-model="statementItem.paymentMethod" :items="paymentMethodListCombo" clearable return-object></v-autocomplete>
-												</df-grid>
-												<df-grid column="fixed-2">
-													<v-btn small @click="executeEdition(statementItem, true)" class="mr-3">Export and Create Movement</v-btn>
-													<v-btn small @click="executeEdition(statementItem, false)">Export without Create Movement</v-btn>
-												</df-grid>
-											</df-grid>
-										</v-card-text>
-									</v-expand-transition>
-								</span>
-							</v-card>
-						</v-expansion-panel-text>
-					</v-expansion-panel>
-				</v-expansion-panels>
 			</span>
 
 			<v-card-actions v-if="!statement.identity">
