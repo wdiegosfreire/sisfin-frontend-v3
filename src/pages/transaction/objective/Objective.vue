@@ -16,8 +16,8 @@
 				<v-autocomplete v-model="filter.location" label="Location" item-title="name" item-value="identity" :items="locationListCombo" no-data-text="No data found" clearable return-object></v-autocomplete>
 			</df-grid>
 			<df-grid column="fixed-2">
-				<v-text-field label="Value Start" v-model.number="filter.valueStart"></v-text-field>
-				<v-text-field label="Value End" v-model.number="filter.valueEnd"></v-text-field>
+				<df-input-money label="Value Start" v-model.number="filter.valueStart" clearable />
+				<df-input-money label="Value End" v-model.number="filter.valueEnd" clearable />
 			</df-grid>
 			<div class="mb-5 text-left">
 				<v-btn width="150" @click="accessModule" class="mr-2">Filter</v-btn>
@@ -53,6 +53,7 @@ import ObjectiveForm from "@/pages/transaction/objective/ObjectiveForm";
 
 import DfGrid from "@/components/grid/Grid.vue";
 import DfPeriod from "@/components/df-period/Period.vue";
+import DfInputMoney from "@/components/df-input/InputMoney.vue";
 
 import message from "@/components/mixins/message.js";
 
@@ -61,7 +62,7 @@ import { traceAccount } from '@/utils/filters.js';
 export default {
 	name: "Objective",
 
-	components: { ObjectiveResult, ObjectiveForm, DfGrid, DfPeriod },
+	components: { ObjectiveResult, ObjectiveForm, DfGrid, DfPeriod, DfInputMoney },
 
 	mixins: [ objectiveService, message ],
 
