@@ -15,9 +15,12 @@
 				<v-autocomplete v-model="filter.accountSource" label="Source Account" :item-title="traceAccount" item-value="identity" :items="accountListBalanceCombo" no-data-text="No data found" clearable return-object />
 				<v-autocomplete v-model="filter.location" label="Location" item-title="name" item-value="identity" :items="locationListCombo" no-data-text="No data found" clearable return-object></v-autocomplete>
 			</df-grid>
-			<df-grid column="fixed-2">
-				<df-input-money label="Value Start" v-model.number="filter.valueStart" clearable />
-				<df-input-money label="Value End" v-model.number="filter.valueEnd" clearable />
+			<df-grid>
+				<v-text-field label="Description" v-model="filter.description" clearable />
+				<df-grid column="fixed-2">
+					<df-input-money label="Value Start" v-model.number="filter.valueStart" clearable />
+					<df-input-money label="Value End" v-model.number="filter.valueEnd" clearable />
+				</df-grid>
 			</df-grid>
 			<div class="mb-5 text-left">
 				<v-btn width="150" @click="accessModule" class="mr-2">Filter</v-btn>
@@ -98,6 +101,7 @@ export default {
 		clearFilters() {
 			this.filter.accountSource = null;
 			this.filter.location = null;
+			this.filter.description = null;
 			this.filter.valueStart = null;
 			this.filter.valueEnd = null;
 
