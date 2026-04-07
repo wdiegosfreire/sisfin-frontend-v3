@@ -1,5 +1,5 @@
 <template>
-	<v-app-bar app color="primary" dark>
+	<v-app-bar app dark>
 		<template v-slot:prepend>
 			<v-app-bar-nav-icon v-if="appStore.sessionToken" @click.stop="showNavigationDrawer = !showNavigationDrawer"></v-app-bar-nav-icon>
 		</template>

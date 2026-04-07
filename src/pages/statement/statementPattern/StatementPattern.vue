@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<v-app-bar color="primary" dense dark>
+		<v-app-bar dense dark>
 			<v-toolbar-title>Statement Patterns</v-toolbar-title>
 			<v-spacer></v-spacer>
 

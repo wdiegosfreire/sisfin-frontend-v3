@@ -25,5 +25,11 @@ export default createVuetify({
 				colors: { primary: '#272727', secondary: '#FFE18D', accent: '#FF4081', success: '#4CAF50', info: '#2196F3', warning: '#FB8C00', error: '#FF5252' }
 			}
 		}
+	},
+
+	defaults: {
+		VAppBar: {
+			color: "primary",
+		},
 	}
 })
