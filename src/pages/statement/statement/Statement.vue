@@ -4,8 +4,8 @@
 			<v-toolbar-title>Statements</v-toolbar-title>
 			<v-spacer></v-spacer>
 
-			<v-btn icon @click.stop="accessModule()" title="Click to reload page"><v-icon icon="mdi-rotate-3d-variant" /></v-btn>
-			<v-btn icon @click.stop="accessRegistration()" title="Click to register a new item"><v-icon icon="mdi-plus" /></v-btn>
+			<v-btn @click.stop="accessModule()" title="Click to reload page" icon="mdi-rotate-3d-variant" />
+			<v-btn @click.stop="accessRegistration()" title="Click to register a new item" icon="mdi-plus" />
 		</v-app-bar>
 
 		<df-period :month="month" :year="year" @periodChange="periodChange"></df-period>
