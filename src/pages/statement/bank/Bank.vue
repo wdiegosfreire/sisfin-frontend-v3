@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<v-app-bar dense dark>
+		<v-app-bar dark>
 			<v-toolbar-title>Banks</v-toolbar-title>
 			<v-spacer></v-spacer>
 

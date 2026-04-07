@@ -30,6 +30,7 @@ export default createVuetify({
 	defaults: {
 		VAppBar: {
 			color: "primary",
+			density: "compact"
 		},
 	}
 })
