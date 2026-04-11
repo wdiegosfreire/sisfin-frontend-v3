@@ -36,5 +36,8 @@ export default createVuetify({
 			color: "primary",
 			density: "compact"
 		},
+		VDialog: {
+			persistent: true
+		},
 	}
 })

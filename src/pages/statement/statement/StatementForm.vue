@@ -1,5 +1,5 @@
 <template>
-	<v-dialog persistent v-model="appStore.globalDialog" width="1500">
+	<v-dialog v-model="appStore.globalDialog" width="1500">
 		<v-card class="mb-3">
 			<v-toolbar>
 				<v-toolbar-title v-if="!statement.identity">Import Statement</v-toolbar-title>
