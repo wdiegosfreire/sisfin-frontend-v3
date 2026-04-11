@@ -21,7 +21,7 @@
 
 		<v-divider></v-divider>
 
-		<v-list dense>
+		<v-list density="compact">
 			<v-list-item>
 				<v-autocomplete v-model="themeSelected" label="Theme" :items="themeList" item-title="name" item-value="value" @update:modelValue="themeChange();" return-object />
 				<v-autocomplete v-model="themeDark" label="Dark Theme" :items="decisionList" item-title="label" item-value="value" @update:modelValue="themeChange();" />

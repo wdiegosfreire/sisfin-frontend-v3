@@ -66,9 +66,9 @@
 										<v-expand-transition>
 											<v-card-text v-show="statementItem.isVisible">
 												<df-grid column="auto-lg" fluid>
-													<v-text-field label="New Description" v-model="statementItem.descriptionNew" dense />
-													<df-autocomplete-account v-if="statementItem.operationType == 'C'" label="Source Account" v-model="statementItem.accountSource" :items="accountListComboSource" validate-as="source" clearable dense></df-autocomplete-account>
-													<df-autocomplete-account v-if="statementItem.operationType == 'D'" label="Target Account" v-model="statementItem.accountTarget" :items="accountListComboTarget" validate-as="target" clearable dense></df-autocomplete-account>
+													<v-text-field label="New Description" v-model="statementItem.descriptionNew" />
+													<df-autocomplete-account v-if="statementItem.operationType == 'C'" label="Source Account" v-model="statementItem.accountSource" :items="accountListComboSource" validate-as="source" clearable />
+													<df-autocomplete-account v-if="statementItem.operationType == 'D'" label="Target Account" v-model="statementItem.accountTarget" :items="accountListComboTarget" validate-as="target" clearable />
 												</df-grid>
 												<df-grid column="auto-lg" fluid>
 													<df-grid column="fixed-2">

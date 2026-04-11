@@ -22,7 +22,7 @@
 				<df-grid class="mb-3">
 					<v-card v-for="(label, index) in incomingOutcomingSummaryTableData.labels" :key="index" elevation="8">
 						<v-card-title class="text-h5">{{ label }}</v-card-title>
-						<v-table dense>
+						<v-table>
 							<tbody>
 								<tr v-for="data in incomingOutcomingSummaryTableData.datasets" :key="data.label">
 									<td class="pr-0" style="width: 1px;">{{ data.identifier }}.</td>

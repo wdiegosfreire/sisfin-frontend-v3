@@ -4,7 +4,7 @@
 		:item-title="traceAccount"
 		:items="items"
 		:label="label"
-		:dense="dense"
+		:density="density"
 		:clearable="clearable"
 		:filter="filterAccount"
 		@update:modelValue="validateSelected"
@@ -34,9 +34,12 @@ export default {
 			type: Object,
 			default: () => ({})
 		},
-		dense: {
-			type: Boolean,
-			default: false
+		density: {
+			type: String,
+			default: "default",
+			validator: function (value) {
+				return ["default", "comfortable", "compact"].includes(value);
+			}
 		},
 		clearable: {
 			type: Boolean,

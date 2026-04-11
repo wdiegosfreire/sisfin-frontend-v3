@@ -12,7 +12,7 @@
 						<template v-slot:activator="{ props }">
 							<v-btn v-bind="props" variant="text" icon="mdi-menu" />
 						</template>
-						<v-list dense width="150">
+						<v-list width="150">
 							<v-list-item @click="$emit('accessEdition', statement)">
 								<v-list-item-title>Edit</v-list-item-title>
 							</v-list-item>
