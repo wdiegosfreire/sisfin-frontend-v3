@@ -32,5 +32,9 @@ export default createVuetify({
 			color: "primary",
 			density: "compact"
 		},
+		VToolbar: {
+			color: "primary",
+			density: "compact"
+		},
 	}
 })
