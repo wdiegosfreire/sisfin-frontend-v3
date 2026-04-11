@@ -1,7 +1,7 @@
 <template>
 	<v-dialog persistent v-model="appStore.globalDialog" width="1000">
 		<v-card class="mb-3">
-			<v-toolbar color="primary" height="35" dark flat>
+			<v-toolbar>
 				<v-toolbar-title>
 					<span v-if="this.objective.identity">Edit Objective</span>
 					<span v-else>New Objective</span>
