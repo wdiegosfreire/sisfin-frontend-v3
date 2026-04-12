@@ -28,7 +28,7 @@
 									<td class="pr-0" style="width: 1px;">{{ data.identifier }}.</td>
 									<td>{{ data.label }}</td>
 									<td class="text-right">{{ currency(data.data[index]) }}</td>
-									<td class="pl-0" style="width: 1px;"><fa-icon :icon="`fa-solid ${data.icon}`" /></td>
+									<td class="pl-0" style="width: 1px;"><v-icon :icon="data.icon" /></td>
 								</tr>
 							</tbody>
 						</v-table>
