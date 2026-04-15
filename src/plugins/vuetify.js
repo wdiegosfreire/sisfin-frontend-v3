@@ -40,7 +40,7 @@ export default createVuetify({
 			persistent: true
 		},
 		VAutocomplete: {
-			noDataText: "Nenhum resultado encontrado",
+			noDataText: "No results found",
 		},
 	}
 })
