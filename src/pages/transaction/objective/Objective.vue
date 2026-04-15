@@ -13,7 +13,7 @@
 		<span v-if="showSearchField">
 			<df-grid>
 				<v-autocomplete v-model="filter.accountSource" label="Source Account" :item-title="traceAccount" item-value="identity" :items="accountListBalanceCombo" clearable return-object />
-				<v-autocomplete v-model="filter.location" label="Location" item-title="name" item-value="identity" :items="locationListCombo" clearable return-object></v-autocomplete>
+				<v-autocomplete v-model="filter.location" label="Location" item-title="name" item-value="identity" :items="locationListCombo" clearable return-object />
 			</df-grid>
 			<df-grid>
 				<v-text-field label="Description" v-model="filter.description" clearable />

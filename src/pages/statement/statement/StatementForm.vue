@@ -72,8 +72,8 @@
 												</df-grid>
 												<df-grid column="auto-lg" fluid>
 													<df-grid column="fixed-2">
-														<v-autocomplete label="Location" item-title="name" item-value="identity" v-model="statementItem.location" :items="locationListCombo" clearable return-object></v-autocomplete>
-														<v-autocomplete label="Payment Method" item-title="name" item-value="identity" v-model="statementItem.paymentMethod" :items="paymentMethodListCombo" clearable return-object></v-autocomplete>
+														<v-autocomplete label="Location" item-title="name" item-value="identity" v-model="statementItem.location" :items="locationListCombo" clearable return-object />
+														<v-autocomplete label="Payment Method" item-title="name" item-value="identity" v-model="statementItem.paymentMethod" :items="paymentMethodListCombo" clearable return-object />
 													</df-grid>
 													<df-grid column="fixed-2">
 														<v-btn small @click="executeEdition(statementItem, true)" class="mr-3">Export and Create Movement</v-btn>
