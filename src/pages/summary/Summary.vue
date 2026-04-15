@@ -16,7 +16,7 @@
 			<v-card-title>Incoming & Outcoming</v-card-title>
 			<v-card-text class="text-left">
 				<df-grid>
-					<v-autocomplete @update:modelValue="balanceAccountSelectedUpdate" v-model="balanceAccountSelected" label="Balance Account" item-value="identity" no-data-text="No data found" :item-title="traceAccount" :items="accountListBalanceCombo" return-object />
+					<v-autocomplete @update:modelValue="balanceAccountSelectedUpdate" v-model="balanceAccountSelected" label="Balance Account" item-value="identity" :item-title="traceAccount" :items="accountListBalanceCombo" return-object />
 				</df-grid>
 
 				<df-grid class="mb-3">
@@ -41,7 +41,7 @@
 			<v-card-title>Outcomming by Account</v-card-title>
 			<v-card-text class="text-left">
 				<df-grid>
-					<v-autocomplete @update:modelValue="outcomingAccountSelectedUpdate" v-model="outcomingAccountSelected" label="Outcoming Account" item-value="level" no-data-text="No data found" :item-title="traceAccount" :items="accountListOutcomingCombo" return-object />
+					<v-autocomplete @update:modelValue="outcomingAccountSelectedUpdate" v-model="outcomingAccountSelected" label="Outcoming Account" item-value="level" :item-title="traceAccount" :items="accountListOutcomingCombo" return-object />
 				</df-grid>
 
 				<df-grid class="mb-6">

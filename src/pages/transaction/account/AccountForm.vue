@@ -22,7 +22,7 @@
 				<span v-else>
 					<df-grid>
 						<v-autocomplete v-model="accountComboLevelOneSelected" item-title="name" item-value="identity" @update:modelValue="$emit('accessRegistration', accountComboLevelOneSelected); updateParentAccount(accountComboLevelOneSelected);" return-object label="First Level Account" :items="accountListComboLevelOne" autofocus />
-						<v-autocomplete v-model="accountComboLevelTwoSelected" item-title="name" item-value="identity" @update:modelValue="updateParentAccount(accountComboLevelTwoSelected)" return-object label="Second Level Account" :items="accountListComboLevelTwo" no-data-text="Contas não Identificadas" />
+						<v-autocomplete v-model="accountComboLevelTwoSelected" item-title="name" item-value="identity" @update:modelValue="updateParentAccount(accountComboLevelTwoSelected)" return-object label="Second Level Account" :items="accountListComboLevelTwo" />
 					</df-grid>
 				</span>
 

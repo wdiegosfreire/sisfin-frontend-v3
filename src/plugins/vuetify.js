@@ -39,5 +39,8 @@ export default createVuetify({
 		VDialog: {
 			persistent: true
 		},
+		VAutocomplete: {
+			noDataText: "Nenhum resultado encontrado",
+		},
 	}
 })
