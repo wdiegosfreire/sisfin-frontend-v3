@@ -17,7 +17,7 @@
 		/>
 
 		<payment-method-form v-if="appStore.globalDialog"
-			:payment-method="appStore.globalEntity"
+			:form-data="appStore.globalEntity"
 			@executeRegistration="executeRegistration"
 			@executeEdition="executeEdition"
 			@cleanForm="cleanForm"

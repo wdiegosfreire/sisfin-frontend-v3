@@ -42,9 +42,15 @@ export default {
 	components: { DfGrid },
 
 	props: {
-		paymentMethod: {
+		formData: {
 			type: Object,
 			required: true
+		}
+	},
+
+	data() {
+		return {
+			paymentMethod: this.formData
 		}
 	},
 
