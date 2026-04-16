@@ -12,10 +12,10 @@
 	/>
  </template>
 
- <script>
- import { Bar } from 'vue-chartjs'
+<script>
+import { Bar } from 'vue-chartjs'
 
- import {
+import {
 	Chart as ChartJS,
 	Title,
 	Tooltip,
@@ -23,11 +23,11 @@
 	BarElement,
 	CategoryScale,
 	LinearScale
- } from 'chart.js'
+} from 'chart.js'
 
- ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
+ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 
- export default {
+export default {
 	name: 'BarChart',
 
 	components: { Bar },

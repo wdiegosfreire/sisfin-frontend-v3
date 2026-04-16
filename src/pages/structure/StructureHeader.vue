@@ -133,7 +133,7 @@ export default {
 					light: { primary: '#2196F3', secondary: '#BBDEFB', accent: '#E91E63', success: '#4CAF50', info: '#2196F3', warning: '#FB8C00', error: '#FF5252' },
 					dark: { primary: '#2196F3', secondary: '#BBDEFB', accent: '#E91E63', success: '#4CAF50', info: '#2196F3', warning: '#FB8C00', error: '#FF5252' }
 				},
-            {
+				{
 					name: "Cyan",
 					value: "cyan",
 					light: { primary: '#00BCD4', secondary: '#80DEEA', accent: '#E0F7FA', success: '#4CAF50', info: '#2196F3', warning: '#FFC107', error: '#D32F2F' },
@@ -248,8 +248,7 @@ export default {
 				useAppStore().setSessionToken("");
 
 				this.$router.push("/");
-			})
-			.catch(error => {
+			}).catch(error => {
 				this.$_message_showError(error.response);
 			});
 		},

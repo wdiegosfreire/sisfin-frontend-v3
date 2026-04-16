@@ -24,7 +24,7 @@
 	/> -->
  </template>
 
- <script>
+<script>
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, CategoryScale, Title } from 'chart.js';
 import { Pie } from 'vue-chartjs';
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, Title);

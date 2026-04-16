@@ -37,6 +37,7 @@ export default [
 			"brace-style": ['warn', 'stroustrup', { allowSingleLine: true }],
 			"comma-spacing": ['error', { before: false, after: true }],
 			"quotes": ["off"],
+			"indent": ["error", "tab"]
 		},
 	},
 ];
