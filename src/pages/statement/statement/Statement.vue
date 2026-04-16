@@ -97,7 +97,7 @@ export default {
 		}
 
 		this.year = this.year + "";
-		this.month = this.month.toString().padStart(2,"0");
+		this.month = this.month.toString().padStart(2, "0");
 
 		this.appStore.setGlobalMonth(this.month);
 		this.appStore.setGlobalYear(this.year);
