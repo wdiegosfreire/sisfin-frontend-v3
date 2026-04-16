@@ -17,7 +17,7 @@
 		/>
 
 		<account-form v-if="appStore.globalDialog"
-			:account="accountForm"
+			:form-data="accountForm"
 			:account-list-combo-level-one="accountListComboLevelOne"
 			:account-list-combo-level-two="accountListComboLevelTwo"
 

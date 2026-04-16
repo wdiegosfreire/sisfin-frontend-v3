@@ -65,7 +65,7 @@ export default {
 	mixins: [ message ],
 
 	props: {
-		account: {
+		formData: {
 			type: Object,
 			required: true
 		},
@@ -81,6 +81,8 @@ export default {
 
 	data() {
 		return {
+			account: this.formData,
+
 			accountComboLevelOneSelected: null,
 			accountComboLevelTwoSelected: null,
 
