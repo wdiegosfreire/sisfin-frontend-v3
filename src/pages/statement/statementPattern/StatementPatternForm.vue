@@ -62,7 +62,7 @@ export default {
 	mixins: [ message],
 
 	props: {
-		statementPattern: {
+		formData: {
 			type: Object,
 			required: true
 		},
@@ -85,6 +85,12 @@ export default {
 		statementTypeListCombo: {
 			type: Array,
 			required: true
+		}
+	},
+
+	data() {
+		return {
+			statementPattern: this.formData
 		}
 	},
 

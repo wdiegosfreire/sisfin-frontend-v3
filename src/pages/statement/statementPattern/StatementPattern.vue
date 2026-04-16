@@ -17,7 +17,7 @@
 		/>
 
 		<statement-pattern-form v-if="appStore.globalDialog"
-			:statementPattern="statementPatternForm"
+			:form-data="statementPatternForm"
 			:account-list-combo-target="accountListComboTarget"
 			:payment-method-list-combo="paymentMethodListCombo"
 			:statement-type-list-combo="statementTypeListCombo"
