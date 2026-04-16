@@ -34,7 +34,7 @@ export default [
 
 			// Suas regras personalizadas
 			// "semi": ["error", "always"],
-			"brace-style": ['warn', '1tbs', { allowSingleLine: false }],
+			"brace-style": ['warn', 'stroustrup', { allowSingleLine: true }],
 			"comma-spacing": ['error', { before: false, after: true }],
 			"quotes": ["off"],
 		},
