@@ -30,6 +30,7 @@ export default [
 			'vue/valid-v-for': 'error', // Verifica diretiva v-for válida
 			'vue/valid-v-if': 'error', // Verifica diretiva v-if válida
 			'vue/valid-v-model': 'error', // Verifica diretiva v-model válida
+			"vue/html-indent": ["error", "tab"], // Indentação consistente em arquivos .vue
 			// 'vue/no-mutating-props': 'warn', // Evita mutação direta de props
 
 			// Suas regras personalizadas
@@ -37,7 +38,7 @@ export default [
 			"brace-style": ['warn', 'stroustrup', { allowSingleLine: true }],
 			"comma-spacing": ['error', { before: false, after: true }],
 			"quotes": ["off"],
-			"indent": ["error", "tab"]
+			"indent": ["error", "tab"],
 		},
 	},
 ];

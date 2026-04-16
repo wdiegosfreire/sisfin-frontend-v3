@@ -10,7 +10,7 @@
 		:chart-options="chartOptions"
 		:dataset-id-key="datasetIdKey"
 	/>
- </template>
+</template>
 
 <script>
 import { Bar } from 'vue-chartjs'

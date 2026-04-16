@@ -1,9 +1,9 @@
 <template>
-  	<v-text-field v-model="displayValue"
-   	:label="label"
+	<v-text-field v-model="displayValue"
+		:label="label"
 		:clearable="clearable"
-    	@input="onInput"
-  	/>
+		@input="onInput"
+	/>
 </template>
 
 <script>

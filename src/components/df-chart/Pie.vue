@@ -22,7 +22,7 @@
 		:chart-options="chartOptions"
 		:dataset-id-key="datasetIdKey"
 	/> -->
- </template>
+</template>
 
 <script>
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, CategoryScale, Title } from 'chart.js';
