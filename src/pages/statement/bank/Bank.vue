@@ -17,7 +17,7 @@
 		/>
 
 		<bank-form v-if="appStore.globalDialog"
-			:bank="appStore.globalEntity"
+			:form-data="appStore.globalEntity"
 			@executeRegistration="executeRegistration"
 			@executeEdition="executeEdition"
 			@cleanForm="cleanForm"

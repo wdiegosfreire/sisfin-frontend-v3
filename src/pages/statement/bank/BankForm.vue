@@ -39,9 +39,15 @@ export default {
 	components: { DfGrid },
 
 	props: {
-		bank: {
+		formData: {
 			type: Object,
 			required: true
+		}
+	},
+
+	data() {
+		return {
+			bank: this.formData
 		}
 	},
 
