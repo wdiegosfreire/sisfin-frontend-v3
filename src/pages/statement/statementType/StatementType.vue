@@ -17,7 +17,7 @@
 		/>
 
 		<statement-type-form v-if="appStore.globalDialog"
-			:statementType="appStore.globalEntity"
+			:form-data="appStore.globalEntity"
 			:bank-list-combo="appStore.globalBankListCombo"
 			:account-list-combo-source="appStore.globalAccountListComboSource"
 

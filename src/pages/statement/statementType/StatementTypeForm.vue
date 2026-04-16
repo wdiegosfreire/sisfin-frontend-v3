@@ -47,7 +47,7 @@ export default {
 	mixins: [ message ],
 
 	props: {
-		statementType: {
+		formData: {
 			type: Object,
 			required: true
 		},
@@ -60,6 +60,12 @@ export default {
 		accountListComboSource: {
 			type: Array,
 			required: true
+		}
+	},
+
+	data() {
+		return {
+			statementType: this.formData
 		}
 	},
 
