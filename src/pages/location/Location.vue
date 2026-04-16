@@ -17,7 +17,7 @@
 		/>
 
 		<location-form v-if="appStore.globalDialog"
-			:location="locationForm"
+			:form-data="locationForm"
 			@executeRegistration="executeRegistration"
 			@executeEdition="executeEdition"
 			@closeForm="closeForm"

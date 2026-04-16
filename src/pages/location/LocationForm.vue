@@ -46,9 +46,15 @@ export default {
 	mixins: [ message],
 
 	props: {
-		location: {
+		formData: {
 			type: Object,
 			required: true
+		}
+	},
+
+	data() {
+		return {
+			location: this.formData
 		}
 	},
 
