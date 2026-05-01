@@ -1,29 +1,27 @@
 <template>
-	<div>
-		<v-app-bar>
-			<v-toolbar-title>Payment Methods</v-toolbar-title>
-			<template v-slot:append>
-				<v-btn @click.stop="accessModule()" title="Click to reload page" icon="mdi-rotate-3d-variant" />
-				<v-btn @click.stop="toggleFilterField()" title="Click to search" icon="mdi-magnify" />
-				<v-btn @click.stop="accessRegistration()" title="Click to register a new item" icon="mdi-plus" />
-			</template>
-		</v-app-bar>
+	<v-app-bar>
+		<v-toolbar-title>Payment Methods</v-toolbar-title>
+		<template v-slot:append>
+			<v-btn @click.stop="accessModule()" title="Click to reload page" icon="mdi-rotate-3d-variant" />
+			<v-btn @click.stop="toggleFilterField()" title="Click to search" icon="mdi-magnify" />
+			<v-btn @click.stop="accessRegistration()" title="Click to register a new item" icon="mdi-plus" />
+		</template>
+	</v-app-bar>
 
-		<df-input-filter transition="slide-x-transition" v-if="showSearchField" @type="executeSearch" />
+	<df-input-filter transition="slide-x-transition" v-if="showSearchField" @type="executeSearch" />
 
-		<payment-method-result :collection="appStore.globalResult"
-			@accessEdition="accessEdition"
-			@executeExclusion="executeExclusion"
-		/>
+	<payment-method-result :collection="appStore.globalResult"
+		@accessEdition="accessEdition"
+		@executeExclusion="executeExclusion"
+	/>
 
-		<payment-method-form v-if="appStore.globalDialog"
-			:form-data="appStore.globalEntity"
-			@executeRegistration="executeRegistration"
-			@executeEdition="executeEdition"
-			@cleanForm="cleanForm"
-			@closeForm="closeForm"
-		/>
-	</div>
+	<payment-method-form v-if="appStore.globalDialog"
+		:form-data="appStore.globalEntity"
+		@executeRegistration="executeRegistration"
+		@executeEdition="executeEdition"
+		@cleanForm="cleanForm"
+		@closeForm="closeForm"
+	/>
 </template>
 
 <script lang="js">

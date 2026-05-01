@@ -1,62 +1,60 @@
 <template>
-	<div>
-		<v-app-bar>
-			<v-toolbar-title>Summary</v-toolbar-title>
-			<template v-slot:append>
-				<v-btn @click.stop="accessModule()" title="Click to reload page" icon="mdi-rotate-3d-variant" />
-			</template>
-		</v-app-bar>
+	<v-app-bar>
+		<v-toolbar-title>Summary</v-toolbar-title>
+		<template v-slot:append>
+			<v-btn @click.stop="accessModule()" title="Click to reload page" icon="mdi-rotate-3d-variant" />
+		</template>
+	</v-app-bar>
 
-		<df-period :month="month" :year="year" @periodChange="periodChange" :allowPartialSearch="false"></df-period>
-		<df-grid>
-			<v-autocomplete @update:modelValue="periodRangeUpdate" v-model="periodRange" label="Period Range" :items="periodRangeList" />
-		</df-grid>
+	<df-period :month="month" :year="year" @periodChange="periodChange" :allowPartialSearch="false"></df-period>
+	<df-grid>
+		<v-autocomplete @update:modelValue="periodRangeUpdate" v-model="periodRange" label="Period Range" :items="periodRangeList" />
+	</df-grid>
 
-		<v-card class="mb-3">
-			<v-card-title>Incoming & Outcoming</v-card-title>
-			<v-card-text class="text-left">
-				<df-grid>
-					<v-autocomplete @update:modelValue="balanceAccountSelectedUpdate" v-model="balanceAccountSelected" label="Balance Account" item-value="identity" :item-title="traceAccount" :items="accountListBalanceCombo" return-object />
-				</df-grid>
+	<v-card class="mb-3">
+		<v-card-title>Incoming & Outcoming</v-card-title>
+		<v-card-text class="text-left">
+			<df-grid>
+				<v-autocomplete @update:modelValue="balanceAccountSelectedUpdate" v-model="balanceAccountSelected" label="Balance Account" item-value="identity" :item-title="traceAccount" :items="accountListBalanceCombo" return-object />
+			</df-grid>
 
-				<df-grid class="mb-3">
-					<v-card v-for="(label, index) in incomingOutcomingSummaryTableData.labels" :key="index" elevation="8">
-						<v-card-title class="text-h5">{{ label }}</v-card-title>
-						<v-table>
-							<tbody>
-								<tr v-for="data in incomingOutcomingSummaryTableData.datasets" :key="data.label">
-									<td class="pr-0" style="width: 1px;">{{ data.identifier }}.</td>
-									<td>{{ data.label }}</td>
-									<td class="text-right">{{ currency(data.data[index]) }}</td>
-									<td class="pl-0" style="width: 1px;"><v-icon :icon="data.icon" /></td>
-								</tr>
-							</tbody>
-						</v-table>
-					</v-card>
-				</df-grid>
-			</v-card-text>
-		</v-card>
+			<df-grid class="mb-3">
+				<v-card v-for="(label, index) in incomingOutcomingSummaryTableData.labels" :key="index" elevation="8">
+					<v-card-title class="text-h5">{{ label }}</v-card-title>
+					<v-table>
+						<tbody>
+							<tr v-for="data in incomingOutcomingSummaryTableData.datasets" :key="data.label">
+								<td class="pr-0" style="width: 1px;">{{ data.identifier }}.</td>
+								<td>{{ data.label }}</td>
+								<td class="text-right">{{ currency(data.data[index]) }}</td>
+								<td class="pl-0" style="width: 1px;"><v-icon :icon="data.icon" /></td>
+							</tr>
+						</tbody>
+					</v-table>
+				</v-card>
+			</df-grid>
+		</v-card-text>
+	</v-card>
 
-		<v-card>
-			<v-card-title>Outcomming by Account</v-card-title>
-			<v-card-text class="text-left">
-				<df-grid>
-					<v-autocomplete @update:modelValue="outcomingAccountSelectedUpdate" v-model="outcomingAccountSelected" label="Outcoming Account" item-value="level" :item-title="traceAccount" :items="accountListOutcomingCombo" return-object />
-				</df-grid>
+	<v-card>
+		<v-card-title>Outcomming by Account</v-card-title>
+		<v-card-text class="text-left">
+			<df-grid>
+				<v-autocomplete @update:modelValue="outcomingAccountSelectedUpdate" v-model="outcomingAccountSelected" label="Outcoming Account" item-value="level" :item-title="traceAccount" :items="accountListOutcomingCombo" return-object />
+			</df-grid>
 
-				<df-grid class="mb-6">
-					<v-card v-for="(mapData, mapKey) in outcomingSummaryPieChart" :key="mapKey" elevation="8">
-						<v-card-title class="text-h5">{{ mapKey }}</v-card-title>
-						<pie-chart :chartData="mapData" />
-					</v-card>
-				</df-grid>
+			<df-grid class="mb-6">
+				<v-card v-for="(mapData, mapKey) in outcomingSummaryPieChart" :key="mapKey" elevation="8">
+					<v-card-title class="text-h5">{{ mapKey }}</v-card-title>
+					<pie-chart :chartData="mapData" />
+				</v-card>
+			</df-grid>
 
-				<df-grid>
-					<line-chart :chartData="outcomingSummaryLineChart" />
-				</df-grid>
-			</v-card-text>
-		</v-card>
-	</div>
+			<df-grid>
+				<line-chart :chartData="outcomingSummaryLineChart" />
+			</df-grid>
+		</v-card-text>
+	</v-card>
 </template>
 
 <script>
