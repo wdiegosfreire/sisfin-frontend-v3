@@ -85,11 +85,11 @@
 			</v-card-text>
 
 			<v-card-actions>
-				<v-btn v-if="this.objective.identity" width="150" @click="executeEdition">Confirm</v-btn>
-				<v-btn v-else width="150" @click="executeRegistration">Confirm</v-btn>
+				<v-btn v-if="this.objective.identity" width="150" @click="executeEdition" variant="tonal" color="primary">Confirm</v-btn>
+				<v-btn v-else width="150" @click="executeRegistration" variant="tonal" color="primary">Confirm</v-btn>
 
-				<v-btn width="150" @click="cleanForm">Clear</v-btn>
-				<v-btn width="150" @click="$emit('closeForm', objective)">Close</v-btn>
+				<v-btn width="150" @click="cleanForm" variant="tonal">Clear</v-btn>
+				<v-btn width="150" @click="$emit('closeForm', objective)" variant="tonal">Close</v-btn>
 			</v-card-actions>
 		</v-card>
 	</v-dialog>

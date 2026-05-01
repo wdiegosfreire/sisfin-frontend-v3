@@ -76,8 +76,8 @@
 														<v-autocomplete label="Payment Method" item-title="name" item-value="identity" v-model="statementItem.paymentMethod" :items="paymentMethodListCombo" clearable return-object />
 													</df-grid>
 													<df-grid column="fixed-2">
-														<v-btn small @click="executeEdition(statementItem, true)" class="mr-3">Export and Create Movement</v-btn>
-														<v-btn small @click="executeEdition(statementItem, false)">Export without Create Movement</v-btn>
+														<v-btn small @click="executeEdition(statementItem, true)" class="mr-3" variant="tonal">Export and Create Movement</v-btn>
+														<v-btn small @click="executeEdition(statementItem, false)" variant="tonal">Export without Create Movement</v-btn>
 													</df-grid>
 												</df-grid>
 											</v-card-text>
@@ -92,12 +92,12 @@
 			</span>
 
 			<v-card-actions v-if="!statement.identity">
-				<v-btn width="150" @click="executeRegistration(statement)">Confirm</v-btn>
-				<v-btn width="150" @click="$emit('cleanForm', statement)">Clear</v-btn>
-				<v-btn width="150" @click="$emit('closeForm', statement)">Close</v-btn>
+				<v-btn width="150" @click="executeRegistration(statement)" variant="tonal" color="primary">Confirm</v-btn>
+				<v-btn width="150" @click="$emit('cleanForm', statement)" variant="tonal">Clear</v-btn>
+				<v-btn width="150" @click="$emit('closeForm', statement)" variant="tonal">Close</v-btn>
 			</v-card-actions>
 			<v-card-actions v-else>
-				<v-btn width="150" @click="$emit('closeForm', statement)">Close</v-btn>
+				<v-btn width="150" @click="$emit('closeForm', statement)" variant="tonal">Close</v-btn>
 			</v-card-actions>
 		</v-card>
 	</v-dialog>

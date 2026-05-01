@@ -11,8 +11,8 @@
 			</v-card-text>
 
 			<v-card-actions>
-				<v-btn width="150" @click="executeAuthentication">Confirm</v-btn>
-				<v-btn width="150" @click="resetForm">Clear</v-btn>
+				<v-btn width="150" @click="executeAuthentication" variant="tonal" color="primary">Confirm</v-btn>
+				<v-btn width="150" @click="resetForm" variant="tonal">Clear</v-btn>
 			</v-card-actions>
 
 			<v-card-actions v-if="maintenance">

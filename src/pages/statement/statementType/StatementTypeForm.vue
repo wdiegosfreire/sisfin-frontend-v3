@@ -20,11 +20,11 @@
 			</v-card-text>
 
 			<v-card-actions>
-				<v-btn v-if="this.statementType.identity" width="150" @click="$emit('executeEdition', statementType)">Confirm</v-btn>
-				<v-btn v-else width="150" @click="$emit('executeRegistration', statementType)">Confirm</v-btn>
+				<v-btn v-if="this.statementType.identity" width="150" @click="$emit('executeEdition', statementType)" variant="tonal" color="primary">Confirm</v-btn>
+				<v-btn v-else width="150" @click="$emit('executeRegistration', statementType)" variant="tonal" color="primary">Confirm</v-btn>
 
-				<v-btn width="150" @click="$emit('cleanForm', statementType)">Clear</v-btn>
-				<v-btn width="150" @click="$emit('closeForm', statementType)">Close</v-btn>
+				<v-btn width="150" @click="$emit('cleanForm', statementType)" variant="tonal">Clear</v-btn>
+				<v-btn width="150" @click="$emit('closeForm', statementType)" variant="tonal">Close</v-btn>
 			</v-card-actions>
 		</v-card>
 	</v-dialog>
