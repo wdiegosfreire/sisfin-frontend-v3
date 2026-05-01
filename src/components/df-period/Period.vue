@@ -9,7 +9,9 @@
 			:style="ignoreMonth ? 'opacity: 0.5' : 'opacity: 1'"
 			:readonly="ignoreMonth"
 			:append-inner-icon="getMonthAppendInnerIcon()"
+			:prepend-icon="allowDecreaseIncrease ? 'mdi-chevron-left-circle-outline' : ''"
 			@update:modelValue="periodChange();"
+			@click:prepend="decreasePeriod()"
 			@click:append-inner="ignoreMonthChange()"
 		/>
 		<v-text-field v-model="selectedYear"
@@ -18,8 +20,10 @@
 			maxlength="4"
 			:style="ignoreYear ? 'opacity: 0.5' : 'opacity: 1'"
 			:readonly="ignoreYear"
+			:append-icon="allowDecreaseIncrease ? 'mdi-chevron-right-circle-outline' : ''"
 			:append-inner-icon="getYearAppendInnerIcon()"
 			@input="periodChange();"
+			@click:append="increasePeriod()"
 			@click:append-inner="ignoreYearChange()"
 		/>
 	</df-grid>
@@ -48,6 +52,11 @@ export default {
 			required: true
 		},
 		allowPartialSearch: {
+			type: Boolean,
+			default: true,
+			required: false
+		},
+		allowDecreaseIncrease: {
 			type: Boolean,
 			default: true,
 			required: false
@@ -117,6 +126,38 @@ export default {
 
 			return this.ignoreMonth ? 'mdi-toggle-switch-off-outline' : 'mdi-toggle-switch-outline'
 		},
+
+		decreasePeriod() {
+			if (this.selectedMonth && this.selectedYear) {
+				let monthIndex = this.monthList.findIndex(month => month.monthNumber === this.selectedMonth);
+
+				if (monthIndex > 0) {
+					this.selectedMonth = this.monthList[monthIndex - 1].monthNumber;
+				}
+				else {
+					this.selectedMonth = this.monthList[this.monthList.length - 1].monthNumber;
+					this.selectedYear = (Number(this.selectedYear) - 1).toString();
+				}
+
+				this.periodChange();
+			}
+		},
+
+		increasePeriod() {
+			if (this.selectedMonth && this.selectedYear) {
+				let monthIndex = this.monthList.findIndex(month => month.monthNumber === this.selectedMonth);
+
+				if (monthIndex < this.monthList.length - 1) {
+					this.selectedMonth = this.monthList[monthIndex + 1].monthNumber;
+				}
+				else {
+					this.selectedMonth = this.monthList[0].monthNumber;
+					this.selectedYear = (Number(this.selectedYear) + 1).toString();
+				}
+
+				this.periodChange();
+			}
+		}
 	},
 }
 </script>
