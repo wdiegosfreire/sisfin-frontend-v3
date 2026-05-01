@@ -18,7 +18,7 @@
 			</v-card-text>
 
 			<v-card-actions>
-				<v-btn v-if="this.bank.identity" color="button" width="150" @click="$emit('executeEdition', bank)">Confirm</v-btn>
+				<v-btn v-if="this.bank.identity" width="150" @click="$emit('executeEdition', bank)">Confirm</v-btn>
 				<v-btn v-else width="150" @click="$emit('executeRegistration', bank)">Confirm</v-btn>
 
 				<v-btn width="150" @click="$emit('cleanForm', bank)">Clear</v-btn>

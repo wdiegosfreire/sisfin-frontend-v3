@@ -20,7 +20,7 @@
 			</v-card-text>
 
 			<v-card-actions>
-				<v-btn v-if="this.statementType.identity" color="button" width="150" @click="$emit('executeEdition', statementType)">Confirm</v-btn>
+				<v-btn v-if="this.statementType.identity" width="150" @click="$emit('executeEdition', statementType)">Confirm</v-btn>
 				<v-btn v-else width="150" @click="$emit('executeRegistration', statementType)">Confirm</v-btn>
 
 				<v-btn width="150" @click="$emit('cleanForm', statementType)">Clear</v-btn>

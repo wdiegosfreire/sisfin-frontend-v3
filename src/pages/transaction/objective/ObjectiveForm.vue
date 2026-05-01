@@ -85,7 +85,7 @@
 			</v-card-text>
 
 			<v-card-actions>
-				<v-btn v-if="this.objective.identity" color="button" width="150" @click="executeEdition">Confirm</v-btn>
+				<v-btn v-if="this.objective.identity" width="150" @click="executeEdition">Confirm</v-btn>
 				<v-btn v-else width="150" @click="executeRegistration">Confirm</v-btn>
 
 				<v-btn width="150" @click="cleanForm">Clear</v-btn>

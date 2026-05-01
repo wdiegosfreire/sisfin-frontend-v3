@@ -21,7 +21,7 @@
 			</v-card-text>
 
 			<v-card-actions>
-				<v-btn v-if="this.paymentMethod.identity" color="button" width="150" @click="$emit('executeEdition', paymentMethod)">Confirm</v-btn>
+				<v-btn v-if="this.paymentMethod.identity" width="150" @click="$emit('executeEdition', paymentMethod)">Confirm</v-btn>
 				<v-btn v-else width="150" @click="$emit('executeRegistration', paymentMethod)">Confirmar</v-btn>
 
 				<v-btn width="150" @click="$emit('cleanForm', paymentMethod)">Limpar</v-btn>
