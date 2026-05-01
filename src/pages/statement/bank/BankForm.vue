@@ -1,7 +1,7 @@
 <template>
-	<v-dialog persistent v-model="appStore.globalDialog" width="800">
+	<v-dialog v-model="appStore.globalDialog" width="800">
 		<v-card class="mb-3">
-			<v-toolbar color="primary" height="35" dark flat>
+			<v-toolbar>
 				<v-toolbar-title>
 					<span v-if="this.bank.identity">Edit Bank</span>
 					<span v-else>New Bank</span>
@@ -39,9 +39,15 @@ export default {
 	components: { DfGrid },
 
 	props: {
-		bank: {
+		formData: {
 			type: Object,
 			required: true
+		}
+	},
+
+	data() {
+		return {
+			bank: this.formData
 		}
 	},
 

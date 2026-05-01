@@ -17,7 +17,7 @@
 			<tr v-for="objectiveMovement in collection" :key="objectiveMovement.identity">
 				<td class="sign-column">{{ objectiveMovement.installment }}</td>
 				<td>{{ traceAccount(objectiveMovement.accountSource) }}</td>
-				<td class="sign-column"><v-icon v-if="objectiveMovement.props.isInPeriod" icon="mdi-check" size="28" color="green" title="Selected Installment" /></td>
+				<td class="sign-column"><v-icon v-if="objectiveMovement.props?.isInPeriod" icon="mdi-check" size="28" color="green" title="Selected Installment" /></td>
 				<td>{{ toBrasilianDate(objectiveMovement.dueDate) }}</td>
 				<td>{{ toBrasilianDate(objectiveMovement.paymentDate) }}</td>
 				<td>{{ objectiveMovement.paymentMethod.name }}</td>

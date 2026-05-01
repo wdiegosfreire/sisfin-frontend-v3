@@ -1,7 +1,7 @@
 <template>
-	<v-dialog persistent v-model="appStore.globalDialog" width="1000">
+	<v-dialog v-model="appStore.globalDialog" width="1000">
 		<v-card class="mb-3">
-			<v-toolbar color="primary" height="35" dark flat>
+			<v-toolbar>
 				<v-toolbar-title>
 					<span v-if="this.account.identity">Edit Account</span>
 					<span v-else>New Account</span>
@@ -22,7 +22,7 @@
 				<span v-else>
 					<df-grid>
 						<v-autocomplete v-model="accountComboLevelOneSelected" item-title="name" item-value="identity" @update:modelValue="$emit('accessRegistration', accountComboLevelOneSelected); updateParentAccount(accountComboLevelOneSelected);" return-object label="First Level Account" :items="accountListComboLevelOne" autofocus />
-						<v-autocomplete v-model="accountComboLevelTwoSelected" item-title="name" item-value="identity" @update:modelValue="updateParentAccount(accountComboLevelTwoSelected)" return-object label="Second Level Account" :items="accountListComboLevelTwo" no-data-text="Contas não Identificadas" />
+						<v-autocomplete v-model="accountComboLevelTwoSelected" item-title="name" item-value="identity" @update:modelValue="updateParentAccount(accountComboLevelTwoSelected)" return-object label="Second Level Account" :items="accountListComboLevelTwo" />
 					</df-grid>
 				</span>
 
@@ -65,7 +65,7 @@ export default {
 	mixins: [ message ],
 
 	props: {
-		account: {
+		formData: {
 			type: Object,
 			required: true
 		},
@@ -81,6 +81,8 @@ export default {
 
 	data() {
 		return {
+			account: this.formData,
+
 			accountComboLevelOneSelected: null,
 			accountComboLevelTwoSelected: null,
 

@@ -1,23 +1,26 @@
 <template>
 	<div>
-		<v-app-bar color="primary" dense dark>
+		<v-app-bar>
 			<v-toolbar-title>Objectives</v-toolbar-title>
 			<v-spacer></v-spacer>
 
-			<v-btn icon @click.stop="accessModule()" title="Click to reload page"><v-icon icon="mdi-rotate-3d-variant" /></v-btn>
-			<v-btn icon @click.stop="toggleFilterField()" title="Click to search"><v-icon icon="mdi-magnify" /></v-btn>
-			<v-btn icon @click.stop="accessRegistration()" title="Click to register a new location"><v-icon icon="mdi-plus" /></v-btn>
+			<v-btn @click.stop="accessModule()" title="Click to reload page" icon="mdi-rotate-3d-variant" />
+			<v-btn @click.stop="toggleFilterField()" title="Click to search" icon="mdi-magnify" />
+			<v-btn @click.stop="accessRegistration()" title="Click to register a new item" icon="mdi-plus" />
 		</v-app-bar>
 
 		<df-period :month="month" :year="year" @periodChange="periodChange" :allowPartialSearch="false"></df-period>
 		<span v-if="showSearchField">
 			<df-grid>
-				<v-autocomplete v-model="filter.accountSource" label="Source Account" :item-title="traceAccount" item-value="identity" :items="accountListBalanceCombo" no-data-text="No data found" clearable return-object />
-				<v-autocomplete v-model="filter.location" label="Location" item-title="name" item-value="identity" :items="locationListCombo" no-data-text="No data found" clearable return-object></v-autocomplete>
+				<v-autocomplete v-model="filter.accountSource" label="Source Account" :item-title="traceAccount" item-value="identity" :items="accountListBalanceCombo" clearable return-object />
+				<v-autocomplete v-model="filter.location" label="Location" item-title="name" item-value="identity" :items="locationListCombo" clearable return-object />
 			</df-grid>
-			<df-grid column="fixed-2">
-				<v-text-field label="Value Start" v-model.number="filter.valueStart"></v-text-field>
-				<v-text-field label="Value End" v-model.number="filter.valueEnd"></v-text-field>
+			<df-grid>
+				<v-text-field label="Description" v-model="filter.description" clearable />
+				<df-grid column="fixed-2">
+					<df-input-money label="Value Start" v-model.number="filter.valueStart" clearable />
+					<df-input-money label="Value End" v-model.number="filter.valueEnd" clearable />
+				</df-grid>
 			</df-grid>
 			<div class="mb-5 text-left">
 				<v-btn width="150" @click="accessModule" class="mr-2">Filter</v-btn>
@@ -53,6 +56,7 @@ import ObjectiveForm from "@/pages/transaction/objective/ObjectiveForm";
 
 import DfGrid from "@/components/grid/Grid.vue";
 import DfPeriod from "@/components/df-period/Period.vue";
+import DfInputMoney from "@/components/df-input/InputMoney.vue";
 
 import message from "@/components/mixins/message.js";
 
@@ -61,7 +65,7 @@ import { traceAccount } from '@/utils/filters.js';
 export default {
 	name: "Objective",
 
-	components: { ObjectiveResult, ObjectiveForm, DfGrid, DfPeriod },
+	components: { ObjectiveResult, ObjectiveForm, DfGrid, DfPeriod, DfInputMoney },
 
 	mixins: [ objectiveService, message ],
 
@@ -97,6 +101,7 @@ export default {
 		clearFilters() {
 			this.filter.accountSource = null;
 			this.filter.location = null;
+			this.filter.description = null;
 			this.filter.valueStart = null;
 			this.filter.valueEnd = null;
 
@@ -128,7 +133,7 @@ export default {
 		}
 
 		this.year = this.year + "";
-		this.month = this.month.toString().padStart(2,"0");
+		this.month = this.month.toString().padStart(2, "0");
 
 		this.appStore.setGlobalMonth(this.month);
 		this.appStore.setGlobalYear(this.year);

@@ -1,10 +1,10 @@
 <template>
 	<div>
-		<v-app-bar color="primary" dense dark>
+		<v-app-bar>
 			<v-toolbar-title>Summary</v-toolbar-title>
 			<v-spacer></v-spacer>
 
-			<v-btn icon @click.stop="accessModule()" title="Click to reload page"><v-icon icon="mdi-rotate-3d-variant" /></v-btn>
+			<v-btn @click.stop="accessModule()" title="Click to reload page" icon="mdi-rotate-3d-variant" />
 		</v-app-bar>
 
 		<df-period :month="month" :year="year" @periodChange="periodChange" :allowPartialSearch="false"></df-period>
@@ -16,19 +16,19 @@
 			<v-card-title>Incoming & Outcoming</v-card-title>
 			<v-card-text class="text-left">
 				<df-grid>
-					<v-autocomplete @update:modelValue="balanceAccountSelectedUpdate" v-model="balanceAccountSelected" label="Balance Account" item-value="identity" no-data-text="No data found" :item-title="traceAccount" :items="accountListBalanceCombo" return-object />
+					<v-autocomplete @update:modelValue="balanceAccountSelectedUpdate" v-model="balanceAccountSelected" label="Balance Account" item-value="identity" :item-title="traceAccount" :items="accountListBalanceCombo" return-object />
 				</df-grid>
 
 				<df-grid class="mb-3">
 					<v-card v-for="(label, index) in incomingOutcomingSummaryTableData.labels" :key="index" elevation="8">
 						<v-card-title class="text-h5">{{ label }}</v-card-title>
-						<v-table dense>
+						<v-table>
 							<tbody>
 								<tr v-for="data in incomingOutcomingSummaryTableData.datasets" :key="data.label">
 									<td class="pr-0" style="width: 1px;">{{ data.identifier }}.</td>
 									<td>{{ data.label }}</td>
 									<td class="text-right">{{ currency(data.data[index]) }}</td>
-									<td class="pl-0" style="width: 1px;"><fa-icon :icon="`fa-solid ${data.icon}`" /></td>
+									<td class="pl-0" style="width: 1px;"><v-icon :icon="data.icon" /></td>
 								</tr>
 							</tbody>
 						</v-table>
@@ -41,7 +41,7 @@
 			<v-card-title>Outcomming by Account</v-card-title>
 			<v-card-text class="text-left">
 				<df-grid>
-					<v-autocomplete @update:modelValue="outcomingAccountSelectedUpdate" v-model="outcomingAccountSelected" label="Outcoming Account" item-value="level" no-data-text="No data found" :item-title="traceAccount" :items="accountListOutcomingCombo" return-object />
+					<v-autocomplete @update:modelValue="outcomingAccountSelectedUpdate" v-model="outcomingAccountSelected" label="Outcoming Account" item-value="level" :item-title="traceAccount" :items="accountListOutcomingCombo" return-object />
 				</df-grid>
 
 				<df-grid class="mb-6">
@@ -158,7 +158,7 @@ export default {
 		}
 
 		this.year = this.year + "";
-		this.month = this.month.toString().padStart(2,"0");
+		this.month = this.month.toString().padStart(2, "0");
 
 		this.appStore.setGlobalMonth(this.month);
 		this.appStore.setGlobalYear(this.year);

@@ -3,25 +3,25 @@
 </template>
 
 <script>
-	export default {
-		name: "DfInputFilter",
-		data() {
-			return {
-				textSearch: "",
-				lastChange: 0,
-				delay: 300
-			}
-		},
-		methods: {
-			executeSearch() {
-				this.lastChange = new Date().getTime();
+export default {
+	name: "DfInputFilter",
+	data() {
+		return {
+			textSearch: "",
+			lastChange: 0,
+			delay: 300
+		}
+	},
+	methods: {
+		executeSearch() {
+			this.lastChange = new Date().getTime();
 
-				setTimeout(() => {
-					if (new Date().getTime() >= this.lastChange + this.delay) {
-						this.$emit("type", this.textSearch);
-					}
-				}, this.delay);
-			}
+			setTimeout(() => {
+				if (new Date().getTime() >= this.lastChange + this.delay) {
+					this.$emit("type", this.textSearch);
+				}
+			}, this.delay);
 		}
 	}
+}
 </script>

@@ -3,7 +3,7 @@
 		<span v-for="statement in collection" :key="statement.identity">
 			<v-card v-if="statement.props.isNewHeader" :title="statement.month + '/' + statement.year" class="mb-4" color="primary" prepend-icon="mdi-clock" />
 
-			<v-card outlined class="mb-4">
+			<v-card variant="outlined" border="sm opacity-20" class="mb-4">
 				<v-card-title class="d-flex align-center">
 					<span>{{ statement.month }}/{{ statement.year }} :: {{ statement.statementType ? statement.statementType.bank.name : "" }} :: {{ statement.statementType ? statement.statementType.name : "" }}</span>
 
@@ -12,7 +12,7 @@
 						<template v-slot:activator="{ props }">
 							<v-btn v-bind="props" variant="text" icon="mdi-menu" />
 						</template>
-						<v-list dense width="150">
+						<v-list width="150">
 							<v-list-item @click="$emit('accessEdition', statement)">
 								<v-list-item-title>Edit</v-list-item-title>
 							</v-list-item>

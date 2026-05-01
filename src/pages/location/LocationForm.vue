@@ -1,7 +1,7 @@
 <template>
-	<v-dialog persistent v-model="appStore.globalDialog" width="800">
+	<v-dialog v-model="appStore.globalDialog" width="800">
 		<v-card class="mb-3">
-			<v-toolbar color="primary" height="35" dark flat>
+			<v-toolbar>
 				<v-toolbar-title>
 					<span v-if="this.location.identity">Edit Location</span>
 					<span v-else>New Location</span>
@@ -46,9 +46,15 @@ export default {
 	mixins: [ message],
 
 	props: {
-		location: {
+		formData: {
 			type: Object,
 			required: true
+		}
+	},
+
+	data() {
+		return {
+			location: this.formData
 		}
 	},
 

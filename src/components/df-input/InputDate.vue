@@ -1,6 +1,6 @@
 <template>
 	<v-text-field v-model="formattedDate" :label="label" readonly @focus="dialog = true"></v-text-field>
-	<v-dialog v-model="dialog" persistent width="290">
+	<v-dialog v-model="dialog" width="290">
 		<v-card>
 			<v-date-picker v-model="selectedDate" @update:model-value="updateDate"></v-date-picker>
 

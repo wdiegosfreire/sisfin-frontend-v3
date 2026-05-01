@@ -1,9 +1,7 @@
 <template>
 	<v-snackbar v-model="appStore.globalLoading">
-		<div class="text-center">
-			<div>Loading</div>
-			<v-icon>mdi-clock</v-icon>
-		</div>
+		<v-icon icon="mdi-clock" size="48px" />
+		<span class="ml-5">Loading</span>
 	</v-snackbar>
 </template>
 

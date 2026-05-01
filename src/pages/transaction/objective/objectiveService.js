@@ -41,6 +41,7 @@ export default {
 					month: this.appStore.globalMonth || null,
 					locationIdentity: this.filter.location ? this.filter.location.identity : null,
 					accountSourceIdentity: this.filter.accountSource ? this.filter.accountSource.identity : null,
+					description: this.filter.description || null,
 					valueEnd: this.filter.valueEnd ? this.filter.valueEnd : null,
 					valueStart: this.filter.valueStart ? this.filter.valueStart : null
 				}

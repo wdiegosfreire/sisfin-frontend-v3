@@ -1,7 +1,7 @@
 <template>
-	<v-dialog persistent v-model="appStore.globalDialog" width="800">
+	<v-dialog v-model="appStore.globalDialog" width="800">
 		<v-card class="mb-3">
-			<v-toolbar color="primary" height="35" dark flat>
+			<v-toolbar>
 				<v-toolbar-title>
 					<span v-if="this.statementPattern.identity">Edit Statement Pattern</span>
 					<span v-else>New Statement Pattern</span>
@@ -62,7 +62,7 @@ export default {
 	mixins: [ message],
 
 	props: {
-		statementPattern: {
+		formData: {
 			type: Object,
 			required: true
 		},
@@ -85,6 +85,12 @@ export default {
 		statementTypeListCombo: {
 			type: Array,
 			required: true
+		}
+	},
+
+	data() {
+		return {
+			statementPattern: this.formData
 		}
 	},
 

@@ -1,7 +1,7 @@
 <template>
-	<v-dialog persistent v-model="appStore.globalDialog" width="800">
+	<v-dialog v-model="appStore.globalDialog" width="800">
 		<v-card class="mb-3">
-			<v-toolbar color="primary" height="35" dark flat>
+			<v-toolbar>
 				<v-toolbar-title>
 					<span v-if="this.paymentMethod.identity">Edit Payment Method</span>
 					<span v-else>New Payment Method</span>
@@ -42,9 +42,15 @@ export default {
 	components: { DfGrid },
 
 	props: {
-		paymentMethod: {
+		formData: {
 			type: Object,
 			required: true
+		}
+	},
+
+	data() {
+		return {
+			paymentMethod: this.formData
 		}
 	},
 

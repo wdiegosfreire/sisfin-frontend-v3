@@ -41,11 +41,11 @@ export function toBrasilianDate(date) {
 }
 
 export function toUtcDate(dateStr) {
-  const [day, month, year] = dateStr.split('/').map(Number);
+	const [day, month, year] = dateStr.split('/').map(Number);
 
-  if (!day || !month || !year) {
-    throw new Error("Formato inválido. Use DD/MM/YYYY, ex: 30/12/2025");
-  }
+	if (!day || !month || !year) {
+		throw new Error("Formato inválido. Use DD/MM/YYYY, ex: 30/12/2025");
+	}
 
-  return new Date(year, month - 1, day);
+	return new Date(year, month - 1, day);
 }
