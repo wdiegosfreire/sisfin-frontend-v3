@@ -2,9 +2,9 @@
 	<div>
 		<v-app-bar>
 			<v-toolbar-title>Summary</v-toolbar-title>
-			<v-spacer></v-spacer>
-
-			<v-btn @click.stop="accessModule()" title="Click to reload page" icon="mdi-rotate-3d-variant" />
+			<template v-slot:append>
+				<v-btn @click.stop="accessModule()" title="Click to reload page" icon="mdi-rotate-3d-variant" />
+			</template>
 		</v-app-bar>
 
 		<df-period :month="month" :year="year" @periodChange="periodChange" :allowPartialSearch="false"></df-period>

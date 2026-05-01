@@ -2,10 +2,10 @@
 	<div>
 		<v-app-bar>
 			<v-toolbar-title>Statements</v-toolbar-title>
-			<v-spacer></v-spacer>
-
-			<v-btn @click.stop="accessModule()" title="Click to reload page" icon="mdi-rotate-3d-variant" />
-			<v-btn @click.stop="accessRegistration()" title="Click to register a new item" icon="mdi-plus" />
+			<template v-slot:append>
+				<v-btn @click.stop="accessModule()" title="Click to reload page" icon="mdi-rotate-3d-variant" />
+				<v-btn @click.stop="accessRegistration()" title="Click to register a new item" icon="mdi-plus" />
+			</template>
 		</v-app-bar>
 
 		<df-period :month="month" :year="year" @periodChange="periodChange"></df-period>
