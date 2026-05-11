@@ -1,34 +1,32 @@
 <template>
-	<div>
-		<v-app-bar>
-			<v-toolbar-title>Statement Patterns</v-toolbar-title>
-			<v-spacer></v-spacer>
-
+	<v-app-bar>
+		<v-toolbar-title>Statement Patterns</v-toolbar-title>
+		<template v-slot:append>
 			<v-btn @click.stop="accessModule()" title="Click to reload page" icon="mdi-rotate-3d-variant" />
 			<v-btn @click.stop="toggleFilterField()" title="Click to search" icon="mdi-magnify" />
 			<v-btn @click.stop="accessRegistration()" title="Click to register a new item" icon="mdi-plus" />
-		</v-app-bar>
+		</template>
+	</v-app-bar>
 
-		<df-input-filter transition="slide-x-transition" v-if="showSearchField" @type="executeSearch" />
+	<df-input-filter transition="slide-x-transition" v-if="showSearchField" @type="executeSearch" />
 
-		<statement-pattern-result :collection="statementPatternListResult"
-			@accessEdition="accessEdition"
-			@executeExclusion="executeExclusion"
-		/>
+	<statement-pattern-result :collection="statementPatternListResult"
+		@accessEdition="accessEdition"
+		@executeExclusion="executeExclusion"
+	/>
 
-		<statement-pattern-form v-if="appStore.globalDialog"
-			:form-data="statementPatternForm"
-			:account-list-combo-target="accountListComboTarget"
-			:payment-method-list-combo="paymentMethodListCombo"
-			:statement-type-list-combo="statementTypeListCombo"
-			:location-list-combo="locationListCombo"
+	<statement-pattern-form v-if="appStore.globalDialog"
+		:form-data="statementPatternForm"
+		:account-list-combo-target="accountListComboTarget"
+		:payment-method-list-combo="paymentMethodListCombo"
+		:statement-type-list-combo="statementTypeListCombo"
+		:location-list-combo="locationListCombo"
 
-			@executeRegistration="executeRegistration"
-			@accessRegistration="accessRegistration"
-			@executeEdition="executeEdition"
-			@closeForm="closeForm"
-		/>
-	</div>
+		@executeRegistration="executeRegistration"
+		@accessRegistration="accessRegistration"
+		@executeEdition="executeEdition"
+		@closeForm="closeForm"
+	/>
 </template>
 
 <script lang="js">

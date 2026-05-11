@@ -1,36 +1,34 @@
 <template>
-	<div>
-		<v-app-bar>
-			<v-toolbar-title>Statements</v-toolbar-title>
-			<v-spacer></v-spacer>
-
+	<v-app-bar>
+		<v-toolbar-title>Statements</v-toolbar-title>
+		<template v-slot:append>
 			<v-btn @click.stop="accessModule()" title="Click to reload page" icon="mdi-rotate-3d-variant" />
 			<v-btn @click.stop="accessRegistration()" title="Click to register a new item" icon="mdi-plus" />
-		</v-app-bar>
+		</template>
+	</v-app-bar>
 
-		<df-period :month="month" :year="year" @periodChange="periodChange"></df-period>
+	<df-period :month="month" :year="year" @periodChange="periodChange"></df-period>
 
-		<statement-result :collection="appStore.globalResult"
-			@accessEdition="accessEdition"
-			@executeExclusion="executeExclusion"
-		/>
+	<statement-result :collection="appStore.globalResult"
+		@accessEdition="accessEdition"
+		@executeExclusion="executeExclusion"
+	/>
 
-		<statement-form v-if="appStore.globalDialog"
-			:statement="appStore.globalEntity"
-			:bank-list-combo="appStore.globalBankListCombo"
-			:location-list-combo="appStore.globalLocationListCombo"
-			:account-list-combo-source="appStore.globalAccountListComboSource"
-			:account-list-combo-target="appStore.globalAccountListComboTarget"
-			:payment-method-list-combo="appStore.globalPaymentMethodListCombo"
-			:statement-type-list-combo="appStore.globalStatementTypeListCombo"
+	<statement-form v-if="appStore.globalDialog"
+		:statement="appStore.globalEntity"
+		:bank-list-combo="appStore.globalBankListCombo"
+		:location-list-combo="appStore.globalLocationListCombo"
+		:account-list-combo-source="appStore.globalAccountListComboSource"
+		:account-list-combo-target="appStore.globalAccountListComboTarget"
+		:payment-method-list-combo="appStore.globalPaymentMethodListCombo"
+		:statement-type-list-combo="appStore.globalStatementTypeListCombo"
 
-			@executeRegistration="executeRegistration"
-			@accessRegistration="accessRegistration"
-			@executeEdition="executeEdition"
-			@cleanForm="cleanForm"
-			@closeForm="closeForm"
-		/>
-	</div>
+		@executeRegistration="executeRegistration"
+		@accessRegistration="accessRegistration"
+		@executeEdition="executeEdition"
+		@cleanForm="cleanForm"
+		@closeForm="closeForm"
+	/>
 </template>
 
 <script lang="js">

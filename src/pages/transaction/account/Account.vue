@@ -1,32 +1,30 @@
 <template>
-	<div>
-		<v-app-bar>
-			<v-toolbar-title>Accounts</v-toolbar-title>
-			<v-spacer></v-spacer>
-
+	<v-app-bar>
+		<v-toolbar-title>Accounts</v-toolbar-title>
+		<template v-slot:append>
 			<v-btn @click.stop="accessModule()" title="Click to reload page" icon="mdi-rotate-3d-variant" />
 			<v-btn @click.stop="toggleFilterField()" title="Click to search" icon="mdi-magnify" />
 			<v-btn @click.stop="accessRegistration()" title="Click to register a new item" icon="mdi-plus" />
-		</v-app-bar>
+		</template>
+	</v-app-bar>
 
-		<df-input-filter transition="slide-x-transition" v-if="showSearchField" @type="executeSearch" />
+	<df-input-filter transition="slide-x-transition" v-if="showSearchField" @type="executeSearch" />
 
-		<account-result :collection="accountListResult"
-			@accessEdition="accessEdition"
-			@executeExclusion="executeExclusion"
-		/>
+	<account-result :collection="accountListResult"
+		@accessEdition="accessEdition"
+		@executeExclusion="executeExclusion"
+	/>
 
-		<account-form v-if="appStore.globalDialog"
-			:form-data="accountForm"
-			:account-list-combo-level-one="accountListComboLevelOne"
-			:account-list-combo-level-two="accountListComboLevelTwo"
+	<account-form v-if="appStore.globalDialog"
+		:form-data="accountForm"
+		:account-list-combo-level-one="accountListComboLevelOne"
+		:account-list-combo-level-two="accountListComboLevelTwo"
 
-			@executeRegistration="executeRegistration"
-			@accessRegistration="accessRegistration"
-			@executeEdition="executeEdition"
-			@closeForm="closeForm"
-		/>
-	</div>
+		@executeRegistration="executeRegistration"
+		@accessRegistration="accessRegistration"
+		@executeEdition="executeEdition"
+		@closeForm="closeForm"
+	/>
 </template>
 
 <script lang="js">

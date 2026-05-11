@@ -1,52 +1,50 @@
 <template>
-	<div>
-		<v-app-bar>
-			<v-toolbar-title>Objectives</v-toolbar-title>
-			<v-spacer></v-spacer>
-
+	<v-app-bar>
+		<v-toolbar-title>Objectives</v-toolbar-title>
+		<template v-slot:append>
 			<v-btn @click.stop="accessModule()" title="Click to reload page" icon="mdi-rotate-3d-variant" />
 			<v-btn @click.stop="toggleFilterField()" title="Click to search" icon="mdi-magnify" />
 			<v-btn @click.stop="accessRegistration()" title="Click to register a new item" icon="mdi-plus" />
-		</v-app-bar>
+		</template>
+	</v-app-bar>
 
-		<df-period :month="month" :year="year" @periodChange="periodChange" :allowPartialSearch="false"></df-period>
-		<span v-if="showSearchField">
-			<df-grid>
-				<v-autocomplete v-model="filter.accountSource" label="Source Account" :item-title="traceAccount" item-value="identity" :items="accountListBalanceCombo" clearable return-object />
-				<v-autocomplete v-model="filter.location" label="Location" item-title="name" item-value="identity" :items="locationListCombo" clearable return-object />
+	<df-period :month="month" :year="year" @periodChange="periodChange" :allowPartialSearch="false"></df-period>
+	<span v-if="showSearchField">
+		<df-grid>
+			<v-autocomplete v-model="filter.accountSource" label="Source Account" :item-title="traceAccount" item-value="identity" :items="accountListBalanceCombo" clearable return-object />
+			<v-autocomplete v-model="filter.location" label="Location" item-title="name" item-value="identity" :items="locationListCombo" clearable return-object />
+		</df-grid>
+		<df-grid>
+			<v-text-field label="Description" v-model="filter.description" clearable />
+			<df-grid column="fixed-2">
+				<df-input-money label="Value Start" v-model.number="filter.valueStart" clearable />
+				<df-input-money label="Value End" v-model.number="filter.valueEnd" clearable />
 			</df-grid>
-			<df-grid>
-				<v-text-field label="Description" v-model="filter.description" clearable />
-				<df-grid column="fixed-2">
-					<df-input-money label="Value Start" v-model.number="filter.valueStart" clearable />
-					<df-input-money label="Value End" v-model.number="filter.valueEnd" clearable />
-				</df-grid>
-			</df-grid>
-			<div class="mb-5 text-left">
-				<v-btn width="150" @click="accessModule" class="mr-2">Filter</v-btn>
-				<v-btn width="150" @click="clearFilters">Clear</v-btn>
-			</div>
-		</span>
+		</df-grid>
+		<div class="mb-5 text-left">
+			<v-btn width="150" @click="accessModule" class="mr-2">Filter</v-btn>
+			<v-btn width="150" @click="clearFilters">Clear</v-btn>
+		</div>
+	</span>
 
-		<objective-result
-			:collection="appStore.globalResult"
+	<objective-result
+		:collection="appStore.globalResult"
 
-			@accessEdition="accessEdition"
-			@executeExclusion="executeExclusion"
-		/>
+		@accessEdition="accessEdition"
+		@executeExclusion="executeExclusion"
+	/>
 
-		<objective-form v-if="appStore.globalDialog"
-			:objective="appStore.globalEntity"
-			:location-list-combo="appStore.globalLocationListCombo"
-			:payment-method-list-combo="appStore.globalPaymentMethodListCombo"
-			:account-list-combo-source="appStore.globalAccountListComboSource"
-			:account-list-combo-target="appStore.globalAccountListComboTarget"
+	<objective-form v-if="appStore.globalDialog"
+		:objective="appStore.globalEntity"
+		:location-list-combo="appStore.globalLocationListCombo"
+		:payment-method-list-combo="appStore.globalPaymentMethodListCombo"
+		:account-list-combo-source="appStore.globalAccountListComboSource"
+		:account-list-combo-target="appStore.globalAccountListComboTarget"
 
-			@executeRegistration="executeRegistration"
-			@executeEdition="executeEdition"
-			@closeForm="closeForm"
-		/>
-	</div>
+		@executeRegistration="executeRegistration"
+		@executeEdition="executeEdition"
+		@closeForm="closeForm"
+	/>
 </template>
 
 <script>

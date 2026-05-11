@@ -21,11 +21,11 @@
 			</v-card-text>
 
 			<v-card-actions>
-				<v-btn v-if="this.paymentMethod.identity" color="button" width="150" @click="$emit('executeEdition', paymentMethod)">Confirm</v-btn>
-				<v-btn v-else width="150" @click="$emit('executeRegistration', paymentMethod)">Confirmar</v-btn>
+				<v-btn v-if="this.paymentMethod.identity" width="150" @click="$emit('executeEdition', paymentMethod)" variant="tonal" color="primary">Confirm</v-btn>
+				<v-btn v-else width="150" @click="$emit('executeRegistration', paymentMethod)" variant="tonal" color="primary">Confirm</v-btn>
 
-				<v-btn width="150" @click="$emit('cleanForm', paymentMethod)">Limpar</v-btn>
-				<v-btn width="150" @click="$emit('closeForm', paymentMethod)">Close</v-btn>
+				<v-btn width="150" @click="$emit('cleanForm', paymentMethod)" variant="tonal">Limpar</v-btn>
+				<v-btn width="150" @click="$emit('closeForm', paymentMethod)" variant="tonal">Close</v-btn>
 			</v-card-actions>
 		</v-card>
 	</v-dialog>

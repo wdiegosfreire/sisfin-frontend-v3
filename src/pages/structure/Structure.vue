@@ -1,19 +1,17 @@
 <template>
-	<div>
-		<structure-header />
+	<structure-header />
 
-		<v-main>
-			<v-container fluid>
-				<v-row>
-					<v-col>
-						<router-view />
-					</v-col>
-				</v-row>
-			</v-container>
-		</v-main>
+	<v-main>
+		<v-container fluid>
+			<v-row>
+				<v-col>
+					<router-view />
+				</v-col>
+			</v-row>
+		</v-container>
+	</v-main>
 
-		<structure-messaging />
-	</div>
+	<structure-messaging />
 </template>
 
 <script>
