@@ -65,7 +65,11 @@ export default {
 		accessEdition(statement) {
 			let statementForEdition = {
 				identity: statement.identity,
-				userIdentity: this.appStore.userIdentity
+				userIdentity: this.appStore.userIdentity,
+				filterMap: {
+					year: this.appStore.globalYear,
+					month: this.appStore.globalMonth
+				}
 			}
 
 			this.$_transaction_post("/statement/accessEdition", statementForEdition).then(response => {
@@ -74,6 +78,7 @@ export default {
 				this.appStore.setGlobalAccountListComboSource(response.data.map.accountListComboSource);
 				this.appStore.setGlobalAccountListComboTarget(response.data.map.accountListComboTarget);
 				this.appStore.setGlobalPaymentMethodListCombo(response.data.map.paymentMethodListCombo);
+				this.appStore.setGlobalObjectiveMovementListInstallmentPlan(response.data.map.objectiveMovementListInstallmentPlan);
 
 				this.appStore.showGlobalDialog(true);
 			}).catch(error => {

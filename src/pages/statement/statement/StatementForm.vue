@@ -26,7 +26,7 @@
 					<v-expansion-panels variant="accordion">
 						<v-expansion-panel title="Statement Items">
 							<v-expansion-panel-text>
-								<v-card  variant="outlined" border="sm opacity-20" class="mt-3" v-for="(statementItem, index) in statement.statementItemList" :key="statementItem.identity">
+								<v-card variant="outlined" border="sm opacity-20" class="mt-3" v-for="(statementItem, index) in statement.statementItemList" :key="statementItem.identity">
 									<v-card-title>{{ index + 1 }}. {{ statementItem.description }}</v-card-title>
 
 									<v-card-text>
@@ -70,15 +70,35 @@
 													<df-autocomplete-account v-if="statementItem.operationType == 'C'" label="Source Account" v-model="statementItem.accountSource" :items="accountListComboSource" validate-as="source" clearable />
 													<df-autocomplete-account v-if="statementItem.operationType == 'D'" label="Target Account" v-model="statementItem.accountTarget" :items="accountListComboTarget" validate-as="target" clearable />
 												</df-grid>
-												<df-grid column="auto-lg" fluid>
-													<df-grid column="fixed-2">
-														<v-autocomplete label="Location" item-title="name" item-value="identity" v-model="statementItem.location" :items="locationListCombo" clearable return-object />
-														<v-autocomplete label="Payment Method" item-title="name" item-value="identity" v-model="statementItem.paymentMethod" :items="paymentMethodListCombo" clearable return-object />
-													</df-grid>
-													<df-grid column="fixed-2">
-														<v-btn small @click="executeEdition(statementItem, true)" class="mr-3" variant="tonal">Export and Create Movement</v-btn>
-														<v-btn small @click="executeEdition(statementItem, false)" variant="tonal">Export without Create Movement</v-btn>
-													</df-grid>
+												<df-grid column="auto-md" fluid>
+													<v-autocomplete label="Location" item-title="name" item-value="identity" v-model="statementItem.location" :items="locationListCombo" clearable return-object />
+													<v-autocomplete label="Payment Method" item-title="name" item-value="identity" v-model="statementItem.paymentMethod" :items="paymentMethodListCombo" clearable return-object />
+												</df-grid>
+												<df-grid column="auto-md" fluid>
+													<v-autocomplete v-model="isInstallmentPlan" :disabled="statementItem.operationType == 'C'" label="Is Installment Plan?" item-title="name" item-value="value" :items="yesNoCombo" />
+													<v-autocomplete v-model="isFirstInstallment"
+														label="Is First Installment?"
+														item-title="name"
+														item-value="value"
+														:items="yesNoCombo"
+														:disabled="!isInstallmentPlan"
+														@update:model-value="getMovementsFromPreviousMonth">
+													</v-autocomplete>
+												</df-grid>
+
+												<v-card v-if="isInstallmentPlan" class="mb-5">
+													<v-card-text v-if="isInstallmentPlan && isFirstInstallment">
+														<v-text-field label="Installment Total Amount" v-model="statementItem.props.installmentAmount" />
+													</v-card-text>
+													<v-card-text v-if="isInstallmentPlan && !isFirstInstallment">
+														Consultar objetivos parcelados do mês anterior para preenchimento automático.
+														{{ objectiveMovementListInstallmentPlan.length }}
+													</v-card-text>
+												</v-card>
+
+												<df-grid column="auto-md" fluid>
+													<v-btn small @click="executeEdition(statementItem, true)" class="mr-3" variant="tonal">Export and Create Movement</v-btn>
+													<v-btn small @click="executeEdition(statementItem, false)" variant="tonal">Export without Create Movement</v-btn>
 												</df-grid>
 											</v-card-text>
 										</v-expand-transition>
@@ -149,13 +169,25 @@ export default {
 		statementTypeListCombo: {
 			type: Array,
 			required: false
+		},
+		objectiveMovementListInstallmentPlan: {
+			type: Array,
+			required: false,
+			default: () => []
 		}
 	},
 
 	data() {
 		return {
+			isInstallmentPlan: false,
+			isFirstInstallment: true,
 			bankComboSelected: null,
-			statementTypeComboSelected: null
+			statementTypeComboSelected: null,
+
+			yesNoCombo: [
+				{ value: true, name: "Yes" },
+				{ value: false, name: "No" }
+			]
 		}
 	},
 
@@ -185,6 +217,11 @@ export default {
 					this.$_message_showRequired("Mising payment method.");
 					return;
 				}
+
+				if (this.isInstallmentPlan && this.isFirstInstallment && (!statementItem.props.installmentAmount || statementItem.props.installmentAmount <= 0)) {
+					this.$_message_showRequired("Mising installment total amount.");
+					return;
+				}
 			}
 
 			let statement = {
@@ -200,6 +237,9 @@ export default {
 			}
 
 			this.$emit("executeEdition", statement);
+
+			this.isInstallmentPlan = false;
+			this.isFirstInstallment = true;
 		},
 
 		validateSelectedSource(statementItem) {
@@ -233,12 +273,35 @@ export default {
 				return;
 			}
 		},
+
+		getMovementsFromPreviousMonth(value) {
+			if (!value) {
+				console.log("Fetch movements from previous month to help user filling the installment plan information");
+			}
+			else {
+				console.log("Clear movements from previous month, since the user has indicated that this is the first installment");
+			}
+		}
 	},
 
 	computed: {
 		appStore() {
 			return useAppStore()
 		},
+	},
+
+	watch: {
+		"isInstallmentPlan": function(newValue) {
+			if (!newValue)
+				this.isFirstInstallment = true;
+		},
+
+		"statementItem.props.installmentAmount": function(newValue) {
+			console.log(newValue);
+
+			if (newValue === "1")
+				this.isFirstInstallment = true;
+		}
 	}
 };
 </script>
