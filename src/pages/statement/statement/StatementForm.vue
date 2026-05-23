@@ -312,16 +312,6 @@ export default {
 			statementItem.accountTarget = this.objectiveMovementSelected.objective.objectiveItemList[0].accountTarget;
 			statementItem.location = this.objectiveMovementSelected.objective.location;
 			statementItem.paymentMethod = this.objectiveMovementSelected.paymentMethod;
-		},
-
-		resetStatementItemForm() {
-			this.statement.statementItemList.forEach(statementItem => {
-				statementItem.descriptionNew = null;
-				statementItem.accountTarget = null;
-				statementItem.location = null;
-				statementItem.paymentMethod = null;
-				statementItem.props.installmentAmount = null;
-			});
 		}
 	},
 
@@ -339,14 +329,12 @@ export default {
 		"isInstallmentPlan": function(newValue) {
 			if (!newValue) {
 				this.isFirstInstallment = true;
-				this.resetStatementItemForm();
 			}
 		},
 
 		"isFirstInstallment": function(newValue) {
 			if (newValue) {
 				this.objectiveMovementSelected = null;
-				this.resetStatementItemForm();
 			}
 		},
 
