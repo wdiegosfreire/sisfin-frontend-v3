@@ -33,6 +33,7 @@ export const useAppStore = defineStore('app', {
 		globalAccountListComboTarget: [],
 		globalAccountListComboLevelOne: [],
 		globalAccountListComboLevelTwo: [],
+		globalObjectiveMovementListInstallmentPlan: []
 	}),
 
 	actions: {
@@ -76,5 +77,6 @@ export const useAppStore = defineStore('app', {
 		setGlobalStatementTypeListCombo(payload) { this.globalStatementTypeListCombo = payload; },
 		setGlobalAccountListComboLevelOne(payload) { this.globalAccountListComboLevelOne = payload; },
 		setGlobalAccountListComboLevelTwo(payload) { this.globalAccountListComboLevelTwo = payload; },
+		setGlobalObjectiveMovementListInstallmentPlan(payload) { this.globalObjectiveMovementListInstallmentPlan = payload; }
 	}
 })
