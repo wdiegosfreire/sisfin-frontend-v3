@@ -22,6 +22,7 @@
 		:account-list-combo-target="appStore.globalAccountListComboTarget"
 		:payment-method-list-combo="appStore.globalPaymentMethodListCombo"
 		:statement-type-list-combo="appStore.globalStatementTypeListCombo"
+		:objective-movement-list-installment-plan="appStore.globalObjectiveMovementListInstallmentPlan"
 
 		@executeRegistration="executeRegistration"
 		@accessRegistration="accessRegistration"
