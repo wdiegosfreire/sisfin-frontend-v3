@@ -38,7 +38,7 @@
 							<df-output-text class="text-left" label="Registration Date">{{ toBrasilianDate(objectiveMovement.registrationDate) }}</df-output-text>
 							<df-output-text class="text-left" label="Due Date">{{ toBrasilianDate(objectiveMovement.dueDate) }}</df-output-text>
 							<df-output-text class="text-left" label="Payment Date">{{ toBrasilianDate(objectiveMovement.paymentDate) }}</df-output-text>
-							<df-output-text class="text-left" label="Installment">{{ objectiveMovement.installment }}</df-output-text>
+							<df-output-text class="text-left" label="Installment">{{ objectiveMovement.installment }} (of {{ objective.installmentAmount }})</df-output-text>
 							<df-output-text class="text-left" label="Payment Method">{{ objectiveMovement.paymentMethod ? objectiveMovement.paymentMethod.name : "" }}</df-output-text>
 							<df-output-text class="text-left" label="Location">{{ objective.location ? objective.location.name : "" }}</df-output-text>
 						</df-grid>
