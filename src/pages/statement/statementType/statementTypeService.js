@@ -122,7 +122,7 @@ export default {
 
 		isMissingRequiredFields(statementType) {
 			if (!statementType.name || !statementType.name.trim()) {
-				this.$_message_showRequired("Mising statement type sname.");
+				this.$_message_showRequired("Mising statement type name.");
 				return true;
 			}
 

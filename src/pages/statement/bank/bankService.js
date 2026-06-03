@@ -108,7 +108,7 @@ export default {
 
 		isMissingRequiredFields(bank) {
 			if (!bank.name || !bank.name.trim()) {
-				this.$_message_showRequired("Mising bank sname.");
+				this.$_message_showRequired("Mising bank name.");
 				return true;
 			}
 
