@@ -1,12 +1,8 @@
 <template>
-	<v-snackbar v-model="showMessage" :color="severity" location="end top" multi-line>
+	<v-snackbar v-model="showMessage" :color="severity" location="end top">
 		<h3 class="mb-3 text-decoration-underline">{{ summary }}</h3>
-
-		<ul>
-			<li v-for="detail in detailList" :key="detail" class="mb-2">{{ detail }}</li>
-		</ul>
-
-		<v-btn variant="tonal" @click="showMessage = false">Close</v-btn>
+		<div v-for="detail in detailList" :key="detail">{{ detail }}</div>
+		<v-btn variant="tonal" @click="showMessage = false" class="mt-5">Close</v-btn>
 	</v-snackbar>
 </template>
 

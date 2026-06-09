@@ -86,7 +86,7 @@ export default {
 
 		isMissingRequiredFields() {
 			if (!this.location.name || !this.location.name.trim()) {
-				this.$_message_showRequired("Mising location sname.");
+				this.$_message_showRequired("Mising location name.");
 				return true;
 			}
 

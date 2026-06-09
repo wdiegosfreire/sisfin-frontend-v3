@@ -23,113 +23,110 @@
 						<df-output-text label="Status" class="bold" :color="statement.isClosed ? 'green' : 'red'">{{ statement.isClosed ? "Closed" : "Opened" }}</df-output-text>
 						<df-output-text label="Source">{{ traceAccount(statement.statementType.accountSource) }}</df-output-text>
 					</df-grid>
-					<v-expansion-panels variant="accordion">
-						<v-expansion-panel title="Statement Items">
-							<v-expansion-panel-text>
-								<v-card variant="outlined" border="sm opacity-20" class="mt-3" v-for="(statementItem, index) in statement.statementItemList" :key="statementItem.identity">
-									<v-card-title>{{ index + 1 }}. {{ statementItem.description }}</v-card-title>
 
-									<v-card-text>
-										<df-grid column="auto-sm" spaced>
-											<df-output-text label="Date">{{ toBrasilianDate(statementItem.movementDate) }}</df-output-text>
-											<df-output-text label="Value">{{ currency(statementItem.movementValue) }}</df-output-text>
-											<df-output-text label="Document Number">{{ statementItem.documentNumber ? statementItem.documentNumber : "-"}}</df-output-text>
+					<div class="scroll-area">
+						<v-card variant="outlined" border="sm opacity-20" class="mt-3" v-for="(statementItem, index) in statement.statementItemList" :key="statementItem.identity">
+							<v-card-title>{{ index + 1 }}. {{ statementItem.description }}</v-card-title>
+
+							<v-card-text>
+								<df-grid column="auto-sm" spaced>
+									<df-output-text label="Date">{{ toBrasilianDate(statementItem.movementDate) }}</df-output-text>
+									<df-output-text label="Value">{{ currency(statementItem.movementValue) }}</df-output-text>
+									<df-output-text label="Document Number">{{ statementItem.documentNumber ? statementItem.documentNumber : "-"}}</df-output-text>
+								</df-grid>
+							</v-card-text>
+
+							<span v-if="!statementItem.isExported && statementItem.props.similarMovementList.length > 0">
+								<v-divider />
+								<v-card-text style="color: red;">
+									<div>Movements were found for the same date and value for this item. Please review the information below before exporting.</div>
+									<ul>
+										<li v-for="similarMovement in statementItem.props.similarMovementList" :key="similarMovement">{{ similarMovement }}</li>
+									</ul>
+								</v-card-text>
+							</span>
+
+							<v-divider />
+							<v-card-text>
+								<v-chip small color="success" class="mr-3" v-if="statementItem.operationType == 'C'">Incoming</v-chip>
+								<v-chip small color="error" class="mr-3" v-else>Outcoming</v-chip>
+								<v-chip small color="success" v-if="statementItem.isExported">Exported</v-chip>
+								<v-chip small color="error" v-else>Pending</v-chip>
+							</v-card-text>
+
+							<span v-if="!statementItem.isExported">
+								<v-divider />
+								<v-card-actions>
+									<v-btn text @click="statementItem.isVisible = !statementItem.isVisible">SHOW FORM</v-btn>
+									<v-spacer />
+									<v-btn icon @click="statementItem.isVisible = !statementItem.isVisible"><v-icon>{{ statementItem.isVisible ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon></v-btn>
+								</v-card-actions>
+
+								<v-expand-transition>
+									<v-card-text v-show="statementItem.isVisible">
+										<df-grid column="auto-md" fluid>
+											<v-autocomplete v-model="isInstallmentPlan" :disabled="statementItem.operationType == 'C'" label="Is Installment Plan?" item-title="name" item-value="value" :items="yesNoCombo" />
+											<v-autocomplete v-model="isFirstInstallment"
+												label="Is First Installment?"
+												item-title="name"
+												item-value="value"
+												:items="yesNoCombo"
+												:disabled="!isInstallmentPlan">
+											</v-autocomplete>
+										</df-grid>
+
+										<v-card v-if="isInstallmentPlan" class="mb-5">
+											<v-card-text v-if="isInstallmentPlan && isFirstInstallment">
+												<v-text-field label="Installment Total Amount" v-model="statementItem.props.installmentAmount" />
+											</v-card-text>
+											<v-card-text v-if="isInstallmentPlan && !isFirstInstallment">
+												<v-radio-group v-model="objectiveMovementSelected" @update:model-value="selectItem(statementItem)">
+													<v-table>
+														<thead>
+															<tr>
+																<th>Description</th>
+																<th>Installment</th>
+																<th>Location</th>
+																<th>Due Date</th>
+																<th>Payment Date</th>
+																<th>Value</th>
+																<th style="width: 1px;"></th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr v-for="objectiveMovement in objectiveMovementListInstallmentPlan" :key="objectiveMovement.identity">
+																<td>{{ objectiveMovement.objective.description }}</td>
+																<td>{{ objectiveMovement.installment }}/{{ objectiveMovement.objective.installmentAmount }}</td>
+																<td>{{ objectiveMovement.objective.location?.name }}</td>
+																<td>{{ toBrasilianDate(objectiveMovement.paymentDate) }}</td>
+																<td>{{ currency(objectiveMovement.value) }}</td>
+																<td style="padding: none"><v-radio :value="objectiveMovement" /></td>
+															</tr>
+														</tbody>
+													</v-table>
+												</v-radio-group>
+											</v-card-text>
+										</v-card>
+
+										<df-grid column="auto-lg" fluid>
+											<v-text-field v-model="statementItem.descriptionNew" label="New Description" :readonly="isReadonly" />
+											<df-autocomplete-account v-model="statementItem.accountSource" :readonly="isReadonly" v-if="statementItem.operationType == 'C'" label="Source Account" :items="accountListComboSource" validate-as="source" clearable />
+											<df-autocomplete-account v-model="statementItem.accountTarget" :readonly="isReadonly" v-if="statementItem.operationType == 'D'" label="Target Account" :items="accountListComboTarget" validate-as="target" :clearable="!isReadonly" />
+										</df-grid>
+										<df-grid column="auto-md" fluid>
+											<v-autocomplete v-model="statementItem.location" label="Location" item-title="name" item-value="identity" :items="locationListCombo" :readonly="isReadonly" :clearable="!isReadonly" return-object />
+											<v-autocomplete v-model="statementItem.paymentMethod" label="Payment Method" item-title="name" item-value="identity" :items="paymentMethodListCombo" :readonly="isReadonly" :clearable="!isReadonly" return-object />
+										</df-grid>
+										<df-grid column="auto-md" fluid>
+											<v-btn v-if="!isInstallmentPlan || isFirstInstallment" @click="executeEdition(statementItem, 'createObjective')" class="mr-3" variant="tonal" small>Export and Create Movement</v-btn>
+											<v-btn v-if="isInstallmentPlan && !isFirstInstallment" @click="executeEdition(statementItem, 'addInstallment')" class="mr-3" variant="tonal" small>Export and Add Installment</v-btn>
+											<v-btn @click="executeEdition(statementItem, '')" variant="tonal" small>Export without Create Movement</v-btn>
 										</df-grid>
 									</v-card-text>
-
-									<span v-if="!statementItem.isExported && statementItem.props.similarMovementList.length > 0">
-										<v-divider />
-										<v-card-text style="color: red;">
-											<div>Movements were found for the same date and value for this item. Please review the information below before exporting.</div>
-											<ul>
-												<li v-for="similarMovement in statementItem.props.similarMovementList" :key="similarMovement">{{ similarMovement }}</li>
-											</ul>
-										</v-card-text>
-									</span>
-
-									<v-divider />
-									<v-card-text>
-										<v-chip small color="success" class="mr-3" v-if="statementItem.operationType == 'C'">Incoming</v-chip>
-										<v-chip small color="error" class="mr-3" v-else>Outcoming</v-chip>
-										<v-chip small color="success" v-if="statementItem.isExported">Exported</v-chip>
-										<v-chip small color="error" v-else>Pending</v-chip>
-									</v-card-text>
-
-									<span v-if="!statementItem.isExported">
-										<v-divider />
-										<v-card-actions>
-											<v-btn text @click="statementItem.isVisible = !statementItem.isVisible">SHOW FORM</v-btn>
-											<v-spacer />
-											<v-btn icon @click="statementItem.isVisible = !statementItem.isVisible"><v-icon>{{ statementItem.isVisible ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon></v-btn>
-										</v-card-actions>
-
-										<v-expand-transition>
-											<v-card-text v-show="statementItem.isVisible">
-												<df-grid column="auto-md" fluid>
-													<v-autocomplete v-model="isInstallmentPlan" :disabled="statementItem.operationType == 'C'" label="Is Installment Plan?" item-title="name" item-value="value" :items="yesNoCombo" />
-													<v-autocomplete v-model="isFirstInstallment"
-														label="Is First Installment?"
-														item-title="name"
-														item-value="value"
-														:items="yesNoCombo"
-														:disabled="!isInstallmentPlan">
-													</v-autocomplete>
-												</df-grid>
-
-												<v-card v-if="isInstallmentPlan" class="mb-5">
-													<v-card-text v-if="isInstallmentPlan && isFirstInstallment">
-														<v-text-field label="Installment Total Amount" v-model="statementItem.props.installmentAmount" />
-													</v-card-text>
-													<v-card-text v-if="isInstallmentPlan && !isFirstInstallment">
-														<v-radio-group v-model="objectiveMovementSelected" @update:model-value="selectItem(statementItem)">
-															<v-table>
-																<thead>
-																	<tr>
-																		<th>Description</th>
-																		<th>Installment</th>
-																		<th>Location</th>
-																		<th>Due Date</th>
-																		<th>Payment Date</th>
-																		<th>Value</th>
-																		<th style="width: 1px;"></th>
-																	</tr>
-																</thead>
-																<tbody>
-																	<tr v-for="objectiveMovement in objectiveMovementListInstallmentPlan" :key="objectiveMovement.identity">
-																		<td>{{ objectiveMovement.objective.description }}</td>
-																		<td>{{ objectiveMovement.installment }}/{{ objectiveMovement.objective.installmentAmount }}</td>
-																		<td>{{ objectiveMovement.objective.location?.name }}</td>
-																		<td>{{ toBrasilianDate(objectiveMovement.paymentDate) }}</td>
-																		<td>{{ currency(objectiveMovement.value) }}</td>
-																		<td style="padding: none"><v-radio :value="objectiveMovement" /></td>
-																	</tr>
-																</tbody>
-															</v-table>
-														</v-radio-group>
-													</v-card-text>
-												</v-card>
-
-												<df-grid column="auto-lg" fluid>
-													<v-text-field v-model="statementItem.descriptionNew" label="New Description" :readonly="isReadonly" />
-													<df-autocomplete-account v-model="statementItem.accountSource" :readonly="isReadonly" v-if="statementItem.operationType == 'C'" label="Source Account" :items="accountListComboSource" validate-as="source" clearable />
-													<df-autocomplete-account v-model="statementItem.accountTarget" :readonly="isReadonly" v-if="statementItem.operationType == 'D'" label="Target Account" :items="accountListComboTarget" validate-as="target" :clearable="!isReadonly" />
-												</df-grid>
-												<df-grid column="auto-md" fluid>
-													<v-autocomplete v-model="statementItem.location" label="Location" item-title="name" item-value="identity" :items="locationListCombo" :readonly="isReadonly" :clearable="!isReadonly" return-object />
-													<v-autocomplete v-model="statementItem.paymentMethod" label="Payment Method" item-title="name" item-value="identity" :items="paymentMethodListCombo" :readonly="isReadonly" :clearable="!isReadonly" return-object />
-												</df-grid>
-												<df-grid column="auto-md" fluid>
-													<v-btn v-if="!isInstallmentPlan || isFirstInstallment" @click="executeEdition(statementItem, 'createObjective')" class="mr-3" variant="tonal" small>Export and Create Movement</v-btn>
-													<v-btn v-if="isInstallmentPlan && !isFirstInstallment" @click="executeEdition(statementItem, 'addInstallment')" class="mr-3" variant="tonal" small>Export and Add Installment</v-btn>
-													<v-btn @click="executeEdition(statementItem, '')" variant="tonal" small>Export without Create Movement</v-btn>
-												</df-grid>
-											</v-card-text>
-										</v-expand-transition>
-									</span>
-								</v-card>
-							</v-expansion-panel-text>
-						</v-expansion-panel>
-					</v-expansion-panels>
+								</v-expand-transition>
+							</span>
+						</v-card>
+					</div>
 				</v-card-text>
 
 			</span>
@@ -345,3 +342,10 @@ export default {
 	}
 };
 </script>
+
+<style scoped>
+.scroll-area {
+	max-height: 850px;
+	overflow-y: auto;
+}
+</style>

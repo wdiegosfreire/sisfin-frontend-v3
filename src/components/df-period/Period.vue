@@ -8,24 +8,32 @@
 			:items="monthList"
 			:style="ignoreMonth ? 'opacity: 0.5' : 'opacity: 1'"
 			:readonly="ignoreMonth"
-			:append-inner-icon="getMonthAppendInnerIcon()"
-			:prepend-icon="allowDecreaseIncrease ? 'mdi-chevron-left-circle-outline' : ''"
-			@update:modelValue="periodChange();"
-			@click:prepend="decreasePeriod()"
-			@click:append-inner="ignoreMonthChange()"
-		/>
+			@update:modelValue="periodChange()">
+
+			<template #prepend v-if="allowDecreaseIncrease">
+				<v-icon @click.stop="decreasePeriod()" color="primary" class="chevron">mdi-chevron-left-circle</v-icon>
+			</template>
+			<template #append-inner v-if="allowPartialSearch">
+				<v-icon @click.stop="ignoreMonthChange()" color="primary" class="switch">{{ getMonthAppendInnerIcon() }}</v-icon>
+			</template>
+		</v-autocomplete>
+
 		<v-text-field v-model="selectedYear"
 			type="text"
 			label="Year"
 			maxlength="4"
 			:style="ignoreYear ? 'opacity: 0.5' : 'opacity: 1'"
 			:readonly="ignoreYear"
-			:append-icon="allowDecreaseIncrease ? 'mdi-chevron-right-circle-outline' : ''"
-			:append-inner-icon="getYearAppendInnerIcon()"
 			@input="periodChange();"
-			@click:append="increasePeriod()"
-			@click:append-inner="ignoreYearChange()"
-		/>
+			@click:append-inner="ignoreYearChange()">
+
+			<template #append v-if="allowDecreaseIncrease">
+				<v-icon @click.stop="increasePeriod()" color="primary" class="chevron">mdi-chevron-right-circle</v-icon>
+			</template>
+			<template #append-inner v-if="allowPartialSearch">
+				<v-icon @click.stop="ignoreYearChange()" color="primary" class="switch">{{ getYearAppendInnerIcon() }}</v-icon>
+			</template>
+		</v-text-field>
 	</df-grid>
 </template>
 
@@ -114,16 +122,10 @@ export default {
 		},
 
 		getYearAppendInnerIcon() {
-			if (!this.allowPartialSearch)
-				return "";
-
 			return this.ignoreYear ? 'mdi-toggle-switch-off-outline' : 'mdi-toggle-switch-outline'
 		},
 
 		getMonthAppendInnerIcon() {
-			if (!this.allowPartialSearch)
-				return "";
-
 			return this.ignoreMonth ? 'mdi-toggle-switch-off-outline' : 'mdi-toggle-switch-outline'
 		},
 
@@ -158,6 +160,16 @@ export default {
 				this.periodChange();
 			}
 		}
-	},
+	}
 }
 </script>
+
+<style scoped>
+.chevron {
+	font-size: 28px;
+}
+
+.switch {
+	font-size: 30px;
+}
+</style>
