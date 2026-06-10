@@ -1,9 +1,10 @@
 <template>
-	<v-dialog v-model="appStore.globalDialog" width="1500">
+	<v-dialog v-model="appStore.globalDialog" width="95vw" :height="statement.identity ? '95vh' : ''">
 		<v-card class="mb-3">
 			<v-toolbar>
 				<v-toolbar-title v-if="!statement.identity">Import Statement</v-toolbar-title>
 				<v-toolbar-title v-else>Export Statement Items</v-toolbar-title>
+				<v-btn v-if="statement.identity" width="150" @click="$emit('closeForm', statement)">Close</v-btn>
 			</v-toolbar>
 
 			<span v-if="!statement.identity">
@@ -134,9 +135,6 @@
 			<v-card-actions v-if="!statement.identity">
 				<v-btn width="150" @click="executeRegistration(statement)" variant="tonal" color="primary">Confirm</v-btn>
 				<v-btn width="150" @click="$emit('cleanForm', statement)" variant="tonal">Clear</v-btn>
-				<v-btn width="150" @click="$emit('closeForm', statement)" variant="tonal">Close</v-btn>
-			</v-card-actions>
-			<v-card-actions v-else>
 				<v-btn width="150" @click="$emit('closeForm', statement)" variant="tonal">Close</v-btn>
 			</v-card-actions>
 		</v-card>
@@ -345,7 +343,8 @@ export default {
 
 <style scoped>
 .scroll-area {
-	max-height: 850px;
+	max-height: 640px;
 	overflow-y: auto;
+	flex: 1;
 }
 </style>
