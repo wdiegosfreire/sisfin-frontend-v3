@@ -2,7 +2,7 @@
 	<df-result-layout :collection-length="collection.length">
 		<v-card variant="outlined" border="sm opacity-20" class="mb-4" v-for="statementType in collection" :key="statementType.identity">
 			<v-card-title class="d-flex align-center">
-				<span>{{ statementType.name }}</span>
+				<span>{{ statementType.bank ? statementType.bank.name : "" }} :: {{ statementType.name }}</span>
 
 				<v-spacer></v-spacer>
 				<v-menu>
