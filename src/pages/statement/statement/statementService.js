@@ -14,7 +14,12 @@ export default {
 		return {
 			month: "",
 			year: "",
-			showSearchField: false
+			showSearchField: false,
+			statementTypeListCombo: [],
+
+			filter: {
+				statementType: null,
+			},
 		};
 	},
 
@@ -24,12 +29,14 @@ export default {
 				userIdentity: this.appStore.userIdentity,
 				filterMap: {
 					year: this.appStore.globalYear,
-					month: this.appStore.globalMonth
+					month: this.appStore.globalMonth,
+					statementTypeIdentity: this.filter.statementType ? this.filter.statementType.identity : null
 				}
 			}
 
 			this.$_transaction_post("/statement/accessModule", statement).then(response => {
 				this.appStore.setGlobalResult(response.data.map.statementList);
+				this.statementTypeListCombo = response.data.map.statementTypeListCombo;
 			}).catch(error => {
 				this.$_message_handleError(error);
 			});
