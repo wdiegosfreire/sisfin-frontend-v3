@@ -3,11 +3,31 @@
 		<v-toolbar-title>Statements</v-toolbar-title>
 		<template v-slot:append>
 			<v-btn @click.stop="accessModule()" title="Click to reload page" icon="mdi-rotate-3d-variant" />
+			<v-btn @click.stop="toggleFilterField()" title="Click to search" icon="mdi-magnify" />
 			<v-btn @click.stop="accessRegistration()" title="Click to register a new item" icon="mdi-plus" />
 		</template>
 	</v-app-bar>
 
 	<df-period :month="month" :year="year" @periodChange="periodChange"></df-period>
+	<span v-if="showSearchField">
+		<df-grid>
+			<v-autocomplete v-model="filter.statementType"
+				label="Statement Type"
+				item-title="name"
+				item-value="identity"
+				:items="statementTypeListCombo"
+				@update:modelValue="periodChange(month, year)"
+				clearable return-object>
+
+				<template #item="{ item, props }">
+					<v-list-item v-bind="props"><template #title>{{ item.raw.bank.name }} :: {{ item.raw.name }}</template></v-list-item>
+				</template>
+				<template #selection="{ item }">
+					<span>{{ item.raw.bank.name }} :: {{ item.raw.name }}</span>
+				</template>
+			</v-autocomplete>
+		</df-grid>
+	</span>
 
 	<statement-result :collection="appStore.globalResult"
 		@accessEdition="accessEdition"
@@ -37,16 +57,24 @@ import statementService from "@/pages/statement/statement/statementService.js";
 import StatementResult from "@/pages/statement/statement/StatementResult.vue";
 import StatementForm from "@/pages/statement/statement/StatementForm.vue";
 
+import DfGrid from "@/components/grid/Grid.vue";
 import DfPeriod from "@/components/df-period/Period.vue";
 
 export default {
 	name: "Statement",
 
-	components: { StatementResult, StatementForm, DfPeriod },
+	components: { StatementResult, StatementForm, DfPeriod, DfGrid },
 
 	mixins: [statementService],
 
 	methods: {
+		toggleFilterField() {
+			if (this.showSearchField)
+				this.clearFilters();
+
+			this.showSearchField = !this.showSearchField;
+		},
+
 		periodChange(month, year) {
 			this.month = month;
 			this.year = year;
@@ -59,6 +87,10 @@ export default {
 			this.appStore.setGlobalYear(this.year);
 			this.accessModule();
 		},
+
+		clearFilters() {
+			this.accessModule();
+		}
 	},
 
 	created() {
