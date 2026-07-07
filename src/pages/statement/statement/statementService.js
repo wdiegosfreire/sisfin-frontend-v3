@@ -30,7 +30,8 @@ export default {
 				filterMap: {
 					year: this.appStore.globalYear,
 					month: this.appStore.globalMonth,
-					statementTypeIdentity: this.filter.statementType ? this.filter.statementType.identity : null
+					statementTypeIdentity: this.filter.statementType ? this.filter.statementType.identity : null,
+					isClosed: this.filter.status ? this.filter.status.identity : null
 				}
 			}
 
