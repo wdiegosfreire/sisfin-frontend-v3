@@ -41,6 +41,9 @@ declare module 'vue-router/auto-routes' {
     '/structure/StructureHeader': RouteRecordInfo<'/structure/StructureHeader', '/structure/StructureHeader', Record<never, never>, Record<never, never>>,
     '/structure/StructureMessaging': RouteRecordInfo<'/structure/StructureMessaging', '/structure/StructureMessaging', Record<never, never>, Record<never, never>>,
     '/summary/Summary': RouteRecordInfo<'/summary/Summary', '/summary/Summary', Record<never, never>, Record<never, never>>,
+    '/supermarket/brand/Brand': RouteRecordInfo<'/supermarket/brand/Brand', '/supermarket/brand/Brand', Record<never, never>, Record<never, never>>,
+    '/supermarket/brand/BrandForm': RouteRecordInfo<'/supermarket/brand/BrandForm', '/supermarket/brand/BrandForm', Record<never, never>, Record<never, never>>,
+    '/supermarket/brand/BrandResult': RouteRecordInfo<'/supermarket/brand/BrandResult', '/supermarket/brand/BrandResult', Record<never, never>, Record<never, never>>,
     '/supermarket/Supermarket': RouteRecordInfo<'/supermarket/Supermarket', '/supermarket/Supermarket', Record<never, never>, Record<never, never>>,
     '/transaction/account/Account': RouteRecordInfo<'/transaction/account/Account', '/transaction/account/Account', Record<never, never>, Record<never, never>>,
     '/transaction/account/AccountForm': RouteRecordInfo<'/transaction/account/AccountForm', '/transaction/account/AccountForm', Record<never, never>, Record<never, never>>,
@@ -156,6 +159,18 @@ declare module 'vue-router/auto-routes' {
     }
     'src/pages/summary/Summary.vue': {
       routes: '/summary/Summary'
+      views: never
+    }
+    'src/pages/supermarket/brand/Brand.vue': {
+      routes: '/supermarket/brand/Brand'
+      views: never
+    }
+    'src/pages/supermarket/brand/BrandForm.vue': {
+      routes: '/supermarket/brand/BrandForm'
+      views: never
+    }
+    'src/pages/supermarket/brand/BrandResult.vue': {
+      routes: '/supermarket/brand/BrandResult'
       views: never
     }
     'src/pages/supermarket/Supermarket.vue': {

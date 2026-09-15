@@ -9,6 +9,8 @@ import WishList from "@/pages/wishList/WishList.vue";
 import Supermarket from "@/pages/supermarket/Supermarket.vue";
 import PaymentMethod from "@/pages/paymentMethod/PaymentMethod.vue";
 
+import Brand from "@/pages/supermarket/brand/Brand.vue";
+
 
 import Bank from "@/pages/statement/bank/Bank.vue";
 import Statement from "@/pages/statement/statement/Statement.vue";
@@ -31,6 +33,8 @@ const routes = [
 	{ path: "/paymentMethod", name: "paymentMethod", component: PaymentMethod },
 	{ path: "/statementType", name: "statementType", component: StatementType },
 	{ path: "/statementPattern", name: "statementPattern", component: StatementPattern },
+
+	{ path: "/supermarket/brand", name: "brand", component: Brand },
 ]
 
 const router = createRouter({

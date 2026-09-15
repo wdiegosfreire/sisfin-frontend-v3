@@ -74,7 +74,7 @@
 						<v-list-item v-bind="props">REGISTRATIONS</v-list-item>
 					</template>
 
-					<v-list-item link @click="accessModuleSupermarket()" prepend-icon="mdi-text">Registration One</v-list-item>
+					<v-list-item link @click="accessModuleBrand()" prepend-icon="mdi-tag-outline">Brands</v-list-item>
 				</v-list-group>
 			</v-list-group>
 
@@ -232,6 +232,8 @@ export default {
 		accessModulePaymentMethod() { this.navigateTo("/paymentMethod"); },
 		accessModuleStatementType() { this.navigateTo("/statementType"); },
 		accessModuleStatementPattern() { this.navigateTo("/statementPattern"); },
+
+		accessModuleBrand() { this.navigateTo("/supermarket/brand"); },
 
 		navigateTo(path) {
 			this.$router.push(path).catch(error => {
