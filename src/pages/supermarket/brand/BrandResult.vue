@@ -25,8 +25,8 @@
 			<v-card-text>
 				<df-grid>
 					<df-output-text class="text-left" label="Identity">{{ brand.identity }}</df-output-text>
-					<df-output-text class="text-left" label="Email">{{ brand.email ? brand.email : "No email" }}</df-output-text>
-					<df-output-text class="text-left" label="Website">{{ brand.website ? brand.website : "No website" }}</df-output-text>
+					<df-output-text class="text-left" label="Email">{{ brand.email }}</df-output-text>
+					<df-output-text class="text-left" label="Website">{{ brand.website }}</df-output-text>
 				</df-grid>
 			</v-card-text>
 		</v-card>

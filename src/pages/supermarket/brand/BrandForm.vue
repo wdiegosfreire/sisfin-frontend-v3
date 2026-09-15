@@ -63,7 +63,7 @@ export default {
 
 	methods: {
 		executeRegistration() {
-			if (this.isMissingRequiredFields()) {
+			if (this.isMissingRequiredFields() || this.isInvalidEmail()) {
 				return;
 			}
 
@@ -71,7 +71,7 @@ export default {
 		},
 
 		executeEdition() {
-			if (this.isMissingIdentity() || this.isMissingRequiredFields()) {
+			if (this.isMissingIdentity() || this.isMissingRequiredFields() || this.isInvalidEmail()) {
 				return;
 			}
 
@@ -90,6 +90,17 @@ export default {
 		isMissingRequiredFields() {
 			if (!this.brand.name || !this.brand.name.trim()) {
 				this.$_message_showRequired("Mising brand name.");
+				return true;
+			}
+
+			return false;
+		},
+
+		isInvalidEmail() {
+			const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+			if (this.brand.email && !emailPattern.test(this.brand.email.trim())) {
+				this.$_message_showRequired("Invalid brand email format.");
 				return true;
 			}
 
