@@ -63,7 +63,7 @@ export default {
 
 	methods: {
 		executeRegistration() {
-			if (this.isMissingRequiredFields() || this.isInvalidEmail()) {
+			if (this.isMissingRequiredFields() || this.isInvalidEmail() || this.isInvalidWebsite()) {
 				return;
 			}
 
@@ -71,7 +71,7 @@ export default {
 		},
 
 		executeEdition() {
-			if (this.isMissingIdentity() || this.isMissingRequiredFields() || this.isInvalidEmail()) {
+			if (this.isMissingIdentity() || this.isMissingRequiredFields() || this.isInvalidEmail() || this.isInvalidWebsite()) {
 				return;
 			}
 
@@ -107,13 +107,24 @@ export default {
 			return false;
 		},
 
-		cleanForm() {
-			if (!this.brand.identity) {
-				this.brand.name = "";
+		isInvalidWebsite() {
+			const websitePattern = /^https?:\/\/[^\s/$.?#].[^\s]*$/i;
+
+			if (this.brand.website && !websitePattern.test(this.brand.website.trim())) {
+				this.$_message_showRequired("Invalid brand website format. Use a URL starting with http:// or https://.");
+				return true;
 			}
 
-			this.brand.email = "";
-			this.brand.website = "";
+			return false;
+		},
+
+		cleanForm() {
+			if (!this.brand.identity) {
+				this.brand.name = null;
+			}
+
+			this.brand.email = null;
+			this.brand.website = null;
 		}
 	},
 
