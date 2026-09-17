@@ -38,7 +38,7 @@ export default {
 				this.appStore.setUserIdentity(response.data.map.userAuthenticated.identity);
 				this.appStore.setSessionToken(response.data.map.token);
 
-				this.$router.push("/summary");
+				this.$router.push("/transaction/summary");
 			}).catch(error => {
 				this.$_message_handleError(error);
 			});

@@ -21,18 +21,20 @@ import { createRouter, createWebHistory } from "vue-router";
 
 const routes = [
 	{ path: "/", name: "user", component: User },
-	{ path: "/bank", name: "bank", component: Bank },
-	{ path: "/account", name: "account", component: Account },
-	{ path: "/summary", name: "summary", component: Summary },
 	{ path: "/vehicle", name: "vehicle", component: Vehicle },
-	{ path: "/location", name: "location", component: Location },
 	{ path: "/wishList", name: "wishList", component: WishList },
-	{ path: "/objective", name: "objective", component: Objective },
-	{ path: "/statement", name: "statement", component: Statement },
 	{ path: "/supermarket", name: "supermarket", component: Supermarket },
-	{ path: "/paymentMethod", name: "paymentMethod", component: PaymentMethod },
-	{ path: "/statementType", name: "statementType", component: StatementType },
-	{ path: "/statementPattern", name: "statementPattern", component: StatementPattern },
+
+	{ path: "/statement/bank", name: "bank", component: Bank },
+	{ path: "/statement/statement", name: "statement", component: Statement },
+	{ path: "/statement/statementType", name: "statementType", component: StatementType },
+	{ path: "/statement/statementPattern", name: "statementPattern", component: StatementPattern },
+
+	{ path: "/transaction/account", name: "account", component: Account },
+	{ path: "/transaction/summary", name: "summary", component: Summary },
+	{ path: "/transaction/location", name: "location", component: Location },
+	{ path: "/transaction/objective", name: "objective", component: Objective },
+	{ path: "/transaction/paymentMethod", name: "paymentMethod", component: PaymentMethod },
 
 	{ path: "/supermarket/brand", name: "brand", component: Brand },
 ]
