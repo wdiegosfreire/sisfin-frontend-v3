@@ -1,10 +1,10 @@
 import { useAppStore } from '@/stores/app';
 
-import transactionApi from "../../components/axios/transaction/transactionApi.js";
+import transactionApi from "@/components/axios/transaction/transactionApi.js";
 
 // Mixins
-import format from "../../components/mixins/format.js";
-import message from "../../components/mixins/message.js";
+import format from "@/components/mixins/format.js";
+import message from "@/components/mixins/message.js";
 
 export default {
 	name: "summaryService",

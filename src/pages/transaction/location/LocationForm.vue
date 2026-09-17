@@ -34,9 +34,9 @@
 <script>
 import { useAppStore } from '@/stores/app';
 
-import DfGrid from "../../components/grid/Grid.vue";
+import DfGrid from "@/components/grid/Grid.vue";
 
-import message from "../../components/mixins/message.js";
+import message from "@/components/mixins/message.js";
 
 export default {
 	name: "LocationForm",

@@ -1,6 +1,6 @@
 <template>
 	<v-app-bar>
-		<v-toolbar-title>Payment Methods</v-toolbar-title>
+		<v-toolbar-title>Locations</v-toolbar-title>
 		<template v-slot:append>
 			<v-btn @click.stop="accessModule()" title="Click to reload page" icon="mdi-rotate-3d-variant" />
 			<v-btn @click.stop="toggleFilterField()" title="Click to search" icon="mdi-magnify" />
@@ -10,33 +10,32 @@
 
 	<df-input-filter transition="slide-x-transition" v-if="showSearchField" @type="executeSearch" />
 
-	<payment-method-result :collection="appStore.globalResult"
+	<location-result :collection="locationListResult"
 		@accessEdition="accessEdition"
 		@executeExclusion="executeExclusion"
 	/>
 
-	<payment-method-form v-if="appStore.globalDialog"
-		:form-data="appStore.globalEntity"
+	<location-form v-if="appStore.globalDialog"
+		:form-data="locationForm"
 		@executeRegistration="executeRegistration"
 		@executeEdition="executeEdition"
-		@cleanForm="cleanForm"
 		@closeForm="closeForm"
 	/>
 </template>
 
 <script lang="js">
-import paymentMethodService from "@/pages/paymentMethod/paymentMethodService.js";
-import PaymentMethodResult from "@/pages/paymentMethod/PaymentMethodResult.vue";
-import PaymentMethodForm from "@/pages/paymentMethod/PaymentMethodForm.vue";
+import locationService from "@/pages/transaction/location/locationService.js";
+import LocationResult from "@/pages/transaction/location/LocationResult.vue";
+import LocationForm from "@/pages/transaction/location/LocationForm.vue";
 
 import DfInputFilter from "@/components/df-input/InputFilter.vue";
 
 export default {
-	name: "PaymentMethod",
+	name: "Location",
 
-	components: { PaymentMethodResult, PaymentMethodForm, DfInputFilter },
+	components: { LocationResult, LocationForm, DfInputFilter },
 
-	mixins: [paymentMethodService],
+	mixins: [locationService],
 
 	methods: {
 		toggleFilterField() {

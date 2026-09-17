@@ -1,16 +1,16 @@
-import Account from "@/pages/transaction/account/Account.vue";
-import Objective from "@/pages/transaction/objective/Objective.vue";
 
 import User from "@/pages/user/User.vue";
-import Summary from "@/pages/summary/Summary.vue";
 import Vehicle from "@/pages/vehicle/Vehicle.vue";
-import Location from "@/pages/location/Location.vue";
 import WishList from "@/pages/wishList/WishList.vue";
 import Supermarket from "@/pages/supermarket/Supermarket.vue";
-import PaymentMethod from "@/pages/paymentMethod/PaymentMethod.vue";
 
 import Brand from "@/pages/supermarket/brand/Brand.vue";
 
+import Account from "@/pages/transaction/account/Account.vue";
+import Summary from "@/pages/transaction/summary/Summary.vue";
+import Location from "@/pages/transaction/location/Location.vue";
+import Objective from "@/pages/transaction/objective/Objective.vue";
+import PaymentMethod from "@/pages/transaction/paymentMethod/PaymentMethod.vue";
 
 import Bank from "@/pages/statement/bank/Bank.vue";
 import Statement from "@/pages/statement/statement/Statement.vue";

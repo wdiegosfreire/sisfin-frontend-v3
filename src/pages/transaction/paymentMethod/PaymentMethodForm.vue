@@ -34,7 +34,7 @@
 <script lang="js">
 import { useAppStore } from '@/stores/app';
 
-import DfGrid from "../../components/grid/Grid.vue";
+import DfGrid from "@/components/grid/Grid.vue";
 
 export default {
 	name: "PaymentMethodForm",

@@ -62,13 +62,13 @@ import { useAppStore } from '@/stores/app';
 
 import summaryService from "./summaryService.js";
 
-import DfGrid from "../../components/grid/Grid.vue";
-import DfPeriod from "../../components/df-period/Period.vue";
+import DfGrid from "@/components/grid/Grid.vue";
+import DfPeriod from "@/components/df-period/Period.vue";
 
-import message from "../../components/mixins/message.js";
+import message from "@/components/mixins/message.js";
 
-import PieChart from '../../components/df-chart/Pie.vue';
-import LineChart from '../../components/df-chart/Line.vue';
+import PieChart from '@/components/df-chart/Pie.vue';
+import LineChart from '@/components/df-chart/Line.vue';
 
 import { currency, traceAccount } from '@/utils/filters.js';
 

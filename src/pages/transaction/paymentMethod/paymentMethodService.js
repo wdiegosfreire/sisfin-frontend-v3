@@ -1,9 +1,9 @@
 import { useAppStore } from '@/stores/app';
 
-import transactionApi from "../../components/axios/transaction/transactionApi.js";
-import message from "../../components/mixins/message.js";
+import transactionApi from "@/components/axios/transaction/transactionApi.js";
+import message from "@/components/mixins/message.js";
 
-import Constants from "../../plugins/Constants";
+import Constants from "@/plugins/Constants";
 
 export default {
 	name: "paymentMethodService",

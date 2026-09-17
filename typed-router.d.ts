@@ -19,12 +19,6 @@ declare module 'vue-router/auto-routes' {
    */
   export interface RouteNamedMap {
     '/': RouteRecordInfo<'/', '/', Record<never, never>, Record<never, never>>,
-    '/location/Location': RouteRecordInfo<'/location/Location', '/location/Location', Record<never, never>, Record<never, never>>,
-    '/location/LocationForm': RouteRecordInfo<'/location/LocationForm', '/location/LocationForm', Record<never, never>, Record<never, never>>,
-    '/location/LocationResult': RouteRecordInfo<'/location/LocationResult', '/location/LocationResult', Record<never, never>, Record<never, never>>,
-    '/paymentMethod/PaymentMethod': RouteRecordInfo<'/paymentMethod/PaymentMethod', '/paymentMethod/PaymentMethod', Record<never, never>, Record<never, never>>,
-    '/paymentMethod/PaymentMethodForm': RouteRecordInfo<'/paymentMethod/PaymentMethodForm', '/paymentMethod/PaymentMethodForm', Record<never, never>, Record<never, never>>,
-    '/paymentMethod/PaymentMethodResult': RouteRecordInfo<'/paymentMethod/PaymentMethodResult', '/paymentMethod/PaymentMethodResult', Record<never, never>, Record<never, never>>,
     '/statement/bank/Bank': RouteRecordInfo<'/statement/bank/Bank', '/statement/bank/Bank', Record<never, never>, Record<never, never>>,
     '/statement/bank/BankForm': RouteRecordInfo<'/statement/bank/BankForm', '/statement/bank/BankForm', Record<never, never>, Record<never, never>>,
     '/statement/bank/BankResult': RouteRecordInfo<'/statement/bank/BankResult', '/statement/bank/BankResult', Record<never, never>, Record<never, never>>,
@@ -40,7 +34,6 @@ declare module 'vue-router/auto-routes' {
     '/structure/Structure': RouteRecordInfo<'/structure/Structure', '/structure/Structure', Record<never, never>, Record<never, never>>,
     '/structure/StructureHeader': RouteRecordInfo<'/structure/StructureHeader', '/structure/StructureHeader', Record<never, never>, Record<never, never>>,
     '/structure/StructureMessaging': RouteRecordInfo<'/structure/StructureMessaging', '/structure/StructureMessaging', Record<never, never>, Record<never, never>>,
-    '/summary/Summary': RouteRecordInfo<'/summary/Summary', '/summary/Summary', Record<never, never>, Record<never, never>>,
     '/supermarket/brand/Brand': RouteRecordInfo<'/supermarket/brand/Brand', '/supermarket/brand/Brand', Record<never, never>, Record<never, never>>,
     '/supermarket/brand/BrandForm': RouteRecordInfo<'/supermarket/brand/BrandForm', '/supermarket/brand/BrandForm', Record<never, never>, Record<never, never>>,
     '/supermarket/brand/BrandResult': RouteRecordInfo<'/supermarket/brand/BrandResult', '/supermarket/brand/BrandResult', Record<never, never>, Record<never, never>>,
@@ -48,11 +41,18 @@ declare module 'vue-router/auto-routes' {
     '/transaction/account/Account': RouteRecordInfo<'/transaction/account/Account', '/transaction/account/Account', Record<never, never>, Record<never, never>>,
     '/transaction/account/AccountForm': RouteRecordInfo<'/transaction/account/AccountForm', '/transaction/account/AccountForm', Record<never, never>, Record<never, never>>,
     '/transaction/account/AccountResult': RouteRecordInfo<'/transaction/account/AccountResult', '/transaction/account/AccountResult', Record<never, never>, Record<never, never>>,
+    '/transaction/location/Location': RouteRecordInfo<'/transaction/location/Location', '/transaction/location/Location', Record<never, never>, Record<never, never>>,
+    '/transaction/location/LocationForm': RouteRecordInfo<'/transaction/location/LocationForm', '/transaction/location/LocationForm', Record<never, never>, Record<never, never>>,
+    '/transaction/location/LocationResult': RouteRecordInfo<'/transaction/location/LocationResult', '/transaction/location/LocationResult', Record<never, never>, Record<never, never>>,
     '/transaction/objective/Objective': RouteRecordInfo<'/transaction/objective/Objective', '/transaction/objective/Objective', Record<never, never>, Record<never, never>>,
     '/transaction/objective/ObjectiveForm': RouteRecordInfo<'/transaction/objective/ObjectiveForm', '/transaction/objective/ObjectiveForm', Record<never, never>, Record<never, never>>,
     '/transaction/objective/ObjectiveItemResult': RouteRecordInfo<'/transaction/objective/ObjectiveItemResult', '/transaction/objective/ObjectiveItemResult', Record<never, never>, Record<never, never>>,
     '/transaction/objective/ObjectiveMovementResult': RouteRecordInfo<'/transaction/objective/ObjectiveMovementResult', '/transaction/objective/ObjectiveMovementResult', Record<never, never>, Record<never, never>>,
     '/transaction/objective/ObjectiveResult': RouteRecordInfo<'/transaction/objective/ObjectiveResult', '/transaction/objective/ObjectiveResult', Record<never, never>, Record<never, never>>,
+    '/transaction/paymentMethod/PaymentMethod': RouteRecordInfo<'/transaction/paymentMethod/PaymentMethod', '/transaction/paymentMethod/PaymentMethod', Record<never, never>, Record<never, never>>,
+    '/transaction/paymentMethod/PaymentMethodForm': RouteRecordInfo<'/transaction/paymentMethod/PaymentMethodForm', '/transaction/paymentMethod/PaymentMethodForm', Record<never, never>, Record<never, never>>,
+    '/transaction/paymentMethod/PaymentMethodResult': RouteRecordInfo<'/transaction/paymentMethod/PaymentMethodResult', '/transaction/paymentMethod/PaymentMethodResult', Record<never, never>, Record<never, never>>,
+    '/transaction/summary/Summary': RouteRecordInfo<'/transaction/summary/Summary', '/transaction/summary/Summary', Record<never, never>, Record<never, never>>,
     '/user/User': RouteRecordInfo<'/user/User', '/user/User', Record<never, never>, Record<never, never>>,
     '/vehicle/Vehicle': RouteRecordInfo<'/vehicle/Vehicle', '/vehicle/Vehicle', Record<never, never>, Record<never, never>>,
     '/wishList/WishList': RouteRecordInfo<'/wishList/WishList', '/wishList/WishList', Record<never, never>, Record<never, never>>,
@@ -71,30 +71,6 @@ declare module 'vue-router/auto-routes' {
   export interface _RouteFileInfoMap {
     'src/pages/index.vue': {
       routes: '/'
-      views: never
-    }
-    'src/pages/location/Location.vue': {
-      routes: '/location/Location'
-      views: never
-    }
-    'src/pages/location/LocationForm.vue': {
-      routes: '/location/LocationForm'
-      views: never
-    }
-    'src/pages/location/LocationResult.vue': {
-      routes: '/location/LocationResult'
-      views: never
-    }
-    'src/pages/paymentMethod/PaymentMethod.vue': {
-      routes: '/paymentMethod/PaymentMethod'
-      views: never
-    }
-    'src/pages/paymentMethod/PaymentMethodForm.vue': {
-      routes: '/paymentMethod/PaymentMethodForm'
-      views: never
-    }
-    'src/pages/paymentMethod/PaymentMethodResult.vue': {
-      routes: '/paymentMethod/PaymentMethodResult'
       views: never
     }
     'src/pages/statement/bank/Bank.vue': {
@@ -157,10 +133,6 @@ declare module 'vue-router/auto-routes' {
       routes: '/structure/StructureMessaging'
       views: never
     }
-    'src/pages/summary/Summary.vue': {
-      routes: '/summary/Summary'
-      views: never
-    }
     'src/pages/supermarket/brand/Brand.vue': {
       routes: '/supermarket/brand/Brand'
       views: never
@@ -189,6 +161,18 @@ declare module 'vue-router/auto-routes' {
       routes: '/transaction/account/AccountResult'
       views: never
     }
+    'src/pages/transaction/location/Location.vue': {
+      routes: '/transaction/location/Location'
+      views: never
+    }
+    'src/pages/transaction/location/LocationForm.vue': {
+      routes: '/transaction/location/LocationForm'
+      views: never
+    }
+    'src/pages/transaction/location/LocationResult.vue': {
+      routes: '/transaction/location/LocationResult'
+      views: never
+    }
     'src/pages/transaction/objective/Objective.vue': {
       routes: '/transaction/objective/Objective'
       views: never
@@ -207,6 +191,22 @@ declare module 'vue-router/auto-routes' {
     }
     'src/pages/transaction/objective/ObjectiveResult.vue': {
       routes: '/transaction/objective/ObjectiveResult'
+      views: never
+    }
+    'src/pages/transaction/paymentMethod/PaymentMethod.vue': {
+      routes: '/transaction/paymentMethod/PaymentMethod'
+      views: never
+    }
+    'src/pages/transaction/paymentMethod/PaymentMethodForm.vue': {
+      routes: '/transaction/paymentMethod/PaymentMethodForm'
+      views: never
+    }
+    'src/pages/transaction/paymentMethod/PaymentMethodResult.vue': {
+      routes: '/transaction/paymentMethod/PaymentMethodResult'
+      views: never
+    }
+    'src/pages/transaction/summary/Summary.vue': {
+      routes: '/transaction/summary/Summary'
       views: never
     }
     'src/pages/user/User.vue': {
