@@ -61,6 +61,12 @@
 							<v-btn @click="addNewItem()">Add</v-btn>
 						</df-grid>
 
+						<v-file-input label="Tax Coupom (select to import items)" v-model="taxCoupomFile" accept=".json,application/json" prepend-icon="" show-size clearable>
+							<template #append>
+								<v-icon @click="importTaxCoupon()" title="Click to process the selected file">mdi-import</v-icon>
+							</template>
+						</v-file-input>
+
 						<objective-item-result
 							enable-delete
 							:collection="objective.objectiveItemList"
@@ -126,6 +132,7 @@ export default {
 			totalAllItems: 0,
 			showTotalAlert: false,
 			movementDateUpdated: false,
+			taxCoupomFile: null,
 
 			objectiveMovementForm: {
 				dueDate: "",
@@ -415,7 +422,51 @@ export default {
 				return "";
 
 			return `${item.level} ${this.traceAccount(item)}`;
-		}
+		},
+
+		async importTaxCoupon() {
+			const file = Array.isArray(this.taxCoupomFile) ? this.taxCoupomFile[0] : this.taxCoupomFile;
+
+			if (!file) {
+				this.$_message_showRequired("Missing tax coupon file.");
+				return false;
+			}
+
+			if (!file.name.toLowerCase().endsWith(".json")) {
+				this.$_message_showWarning("Only json files are allowed.");
+				return false;
+			}
+
+			let coupon;
+			try {
+				coupon = JSON.parse(await file.text());
+			}
+			catch (e) {
+				this.$_message_showError("Invalid json file.");
+				return false;
+			}
+
+			let totalValue = coupon.total.total;
+			console.log(coupon.total.total);
+
+			if (totalValue !== this.totalAllMovements) {
+				this.$_message_showWarning(`Total value of tax coupon (${this.currency(totalValue)}) is different from (${this.totalAllMovements}).`);
+				return false;
+			}
+
+			let accountTargetTemp = this.objective.objectiveItemList[0].accountTarget;
+
+			this.objective.objectiveItemList = coupon.items.map(item => ({
+				description: item.description,
+				sequential: item.item,
+				unitaryValue: item.price,
+				amount: item.amount,
+				totalValue: Number((item.price * item.amount).toFixed(2)),
+				accountTarget: accountTargetTemp,
+			}));
+
+			this.taxCoupomFile = null;
+		},
 	},
 
 	computed: {
@@ -428,7 +479,8 @@ export default {
 		},
 
 		calculateTotalValueOfMovements() {
-			this.totalAllMovements = this.objective.objectiveMovementList.reduce((acc, item) => acc + item.value, 0);
+			const total = this.objective.objectiveMovementList.reduce((acc, item) => acc + item.value, 0);
+			this.totalAllMovements = Number(total.toFixed(2));
 			this.showTotalAlert = this.totalAllMovements !== this.totalAllItems;
 
 			return this.currency(this.totalAllMovements);
@@ -436,10 +488,11 @@ export default {
 
 		calculateTotalValueOfItems() {
 			this.objective.objectiveItemList.forEach(objectiveItem => {
-				objectiveItem.totalValue = objectiveItem.unitaryValue * objectiveItem.amount;
+				objectiveItem.totalValue = Number((objectiveItem.unitaryValue * objectiveItem.amount).toFixed(2));
 			});
 
-			this.totalAllItems = this.objective.objectiveItemList.reduce((acc, item) => acc + item.totalValue, 0);
+			const total = this.objective.objectiveItemList.reduce((acc, item) => acc + item.totalValue, 0);
+			this.totalAllItems = Number(total.toFixed(2));
 			this.showTotalAlert = this.totalAllMovements !== this.totalAllItems;
 
 			return this.currency(this.totalAllItems);
