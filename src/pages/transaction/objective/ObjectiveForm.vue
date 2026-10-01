@@ -1,5 +1,5 @@
 <template>
-	<v-dialog v-model="appStore.globalDialog" width="1000">
+	<v-dialog v-model="appStore.globalDialog" width="80%">
 		<v-card class="mb-3">
 			<v-toolbar>
 				<v-toolbar-title>
@@ -70,6 +70,7 @@
 						<objective-item-result
 							enable-delete
 							:collection="objective.objectiveItemList"
+							:total-movements="totalAllMovements"
 							@deleteOneItem="deleteOneItem"
 						/>
 					</v-tabs-window-item>
@@ -117,6 +118,7 @@ import format from "@/components/mixins/format.js";
 import message from "@/components/mixins/message.js";
 
 import { currency, traceAccount, toUtcDate } from '@/utils/filters.js';
+import { calculateItemTotalValue as calculateTaxCouponItemTotalValue, calculateMovementsTotal, detectCalculationMode } from '@/utils/calculation.js';
 
 export default {
 	name: "ObjectiveForm",
@@ -133,6 +135,7 @@ export default {
 			showTotalAlert: false,
 			movementDateUpdated: false,
 			taxCoupomFile: null,
+			taxCouponMode: "round",
 
 			objectiveMovementForm: {
 				dueDate: "",
@@ -174,10 +177,23 @@ export default {
 		}
 	},
 
+	created() {
+		this.detectItemsCalculationMode();
+	},
+
 	methods: {
 		currency,
 		toUtcDate,
 		traceAccount,
+		calculateTaxCouponItemTotalValue,
+
+		detectItemsCalculationMode() {
+			const totalMovements = calculateMovementsTotal(this.objective.objectiveMovementList);
+			const mode = detectCalculationMode(this.objective.objectiveItemList, totalMovements);
+
+			if (mode)
+				this.taxCouponMode = mode;
+		},
 
 		calculateItemTotalValue() {
 			if (this.objectiveItemForm) {
@@ -324,6 +340,7 @@ export default {
 			this.objective.location = null;
 			this.objective.objectiveItemList = [];
 			this.objective.objectiveMovementList = [];
+			this.taxCouponMode = "round";
 
 			this.resetObjectiveMovementForm();
 			this.resetObjectiveItemForm();
@@ -447,25 +464,82 @@ export default {
 			}
 
 			let totalValue = coupon.total.total;
-			console.log(coupon.total.total);
 
 			if (totalValue !== this.totalAllMovements) {
 				this.$_message_showWarning(`Total value of tax coupon (${this.currency(totalValue)}) is different from (${this.totalAllMovements}).`);
 				return false;
 			}
 
+			let mode;
+			if (this.calculateTaxCouponTotal(coupon, "round") === this.totalAllMovements)
+				mode = "round";
+			else if (this.calculateTaxCouponTotal(coupon, "truncate") === this.totalAllMovements)
+				mode = "truncate";
+			else {
+				this.$_message_showWarning(`Sum of tax coupon items doesn't match total of movements (${this.currency(this.totalAllMovements)}) by rounding or truncation.`);
+				return false;
+			}
+
+			console.log(`Mode: ${mode}`);
+
+			this.taxCouponMode = mode;
+
 			let accountTargetTemp = this.objective.objectiveItemList[0].accountTarget;
 
-			this.objective.objectiveItemList = coupon.items.map(item => ({
-				description: item.description,
-				sequential: item.item,
-				unitaryValue: item.price,
-				amount: item.amount,
-				totalValue: Number((item.price * item.amount).toFixed(2)),
-				accountTarget: accountTargetTemp,
-			}));
+			let sequential = 1;
+
+			this.objective.objectiveItemList = coupon.items.flatMap(item => {
+				const objectiveItems = [{
+					description: item.description,
+					sequential: sequential++,
+					unitaryValue: item.price,
+					amount: item.amount,
+					totalValue: this.calculateTaxCouponItemTotalValue(item.price, item.amount, mode),
+					accountTarget: accountTargetTemp,
+				}];
+
+				const discount = Number(item.register?.discount) || 0;
+				if (discount !== 0) {
+					objectiveItems.push({
+						description: `${item.description} (DISCOUNT)`,
+						sequential: sequential++,
+						unitaryValue: discount * -1,
+						amount: 1,
+						totalValue: Number((discount * -1).toFixed(2)),
+						accountTarget: accountTargetTemp,
+					});
+				}
+
+				const addition = Number(item.register?.addition) || 0;
+				if (addition !== 0) {
+					objectiveItems.push({
+						description: `${item.description} (ADDITION)`,
+						sequential: sequential++,
+						unitaryValue: addition,
+						amount: 1,
+						totalValue: Number((addition).toFixed(2)),
+						accountTarget: accountTargetTemp,
+					});
+				}
+
+				return objectiveItems;
+			});
 
 			this.taxCoupomFile = null;
+		},
+
+		calculateTaxCouponTotal(coupon, mode) {
+			const total = coupon.items.reduce((acc, item) => {
+				const discount = Number(item.register?.discount) || 0;
+				const addition = Number(item.register?.addition) || 0;
+
+				return acc
+					+ this.calculateTaxCouponItemTotalValue(item.price, item.amount, mode)
+					+ Number((discount * -1).toFixed(2))
+					+ Number((addition).toFixed(2));
+			}, 0);
+
+			return Number(total.toFixed(2));
 		},
 	},
 
@@ -488,7 +562,7 @@ export default {
 
 		calculateTotalValueOfItems() {
 			this.objective.objectiveItemList.forEach(objectiveItem => {
-				objectiveItem.totalValue = Number((objectiveItem.unitaryValue * objectiveItem.amount).toFixed(2));
+				objectiveItem.totalValue = this.calculateTaxCouponItemTotalValue(objectiveItem.unitaryValue, objectiveItem.amount, this.taxCouponMode);
 			});
 
 			const total = this.objective.objectiveItemList.reduce((acc, item) => acc + item.totalValue, 0);

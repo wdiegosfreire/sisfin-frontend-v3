@@ -16,14 +16,14 @@
 		</thead>
 		<tbody>
 			<tr v-for="objectiveItem in collection" :key="objectiveItem.identity">
-				<td>{{ objectiveItem.sequential }}</td>
-				<td>{{ traceAccount(objectiveItem.accountTarget) }}</td>
-				<td>{{ objectiveItem.description }}</td>
-				<td class="text-right">{{ currency(objectiveItem.amount, 3) }}</td>
-				<td class="text-right">x</td>
-				<td class="text-right">{{ currency(objectiveItem.unitaryValue) }}</td>
-				<td class="text-right">=</td>
-				<td class="text-right">{{ calculateItemTotalValue(objectiveItem) }}</td>
+				<td :class="getDiscountClass(objectiveItem)">{{ objectiveItem.sequential }}</td>
+				<td :class="getDiscountClass(objectiveItem)">{{ traceAccount(objectiveItem.accountTarget) }}</td>
+				<td :class="getDiscountClass(objectiveItem)">{{ objectiveItem.description }}</td>
+				<td :class="getDiscountClass(objectiveItem)" class="text-right">{{ currency(objectiveItem.amount, 3) }}</td>
+				<td :class="getDiscountClass(objectiveItem)" class="text-right">x</td>
+				<td :class="getDiscountClass(objectiveItem)" class="text-right">{{ currency(objectiveItem.unitaryValue) }}</td>
+				<td :class="getDiscountClass(objectiveItem)" class="text-right">=</td>
+				<td :class="getDiscountClass(objectiveItem)" class="text-right">{{ calculateItemTotalValue(objectiveItem) }}</td>
 				<td v-if="enableEdit"><v-icon @click="$emit('editOneMovement', objectiveItem)" title="Click to edit this movement.">mdi-playlist-edit</v-icon></td>
 				<td v-if="enableDelete"><v-icon @click="$emit('deleteOneItem', objectiveItem)" title="Click to delete this item.">mdi-delete</v-icon></td>
 			</tr>
@@ -37,6 +37,7 @@
 
 <script lang="js">
 import { currency, traceAccount } from '@/utils/filters.js';
+import { calculateItemTotalValue, detectCalculationMode } from '@/utils/calculation.js';
 
 export default {
 	name: "ObjectiveItemResult",
@@ -45,6 +46,10 @@ export default {
 		collection: {
 			type: Array,
 			required: true
+		},
+		totalMovements: {
+			type: Number,
+			default: null
 		},
 		density: {
 			type: String,
@@ -81,17 +86,31 @@ export default {
 		},
 
 		calculateItemTotalValue(objectiveItem) {
-			let amount = objectiveItem.amount;
-			let unitaryValue = objectiveItem.unitaryValue;
+			return currency(this.getItemTotalValue(objectiveItem));
+		},
 
-			objectiveItem.totalValue = Number((unitaryValue * amount).toFixed(2));
-			return currency(Number(objectiveItem.totalValue));
+		getItemTotalValue(objectiveItem) {
+			if (!this.calculationMode)
+				return Number(objectiveItem.totalValue);
+
+			return calculateItemTotalValue(objectiveItem.unitaryValue, objectiveItem.amount, this.calculationMode);
+		},
+
+		getDiscountClass(objectiveItem) {
+			return objectiveItem.unitaryValue < 0 ? 'discount' : '';
 		}
 	},
 
 	computed: {
+		calculationMode() {
+			if (this.totalMovements === null)
+				return null;
+
+			return detectCalculationMode(this.collection, this.totalMovements);
+		},
+
 		totalValueItems() {
-			return this.currency(this.collection.reduce((acc, item) => acc + item.totalValue, 0));
+			return this.currency(this.collection.reduce((acc, item) => acc + this.getItemTotalValue(item), 0));
 		}
 	},
 };
@@ -100,5 +119,13 @@ export default {
 <style lang="css">
 th {
 	white-space: nowrap;
+}
+
+.discount {
+	color: blue;
+}
+
+.addition {
+	color: orangered;
 }
 </style>
