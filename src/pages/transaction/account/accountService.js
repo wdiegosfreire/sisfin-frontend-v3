@@ -16,7 +16,6 @@ export default {
 			accountListResult: [],
 			accountListComboLevelOne: [],
 			accountListComboLevelTwo: [],
-			showSearchField: false
 		};
 	},
 
@@ -64,21 +63,6 @@ export default {
 				this.accountForm = response.data.map.account;
 
 				this.appStore.showGlobalDialog(true);
-			}
-			catch (error) {
-				this.$_message_handleError(error);
-			}
-		},
-
-		async executeSearch(filterValue) {
-			try {
-				let account = {
-					filter: filterValue,
-					userIdentity: this.appStore.userIdentity
-				};
-
-				const response = await this.$_transaction_post("/account/executeSearch", account);
-				this.accountListResult = response.data.map.accountList;
 			}
 			catch (error) {
 				this.$_message_handleError(error);

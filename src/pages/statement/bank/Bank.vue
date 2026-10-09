@@ -3,12 +3,9 @@
 		<v-toolbar-title>Banks</v-toolbar-title>
 		<template v-slot:append>
 			<v-btn @click.stop="accessModule()" title="Click to reload page" icon="mdi-rotate-3d-variant" />
-			<v-btn @click.stop="toggleFilterField()" title="Click to search" icon="mdi-magnify" />
 			<v-btn @click.stop="accessRegistration()" title="Click to register a new item" icon="mdi-plus" />
 		</template>
 	</v-app-bar>
-
-	<df-input-filter transition="slide-x-transition" v-if="showSearchField" @type="executeSearch" />
 
 	<bank-result :collection="appStore.globalResult"
 		@accessEdition="accessEdition"
@@ -29,23 +26,12 @@ import bankService from "@/pages/statement/bank/bankService.js";
 import BankResult from "@/pages/statement/bank/BankResult.vue";
 import BankForm from "@/pages/statement/bank/BankForm.vue";
 
-import DfInputFilter from "@/components/df-input/InputFilter.vue";
-
 export default {
 	name: "Bank",
 
-	components: { BankResult, BankForm, DfInputFilter },
+	components: { BankResult, BankForm },
 
 	mixins: [bankService],
-
-	methods: {
-		toggleFilterField() {
-			if (this.showSearchField)
-				this.executeSearch();
-
-			this.showSearchField = !this.showSearchField;
-		}
-	},
 
 	created() {
 		this.accessModule();

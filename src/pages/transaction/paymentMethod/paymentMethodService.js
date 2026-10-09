@@ -12,7 +12,6 @@ export default {
 
 	data() {
 		return {
-			showSearchField: false
 		};
 	},
 
@@ -38,19 +37,6 @@ export default {
 			this.$_transaction_post("/paymentMethod/accessEdition", paymentMethod).then(response => {
 				this.appStore.setGlobalEntity(response.data.map.paymentMethod);
 				this.appStore.showGlobalDialog(true);
-			}).catch(error => {
-				this.$_message_handleError(error);
-			});
-		},
-
-		executeSearch(filterValue) {
-			let paymentMethod = {
-				filter: filterValue,
-				userIdentity: this.appStore.userIdentity
-			}
-
-			this.$_transaction_post("/paymentMethod/executeSearch", paymentMethod).then(response => {
-				this.appStore.setGlobalResult(response.data.map.paymentMethodList);
 			}).catch(error => {
 				this.$_message_handleError(error);
 			});

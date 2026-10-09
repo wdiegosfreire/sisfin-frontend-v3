@@ -14,7 +14,6 @@ export default {
 		return {
 			brandForm: {},
 			brandListResult: [],
-			showSearchField: false
 		};
 	},
 
@@ -44,21 +43,6 @@ export default {
 				this.brandForm = response.data.map.brand;
 
 				this.appStore.showGlobalDialog(true);
-			}
-			catch (error) {
-				this.$_message_handleError(error);
-			}
-		},
-
-		async executeSearch(filterValue) {
-			try {
-				let brand = {
-					filter: filterValue,
-					userIdentity: this.appStore.userIdentity
-				}
-
-				const response = await this.$_transaction_post("/brand/executeSearch", brand);
-				this.brandListResult = response.data.map.brandList;
 			}
 			catch (error) {
 				this.$_message_handleError(error);
