@@ -1,48 +1,40 @@
 <template>
-	<df-result-layout :collection-length="collection.length">
-		<v-card variant="outlined" border="sm opacity-20" class="mb-4" v-for="brand in collection" :key="brand.identity">
-			<v-card-title class="d-flex align-center">
-				<span>{{ brand.name }}</span>
+	<v-data-table
+		:headers="headers"
+		:items="collection"
+		:search="search"
+		:items-per-page="10"
+		:items-per-page-options="itemsPerPageOptions"
+		item-value="identity"
+		density="comfortable"
+		no-data-text="No results found."
+		hover
+	>
+		<template v-slot:top>
+			<v-text-field v-model="search" label="Filter" prepend-inner-icon="mdi-magnify" variant="outlined" density="compact" hide-details clearable class="mb-4" />
+		</template>
 
-				<v-spacer></v-spacer>
-				<v-menu>
-					<template v-slot:activator="{ props }">
-						<v-btn v-bind="props" variant="text" icon="mdi-menu" />
-					</template>
-					<v-list width="150">
-						<v-list-item @click="$emit('accessEdition', brand)" append-icon="mdi-file-document-edit-outline">
-							<v-list-item-title>Edit</v-list-item-title>
-						</v-list-item>
-						<v-list-item @click="$emit('executeExclusion', brand)" append-icon="mdi-trash-can-outline">
-							<v-list-item-title>Delete</v-list-item-title>
-						</v-list-item>
-					</v-list>
-				</v-menu>
-			</v-card-title>
-
-			<v-divider></v-divider>
-
-			<v-card-text>
-				<df-grid>
-					<df-output-text class="text-left" label="Identity">{{ brand.identity }}</df-output-text>
-					<df-output-text class="text-left" label="Email">{{ brand.email }}</df-output-text>
-					<df-output-text class="text-left" label="Website">{{ brand.website }}</df-output-text>
-				</df-grid>
-			</v-card-text>
-		</v-card>
-	</df-result-layout>
+		<template v-slot:[`item.actions`]="{ item }">
+			<v-menu>
+				<template v-slot:activator="{ props }">
+					<v-btn v-bind="props" variant="text" icon="mdi-menu" />
+				</template>
+				<v-list width="150">
+					<v-list-item @click="$emit('accessEdition', item)" append-icon="mdi-file-document-edit-outline">
+						<v-list-item-title>Edit</v-list-item-title>
+					</v-list-item>
+					<v-list-item @click="$emit('executeExclusion', item)" append-icon="mdi-trash-can-outline">
+						<v-list-item-title>Delete</v-list-item-title>
+					</v-list-item>
+				</v-list>
+			</v-menu>
+		</template>
+	</v-data-table>
 </template>
 
 <script>
-import DfResultLayout from "@/components/df-layout/ResultLayout.vue";
-
-import DfGrid from "@/components/grid/Grid.vue";
-import DfOutputText from "@/components/df-output/OutputText.vue";
-
 export default {
 	name: "BrandResult",
-
-	components: { DfResultLayout, DfGrid, DfOutputText },
 
 	props: {
 		collection: {
@@ -53,7 +45,20 @@ export default {
 
 	data() {
 		return {
-			search: ""
+			search: "",
+			headers: [
+				{ title: "Identity", key: "identity", align: "start", width: "300px" },
+				{ title: "Name", key: "name", align: "start" },
+				{ title: "Email", key: "email", align: "start" },
+				{ title: "Website", key: "website", align: "start" },
+				{ title: "", key: "actions", align: "end", sortable: false }
+			],
+			itemsPerPageOptions: [
+				{ value: 10, title: "10" },
+				{ value: 50, title: "50" },
+				{ value: 100, title: "100" },
+				{ value: -1, title: "All" }
+			]
 		};
 	}
 };
