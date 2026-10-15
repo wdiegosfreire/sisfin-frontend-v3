@@ -104,7 +104,7 @@ export default {
 			});
 		},
 
-		executeEdition(objective) {
+		async executeEdition(objective) {
 			objective.userIdentity = this.appStore.userIdentity;
 
 			/**
@@ -123,6 +123,17 @@ export default {
 			for (let objectiveMovement of objective.objectiveMovementList) {
 				if (objective.identity === objectiveMovement.identity)
 					objectiveMovement.identity = objectiveMovement.identity * -1;
+			}
+
+			if (objective.props && objective.props.taxCouponFile) {
+				const toBase64 = file => new Promise((resolve, reject) => {
+					const reader = new FileReader();
+					reader.readAsDataURL(file);
+					reader.onload = () => resolve(reader.result);
+					reader.onerror = reject;
+				});
+
+				objective.props.taxCouponFile = await toBase64(objective.props.taxCouponFile);
 			}
 
 			this.$_transaction_post("/objective/executeEdition", objective).then(() => {

@@ -61,7 +61,7 @@
 							<v-btn @click="addNewItem()">Add</v-btn>
 						</df-grid>
 
-						<v-file-input label="Tax Coupom (select to import items)" v-model="taxCoupomFile" accept=".json,application/json" prepend-icon="" show-size clearable>
+						<v-file-input label="Tax Coupom (select to import items)" v-model="objective.props.taxCouponFile" accept=".json,application/json" prepend-icon="" show-size clearable>
 							<template #append>
 								<v-icon @click="importTaxCoupon()" title="Click to process the selected file">mdi-import</v-icon>
 							</template>
@@ -134,7 +134,6 @@ export default {
 			totalAllItems: 0,
 			showTotalAlert: false,
 			movementDateUpdated: false,
-			taxCoupomFile: null,
 			taxCouponMode: "round",
 
 			objectiveMovementForm: {
@@ -442,7 +441,7 @@ export default {
 		},
 
 		async importTaxCoupon() {
-			const file = Array.isArray(this.taxCoupomFile) ? this.taxCoupomFile[0] : this.taxCoupomFile;
+			const file = Array.isArray(this.objective.props.taxCouponFile) ? this.objective.props.taxCouponFile[0] : this.objective.props.taxCouponFile;
 
 			if (!file) {
 				this.$_message_showRequired("Missing tax coupon file.");
@@ -479,8 +478,6 @@ export default {
 				this.$_message_showWarning(`Sum of tax coupon items doesn't match total of movements (${this.currency(this.totalAllMovements)}) by rounding or truncation.`);
 				return false;
 			}
-
-			console.log(`Mode: ${mode}`);
 
 			this.taxCouponMode = mode;
 
@@ -524,8 +521,6 @@ export default {
 
 				return objectiveItems;
 			});
-
-			this.taxCoupomFile = null;
 		},
 
 		calculateTaxCouponTotal(coupon, mode) {

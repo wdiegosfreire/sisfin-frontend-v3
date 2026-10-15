@@ -1,11 +1,12 @@
 export function calculateItemTotalValue(unitaryValue, amount, mode) {
-	if (mode === "truncate") {
-		// toFixed(6) removes floating point noise (e.g. 0.29 * 100 = 28.999999999999996) before truncating
-		const cents = Number((unitaryValue * amount * 100).toFixed(6));
-		return Math.trunc(cents) / 100;
-	}
+	// toFixed(6) removes floating point noise (e.g. 0.29 * 100 = 28.999999999999996, 0.25 * 59.9 = 14.974999999999999) before rounding/truncating
+	const cents = Number((unitaryValue * amount * 100).toFixed(6));
 
-	return Number((unitaryValue * amount).toFixed(2));
+	if (mode === "truncate")
+		return Math.trunc(cents) / 100;
+
+	// Half away from zero (Math.round alone rounds -0.5 toward +Infinity)
+	return Math.sign(cents) * Math.round(Math.abs(cents)) / 100;
 }
 
 export function calculateItemsTotal(itemList, mode) {

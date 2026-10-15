@@ -23,7 +23,7 @@
 				<td :class="getDiscountClass(objectiveItem)" class="text-right">x</td>
 				<td :class="getDiscountClass(objectiveItem)" class="text-right">{{ currency(objectiveItem.unitaryValue) }}</td>
 				<td :class="getDiscountClass(objectiveItem)" class="text-right">=</td>
-				<td :class="getDiscountClass(objectiveItem)" class="text-right">{{ calculateItemTotalValue(objectiveItem) }}</td>
+				<td :class="getDiscountClass(objectiveItem)" class="text-right">{{ getItemTotalValue(objectiveItem) }}</td>
 				<td v-if="enableEdit"><v-icon @click="$emit('editOneMovement', objectiveItem)" title="Click to edit this movement.">mdi-playlist-edit</v-icon></td>
 				<td v-if="enableDelete"><v-icon @click="$emit('deleteOneItem', objectiveItem)" title="Click to delete this item.">mdi-delete</v-icon></td>
 			</tr>
@@ -83,10 +83,6 @@ export default {
 			for (const objectiveItem of this.collection) {
 				objectiveItem.sequential = ++i;
 			}
-		},
-
-		calculateItemTotalValue(objectiveItem) {
-			return currency(this.getItemTotalValue(objectiveItem));
 		},
 
 		getItemTotalValue(objectiveItem) {
