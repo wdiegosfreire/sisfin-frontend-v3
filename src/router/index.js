@@ -1,14 +1,16 @@
-import Account from "@/pages/transaction/account/Account.vue";
-import Objective from "@/pages/transaction/objective/Objective.vue";
 
 import User from "@/pages/user/User.vue";
-import Summary from "@/pages/summary/Summary.vue";
 import Vehicle from "@/pages/vehicle/Vehicle.vue";
-import Location from "@/pages/location/Location.vue";
 import WishList from "@/pages/wishList/WishList.vue";
 import Supermarket from "@/pages/supermarket/Supermarket.vue";
-import PaymentMethod from "@/pages/paymentMethod/PaymentMethod.vue";
 
+import Brand from "@/pages/supermarket/brand/Brand.vue";
+
+import Account from "@/pages/transaction/account/Account.vue";
+import Summary from "@/pages/transaction/summary/Summary.vue";
+import Location from "@/pages/transaction/location/Location.vue";
+import Objective from "@/pages/transaction/objective/Objective.vue";
+import PaymentMethod from "@/pages/transaction/paymentMethod/PaymentMethod.vue";
 
 import Bank from "@/pages/statement/bank/Bank.vue";
 import Statement from "@/pages/statement/statement/Statement.vue";
@@ -19,18 +21,22 @@ import { createRouter, createWebHistory } from "vue-router";
 
 const routes = [
 	{ path: "/", name: "user", component: User },
-	{ path: "/bank", name: "bank", component: Bank },
-	{ path: "/account", name: "account", component: Account },
-	{ path: "/summary", name: "summary", component: Summary },
 	{ path: "/vehicle", name: "vehicle", component: Vehicle },
-	{ path: "/location", name: "location", component: Location },
 	{ path: "/wishList", name: "wishList", component: WishList },
-	{ path: "/objective", name: "objective", component: Objective },
-	{ path: "/statement", name: "statement", component: Statement },
 	{ path: "/supermarket", name: "supermarket", component: Supermarket },
-	{ path: "/paymentMethod", name: "paymentMethod", component: PaymentMethod },
-	{ path: "/statementType", name: "statementType", component: StatementType },
-	{ path: "/statementPattern", name: "statementPattern", component: StatementPattern },
+
+	{ path: "/statement/bank", name: "bank", component: Bank },
+	{ path: "/statement/statement", name: "statement", component: Statement },
+	{ path: "/statement/statementType", name: "statementType", component: StatementType },
+	{ path: "/statement/statementPattern", name: "statementPattern", component: StatementPattern },
+
+	{ path: "/transaction/account", name: "account", component: Account },
+	{ path: "/transaction/summary", name: "summary", component: Summary },
+	{ path: "/transaction/location", name: "location", component: Location },
+	{ path: "/transaction/objective", name: "objective", component: Objective },
+	{ path: "/transaction/paymentMethod", name: "paymentMethod", component: PaymentMethod },
+
+	{ path: "/supermarket/brand", name: "brand", component: Brand },
 ]
 
 const router = createRouter({

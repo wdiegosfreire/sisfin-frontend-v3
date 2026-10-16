@@ -18,8 +18,6 @@ export default {
 			accountListComboTarget: [],
 			paymentMethodListCombo: [],
 			statementTypeListCombo: [],
-
-			showSearchField: false
 		};
 	},
 
@@ -68,21 +66,6 @@ export default {
 				this.statementTypeListCombo = response.data.map.statementTypeListCombo;
 
 				this.appStore.showGlobalDialog(true);
-			}
-			catch (error) {
-				this.$_message_handleError(error);
-			}
-		},
-
-		async executeSearch(filterValue) {
-			try {
-				let statementPattern = {
-					filter: filterValue,
-					userIdentity: this.appStore.userIdentity
-				}
-
-				const response = await this.$_transaction_post("/statementPattern/executeSearch", statementPattern);
-				this.statementPatternListResult = response.data.map.statementPatternList;
 			}
 			catch (error) {
 				this.$_message_handleError(error);

@@ -4,29 +4,31 @@ import { useAppStore } from '@/stores/app';
 export default {
 	name: "transactionApi",
 
-	data() {
-		return {
-			tokenParam: "?token=" + useAppStore().sessionToken,
-		}
-	},
-
 	methods: {
+		$_transaction_config() {
+			return {
+				headers: {
+					Authorization: "Bearer " + useAppStore().sessionToken
+				}
+			};
+		},
+
 		$_transaction_get(url) {
-			return transactionApiInstance.get(url + this.tokenParam);
+			return transactionApiInstance.get(url, this.$_transaction_config());
 		},
 		$_transaction_post(url, data) {
-			return transactionApiInstance.post(url + this.tokenParam, data);
+			return transactionApiInstance.post(url, data, this.$_transaction_config());
 		},
 		$_transaction_put(url, data) {
-			return transactionApiInstance.put(url + this.tokenParam, data);
+			return transactionApiInstance.put(url, data, this.$_transaction_config());
 		},
 		$_transaction_delete(url) {
-			return transactionApiInstance.delete(url + this.tokenParam);
+			return transactionApiInstance.delete(url, this.$_transaction_config());
 		},
 
 		async $_transaction_post_sync(url, data) {
 			try {
-				return await transactionApiInstance.post(url + this.tokenParam, data);
+				return await transactionApiInstance.post(url, data, this.$_transaction_config());
 			}
 			catch (error) {
 				return error;

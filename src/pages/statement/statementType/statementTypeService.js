@@ -12,7 +12,6 @@ export default {
 
 	data() {
 		return {
-			showSearchField: false
 		};
 	},
 
@@ -52,19 +51,6 @@ export default {
 				this.appStore.setGlobalAccountListComboSource(response.data.map.accountListComboSource);
 
 				this.appStore.showGlobalDialog(true);
-			}).catch(error => {
-				this.$_message_handleError(error);
-			});
-		},
-
-		executeSearch(filterValue) {
-			let statementType = {
-				filter: filterValue,
-				userIdentity: this.appStore.userIdentity
-			}
-
-			this.$_transaction_post("/statementType/executeSearch", statementType).then(response => {
-				this.appStore.setGlobalResult(response.data.map.statementTypeList);
 			}).catch(error => {
 				this.$_message_handleError(error);
 			});

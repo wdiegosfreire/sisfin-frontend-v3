@@ -26,6 +26,14 @@
 					<span>{{ item.raw.bank.name }} :: {{ item.raw.name }}</span>
 				</template>
 			</v-autocomplete>
+			<v-autocomplete v-model="filter.status"
+				label="Status"
+				item-title="name"
+				item-value="identity"
+				:items="statusListCombo"
+				@update:modelValue="periodChange(month, year)"
+				clearable return-object>
+			</v-autocomplete>
 		</df-grid>
 	</span>
 
@@ -67,6 +75,15 @@ export default {
 
 	mixins: [statementService],
 
+	data() {
+		return {
+			statusListCombo: [
+				{identity: "false", name: "Opened"},
+				{identity: "true", name: "Closed"}
+			],
+		};
+	},
+
 	methods: {
 		toggleFilterField() {
 			if (this.showSearchField)
@@ -89,6 +106,8 @@ export default {
 		},
 
 		clearFilters() {
+			this.filter.status = null;
+			this.filter.statementType = null;
 			this.accessModule();
 		}
 	},

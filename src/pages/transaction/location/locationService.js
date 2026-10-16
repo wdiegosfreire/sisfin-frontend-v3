@@ -14,7 +14,6 @@ export default {
 		return {
 			locationForm: {},
 			locationListResult: [],
-			showSearchField: false
 		};
 	},
 
@@ -44,21 +43,6 @@ export default {
 				this.locationForm = response.data.map.location;
 
 				this.appStore.showGlobalDialog(true);
-			}
-			catch (error) {
-				this.$_message_handleError(error);
-			}
-		},
-
-		async executeSearch(filterValue) {
-			try {
-				let location = {
-					filter: filterValue,
-					userIdentity: this.appStore.userIdentity
-				}
-
-				const response = await this.$_transaction_post("/location/executeSearch", location);
-				this.locationListResult = response.data.map.locationList;
 			}
 			catch (error) {
 				this.$_message_handleError(error);

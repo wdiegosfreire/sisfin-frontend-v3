@@ -51,7 +51,7 @@
 							</v-expansion-panel>
 							<v-expansion-panel title="Items">
 								<v-expansion-panel-text>
-									<objective-item-result :collection="objective.objectiveItemList" />
+									<objective-item-result :collection="objective.objectiveItemList" :total-movements="calculateMovementsTotal(objective.objectiveMovementList)" />
 								</v-expansion-panel-text>
 							</v-expansion-panel>
 						</v-expansion-panels>
@@ -72,6 +72,7 @@ import ObjectiveItemResult from "@/pages/transaction/objective/ObjectiveItemResu
 import ObjectiveMovementResult from "@/pages/transaction/objective/ObjectiveMovementResult.vue";
 
 import { currency, traceAccount, toBrasilianDate } from '@/utils/filters.js';
+import { calculateMovementsTotal } from '@/utils/calculation.js';
 
 export default {
 	name: "ObjectiveResult",
@@ -97,6 +98,7 @@ export default {
 		currency,
 		traceAccount,
 		toBrasilianDate,
+		calculateMovementsTotal,
 
 		getNewHeader(data) {
 			if (this.grupo != data) {
