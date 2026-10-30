@@ -75,6 +75,7 @@
 					</template>
 
 					<v-list-item link @click="accessModuleBrand()" prepend-icon="mdi-tag-outline">Brands</v-list-item>
+					<v-list-item link @click="accessModuleCompany()" prepend-icon="mdi-domain">Companies</v-list-item>
 				</v-list-group>
 			</v-list-group>
 
@@ -236,6 +237,7 @@ export default {
 		accessModulePaymentMethod() { this.navigateTo("/transaction/paymentMethod"); },
 
 		accessModuleBrand() { this.navigateTo("/supermarket/brand"); },
+		accessModuleCompany() { this.navigateTo("/supermarket/company"); },
 
 		navigateTo(path) {
 			this.$router.push(path).catch(error => {

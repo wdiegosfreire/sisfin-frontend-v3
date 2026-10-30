@@ -37,6 +37,9 @@ declare module 'vue-router/auto-routes' {
     '/supermarket/brand/Brand': RouteRecordInfo<'/supermarket/brand/Brand', '/supermarket/brand/Brand', Record<never, never>, Record<never, never>>,
     '/supermarket/brand/BrandForm': RouteRecordInfo<'/supermarket/brand/BrandForm', '/supermarket/brand/BrandForm', Record<never, never>, Record<never, never>>,
     '/supermarket/brand/BrandResult': RouteRecordInfo<'/supermarket/brand/BrandResult', '/supermarket/brand/BrandResult', Record<never, never>, Record<never, never>>,
+    '/supermarket/company/Company': RouteRecordInfo<'/supermarket/company/Company', '/supermarket/company/Company', Record<never, never>, Record<never, never>>,
+    '/supermarket/company/CompanyForm': RouteRecordInfo<'/supermarket/company/CompanyForm', '/supermarket/company/CompanyForm', Record<never, never>, Record<never, never>>,
+    '/supermarket/company/CompanyResult': RouteRecordInfo<'/supermarket/company/CompanyResult', '/supermarket/company/CompanyResult', Record<never, never>, Record<never, never>>,
     '/supermarket/Supermarket': RouteRecordInfo<'/supermarket/Supermarket', '/supermarket/Supermarket', Record<never, never>, Record<never, never>>,
     '/transaction/account/Account': RouteRecordInfo<'/transaction/account/Account', '/transaction/account/Account', Record<never, never>, Record<never, never>>,
     '/transaction/account/AccountForm': RouteRecordInfo<'/transaction/account/AccountForm', '/transaction/account/AccountForm', Record<never, never>, Record<never, never>>,
@@ -143,6 +146,18 @@ declare module 'vue-router/auto-routes' {
     }
     'src/pages/supermarket/brand/BrandResult.vue': {
       routes: '/supermarket/brand/BrandResult'
+      views: never
+    }
+    'src/pages/supermarket/company/Company.vue': {
+      routes: '/supermarket/company/Company'
+      views: never
+    }
+    'src/pages/supermarket/company/CompanyForm.vue': {
+      routes: '/supermarket/company/CompanyForm'
+      views: never
+    }
+    'src/pages/supermarket/company/CompanyResult.vue': {
+      routes: '/supermarket/company/CompanyResult'
       views: never
     }
     'src/pages/supermarket/Supermarket.vue': {

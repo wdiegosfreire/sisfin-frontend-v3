@@ -5,6 +5,7 @@ import WishList from "@/pages/wishList/WishList.vue";
 import Supermarket from "@/pages/supermarket/Supermarket.vue";
 
 import Brand from "@/pages/supermarket/brand/Brand.vue";
+import Company from "@/pages/supermarket/company/Company.vue";
 
 import Account from "@/pages/transaction/account/Account.vue";
 import Summary from "@/pages/transaction/summary/Summary.vue";
@@ -37,6 +38,7 @@ const routes = [
 	{ path: "/transaction/paymentMethod", name: "paymentMethod", component: PaymentMethod },
 
 	{ path: "/supermarket/brand", name: "brand", component: Brand },
+	{ path: "/supermarket/company", name: "company", component: Company },
 ]
 
 const router = createRouter({
