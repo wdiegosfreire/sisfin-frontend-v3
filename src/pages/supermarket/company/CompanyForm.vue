@@ -26,13 +26,13 @@
 				</df-grid>
 
 				<df-grid>
-					<v-text-field label="Street" v-model="company.address.street" :readonly="!!company.identity" />
-					<v-text-field label="Number" v-model="company.address.number" :readonly="!!company.identity" />
+					<v-text-field label="Street" v-model="company.address.street" />
+					<v-text-field label="Number" v-model="company.address.number" />
 				</df-grid>
 				<df-grid>
-					<v-text-field label="Neighborhood" v-model="company.address.neighborhood" :readonly="!!company.identity" />
-					<v-text-field label="Zip Code" v-model="company.address.zipCode" :readonly="!!company.identity" />
-					<v-text-field label="City" v-model="company.address.city" :readonly="!!company.identity" />
+					<v-text-field label="Neighborhood" v-model="company.address.neighborhood" />
+					<v-text-field label="Zip Code" v-model="company.address.zipCode" />
+					<v-text-field label="City" v-model="company.address.city" />
 				</df-grid>
 			</v-card-text>
 
@@ -84,7 +84,7 @@ export default {
 		},
 
 		executeEdition() {
-			if (this.isMissingIdentity() || this.isMissingRequiredFields()) {
+			if (this.isMissingIdentity() || this.isMissingRequiredFields() || this.isMissingAddressFields()) {
 				return;
 			}
 
@@ -129,8 +129,9 @@ export default {
 			if (!this.company.identity) {
 				this.company.taxNumber = "";
 				this.company.name = "";
-				this.company.address = {};
 			}
+
+			this.company.address = { identity: this.company.address?.identity };
 
 			this.company.fantasyName = "";
 			this.company.isInactive = false;

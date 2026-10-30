@@ -8,8 +8,8 @@
 		item-value="identity"
 		density="comfortable"
 		no-data-text="No results found."
-		hover
-	>
+		hover >
+
 		<template v-slot:top>
 			<v-text-field v-model="search" label="Filter" prepend-inner-icon="mdi-magnify" variant="outlined" density="compact" hide-details clearable class="mb-4" />
 		</template>
@@ -55,6 +55,9 @@ export default {
 				{ title: "Tax Number", key: "taxNumber", align: "start", width: "180px" },
 				{ title: "Name", key: "name", align: "start" },
 				{ title: "Fantasy Name", key: "fantasyName", align: "start" },
+				{ title: "Street", key: "address.street", align: "start" },
+				{ title: "Number", key: "address.number", align: "start" },
+				{ title: "Neighborhood", key: "address.neighborhood", align: "start" },
 				{ title: "City", key: "address.city", align: "start" },
 				{ title: "Status", key: "isInactive", align: "start" },
 				{ title: "", key: "actions", align: "end", sortable: false }

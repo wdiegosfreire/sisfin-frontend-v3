@@ -71,6 +71,7 @@ export default {
 		async executeEdition(company) {
 			try {
 				company.userIdentity = this.appStore.userIdentity;
+				company.address.userIdentity = this.appStore.userIdentity;
 				await this.$_transaction_post("/company/executeEdition", company);
 
 				this.closeForm(company);
