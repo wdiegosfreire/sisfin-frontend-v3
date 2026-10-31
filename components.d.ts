@@ -15,6 +15,7 @@ declare module 'vue' {
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     InputDate: typeof import('./src/components/df-input/InputDate.vue')['default']
     InputFilter: typeof import('./src/components/df-input/InputFilter.vue')['default']
+    InputMask: typeof import('./src/components/df-input/InputMask.vue')['default']
     InputMoney: typeof import('./src/components/df-input/InputMoney.vue')['default']
     InputPeriod: typeof import('./src/components/df-input/InputPeriod.vue')['default']
     Line: typeof import('./src/components/df-chart/Line.vue')['default']

@@ -52,6 +52,7 @@ export default {
 		return {
 			search: "",
 			headers: [
+				{ title: "Identity", key: "identity", align: "start" },
 				{ title: "Tax Number", key: "taxNumber", align: "start", width: "180px" },
 				{ title: "Name", key: "name", align: "start" },
 				{ title: "Fantasy Name", key: "fantasyName", align: "start" },

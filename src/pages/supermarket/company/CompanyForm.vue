@@ -13,7 +13,7 @@
 					<v-text-field label="Identity" readonly v-model="company.identity" />
 				</df-grid>
 				<df-grid>
-					<v-text-field label="Tax Number" v-model="company.taxNumber" autofocus />
+					<df-input-mask label="Tax Number" v-model="company.taxNumber" mask="##.###.###/####-##" autofocus />
 				</df-grid>
 				<df-grid>
 					<v-text-field label="Name" v-model="company.name" />
@@ -31,7 +31,7 @@
 				</df-grid>
 				<df-grid>
 					<v-text-field label="Neighborhood" v-model="company.address.neighborhood" />
-					<v-text-field label="Zip Code" v-model="company.address.zipCode" />
+					<df-input-mask label="Zip Code" v-model="company.address.zipCode" mask="#####-###" />
 					<v-text-field label="City" v-model="company.address.city" />
 				</df-grid>
 			</v-card-text>
@@ -51,13 +51,14 @@
 import { useAppStore } from '@/stores/app';
 
 import DfGrid from "@/components/grid/Grid.vue";
+import DfInputMask from "@/components/df-input/InputMask.vue";
 
 import message from "@/components/mixins/message.js";
 
 export default {
 	name: "CompanyForm",
 
-	components: { DfGrid },
+	components: { DfGrid, DfInputMask },
 
 	mixins: [ message],
 
