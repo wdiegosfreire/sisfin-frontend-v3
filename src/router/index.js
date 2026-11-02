@@ -7,6 +7,7 @@ import Supermarket from "@/pages/supermarket/Supermarket.vue";
 import Brand from "@/pages/supermarket/brand/Brand.vue";
 import Company from "@/pages/supermarket/company/Company.vue";
 import ProductCategory from "@/pages/supermarket/productCategory/ProductCategory.vue";
+import ProductProperty from "@/pages/supermarket/productProperty/ProductProperty.vue";
 
 import Account from "@/pages/transaction/account/Account.vue";
 import Summary from "@/pages/transaction/summary/Summary.vue";
@@ -41,6 +42,7 @@ const routes = [
 	{ path: "/supermarket/brand", name: "brand", component: Brand },
 	{ path: "/supermarket/company", name: "company", component: Company },
 	{ path: "/supermarket/productCategory", name: "productCategory", component: ProductCategory },
+	{ path: "/supermarket/productProperty", name: "productProperty", component: ProductProperty },
 ]
 
 const router = createRouter({

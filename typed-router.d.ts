@@ -43,6 +43,9 @@ declare module 'vue-router/auto-routes' {
     '/supermarket/productCategory/ProductCategory': RouteRecordInfo<'/supermarket/productCategory/ProductCategory', '/supermarket/productCategory/ProductCategory', Record<never, never>, Record<never, never>>,
     '/supermarket/productCategory/ProductCategoryForm': RouteRecordInfo<'/supermarket/productCategory/ProductCategoryForm', '/supermarket/productCategory/ProductCategoryForm', Record<never, never>, Record<never, never>>,
     '/supermarket/productCategory/ProductCategoryResult': RouteRecordInfo<'/supermarket/productCategory/ProductCategoryResult', '/supermarket/productCategory/ProductCategoryResult', Record<never, never>, Record<never, never>>,
+    '/supermarket/productProperty/ProductProperty': RouteRecordInfo<'/supermarket/productProperty/ProductProperty', '/supermarket/productProperty/ProductProperty', Record<never, never>, Record<never, never>>,
+    '/supermarket/productProperty/ProductPropertyForm': RouteRecordInfo<'/supermarket/productProperty/ProductPropertyForm', '/supermarket/productProperty/ProductPropertyForm', Record<never, never>, Record<never, never>>,
+    '/supermarket/productProperty/ProductPropertyResult': RouteRecordInfo<'/supermarket/productProperty/ProductPropertyResult', '/supermarket/productProperty/ProductPropertyResult', Record<never, never>, Record<never, never>>,
     '/supermarket/Supermarket': RouteRecordInfo<'/supermarket/Supermarket', '/supermarket/Supermarket', Record<never, never>, Record<never, never>>,
     '/transaction/account/Account': RouteRecordInfo<'/transaction/account/Account', '/transaction/account/Account', Record<never, never>, Record<never, never>>,
     '/transaction/account/AccountForm': RouteRecordInfo<'/transaction/account/AccountForm', '/transaction/account/AccountForm', Record<never, never>, Record<never, never>>,
@@ -173,6 +176,18 @@ declare module 'vue-router/auto-routes' {
     }
     'src/pages/supermarket/productCategory/ProductCategoryResult.vue': {
       routes: '/supermarket/productCategory/ProductCategoryResult'
+      views: never
+    }
+    'src/pages/supermarket/productProperty/ProductProperty.vue': {
+      routes: '/supermarket/productProperty/ProductProperty'
+      views: never
+    }
+    'src/pages/supermarket/productProperty/ProductPropertyForm.vue': {
+      routes: '/supermarket/productProperty/ProductPropertyForm'
+      views: never
+    }
+    'src/pages/supermarket/productProperty/ProductPropertyResult.vue': {
+      routes: '/supermarket/productProperty/ProductPropertyResult'
       views: never
     }
     'src/pages/supermarket/Supermarket.vue': {
