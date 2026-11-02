@@ -40,6 +40,9 @@ declare module 'vue-router/auto-routes' {
     '/supermarket/company/Company': RouteRecordInfo<'/supermarket/company/Company', '/supermarket/company/Company', Record<never, never>, Record<never, never>>,
     '/supermarket/company/CompanyForm': RouteRecordInfo<'/supermarket/company/CompanyForm', '/supermarket/company/CompanyForm', Record<never, never>, Record<never, never>>,
     '/supermarket/company/CompanyResult': RouteRecordInfo<'/supermarket/company/CompanyResult', '/supermarket/company/CompanyResult', Record<never, never>, Record<never, never>>,
+    '/supermarket/productCategory/ProductCategory': RouteRecordInfo<'/supermarket/productCategory/ProductCategory', '/supermarket/productCategory/ProductCategory', Record<never, never>, Record<never, never>>,
+    '/supermarket/productCategory/ProductCategoryForm': RouteRecordInfo<'/supermarket/productCategory/ProductCategoryForm', '/supermarket/productCategory/ProductCategoryForm', Record<never, never>, Record<never, never>>,
+    '/supermarket/productCategory/ProductCategoryResult': RouteRecordInfo<'/supermarket/productCategory/ProductCategoryResult', '/supermarket/productCategory/ProductCategoryResult', Record<never, never>, Record<never, never>>,
     '/supermarket/Supermarket': RouteRecordInfo<'/supermarket/Supermarket', '/supermarket/Supermarket', Record<never, never>, Record<never, never>>,
     '/transaction/account/Account': RouteRecordInfo<'/transaction/account/Account', '/transaction/account/Account', Record<never, never>, Record<never, never>>,
     '/transaction/account/AccountForm': RouteRecordInfo<'/transaction/account/AccountForm', '/transaction/account/AccountForm', Record<never, never>, Record<never, never>>,
@@ -158,6 +161,18 @@ declare module 'vue-router/auto-routes' {
     }
     'src/pages/supermarket/company/CompanyResult.vue': {
       routes: '/supermarket/company/CompanyResult'
+      views: never
+    }
+    'src/pages/supermarket/productCategory/ProductCategory.vue': {
+      routes: '/supermarket/productCategory/ProductCategory'
+      views: never
+    }
+    'src/pages/supermarket/productCategory/ProductCategoryForm.vue': {
+      routes: '/supermarket/productCategory/ProductCategoryForm'
+      views: never
+    }
+    'src/pages/supermarket/productCategory/ProductCategoryResult.vue': {
+      routes: '/supermarket/productCategory/ProductCategoryResult'
       views: never
     }
     'src/pages/supermarket/Supermarket.vue': {

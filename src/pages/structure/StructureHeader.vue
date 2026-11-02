@@ -76,6 +76,7 @@
 
 					<v-list-item link @click="accessModuleBrand()" prepend-icon="mdi-tag-outline">Brands</v-list-item>
 					<v-list-item link @click="accessModuleCompany()" prepend-icon="mdi-domain">Companies</v-list-item>
+					<v-list-item link @click="accessModuleProductCategory()" prepend-icon="mdi-shape-outline">Product Categories</v-list-item>
 				</v-list-group>
 			</v-list-group>
 
@@ -238,6 +239,7 @@ export default {
 
 		accessModuleBrand() { this.navigateTo("/supermarket/brand"); },
 		accessModuleCompany() { this.navigateTo("/supermarket/company"); },
+		accessModuleProductCategory() { this.navigateTo("/supermarket/productCategory"); },
 
 		navigateTo(path) {
 			this.$router.push(path).catch(error => {
