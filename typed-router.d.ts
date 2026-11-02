@@ -40,6 +40,9 @@ declare module 'vue-router/auto-routes' {
     '/supermarket/company/Company': RouteRecordInfo<'/supermarket/company/Company', '/supermarket/company/Company', Record<never, never>, Record<never, never>>,
     '/supermarket/company/CompanyForm': RouteRecordInfo<'/supermarket/company/CompanyForm', '/supermarket/company/CompanyForm', Record<never, never>, Record<never, never>>,
     '/supermarket/company/CompanyResult': RouteRecordInfo<'/supermarket/company/CompanyResult', '/supermarket/company/CompanyResult', Record<never, never>, Record<never, never>>,
+    '/supermarket/measurementUnit/MeasurementUnit': RouteRecordInfo<'/supermarket/measurementUnit/MeasurementUnit', '/supermarket/measurementUnit/MeasurementUnit', Record<never, never>, Record<never, never>>,
+    '/supermarket/measurementUnit/MeasurementUnitForm': RouteRecordInfo<'/supermarket/measurementUnit/MeasurementUnitForm', '/supermarket/measurementUnit/MeasurementUnitForm', Record<never, never>, Record<never, never>>,
+    '/supermarket/measurementUnit/MeasurementUnitResult': RouteRecordInfo<'/supermarket/measurementUnit/MeasurementUnitResult', '/supermarket/measurementUnit/MeasurementUnitResult', Record<never, never>, Record<never, never>>,
     '/supermarket/productCategory/ProductCategory': RouteRecordInfo<'/supermarket/productCategory/ProductCategory', '/supermarket/productCategory/ProductCategory', Record<never, never>, Record<never, never>>,
     '/supermarket/productCategory/ProductCategoryForm': RouteRecordInfo<'/supermarket/productCategory/ProductCategoryForm', '/supermarket/productCategory/ProductCategoryForm', Record<never, never>, Record<never, never>>,
     '/supermarket/productCategory/ProductCategoryResult': RouteRecordInfo<'/supermarket/productCategory/ProductCategoryResult', '/supermarket/productCategory/ProductCategoryResult', Record<never, never>, Record<never, never>>,
@@ -164,6 +167,18 @@ declare module 'vue-router/auto-routes' {
     }
     'src/pages/supermarket/company/CompanyResult.vue': {
       routes: '/supermarket/company/CompanyResult'
+      views: never
+    }
+    'src/pages/supermarket/measurementUnit/MeasurementUnit.vue': {
+      routes: '/supermarket/measurementUnit/MeasurementUnit'
+      views: never
+    }
+    'src/pages/supermarket/measurementUnit/MeasurementUnitForm.vue': {
+      routes: '/supermarket/measurementUnit/MeasurementUnitForm'
+      views: never
+    }
+    'src/pages/supermarket/measurementUnit/MeasurementUnitResult.vue': {
+      routes: '/supermarket/measurementUnit/MeasurementUnitResult'
       views: never
     }
     'src/pages/supermarket/productCategory/ProductCategory.vue': {
