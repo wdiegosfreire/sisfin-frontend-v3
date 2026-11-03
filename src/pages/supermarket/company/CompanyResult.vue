@@ -52,10 +52,10 @@ export default {
 		return {
 			search: "",
 			headers: [
-				{ title: "Identity", key: "identity", align: "start" },
-				{ title: "Tax Number", key: "taxNumber", align: "start", width: "180px" },
-				{ title: "Name", key: "name", align: "start" },
+				{ title: "Identity", key: "identity", align: "start", width: "350px", cellProps: { class: "df-monospace" } },
 				{ title: "Fantasy Name", key: "fantasyName", align: "start" },
+				{ title: "Name", key: "name", align: "start" },
+				{ title: "Tax Number", key: "taxNumber", align: "start", width: "180px" },
 				{ title: "Street", key: "address.street", align: "start" },
 				{ title: "Number", key: "address.number", align: "start" },
 				{ title: "Neighborhood", key: "address.neighborhood", align: "start" },

@@ -47,7 +47,7 @@ export default {
 		return {
 			search: "",
 			headers: [
-				{ title: "Identity", key: "identity", align: "start", width: "300px" },
+				{ title: "Identity", key: "identity", align: "start", width: "350px", cellProps: { class: "df-monospace" } },
 				{ title: "Name", key: "name", align: "start" },
 				{ title: "Email", key: "email", align: "start" },
 				{ title: "Website", key: "website", align: "start" },
