@@ -14,6 +14,10 @@
 			<v-text-field v-model="search" label="Filter" prepend-inner-icon="mdi-magnify" variant="outlined" density="compact" hide-details clearable class="mb-4" />
 		</template>
 
+		<template v-slot:[`item.identity`]="{ item }">
+			<span :title="item.identity">{{ item.identity?.split("-")[0] }}</span>
+		</template>
+
 		<template v-slot:[`item.isInactive`]="{ item }">
 			<span v-if="item.isInactive">Inactive</span>
 			<span v-else>Active</span>
