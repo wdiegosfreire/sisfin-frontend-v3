@@ -52,7 +52,7 @@ export default {
 		return {
 			search: "",
 			headers: [
-				{ title: "Identity", key: "identity", align: "start", width: "350px", cellProps: { class: "df-monospace" } },
+				{ title: "Identity", key: "identity", align: "start", cellProps: { class: "df-identity" } },
 				{ title: "Fantasy Name", key: "fantasyName", align: "start" },
 				{ title: "Name", key: "name", align: "start" },
 				{ title: "Tax Number", key: "taxNumber", align: "start", width: "180px" },

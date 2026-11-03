@@ -4,6 +4,8 @@
  * Global utility classes available on every page.
  */
 
-.df-monospace {
+.df-identity {
+	width: 300px;
+	font-size: 0.8rem;
 	font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", Consolas, "Courier New", monospace;
 }
