@@ -51,7 +51,7 @@ export default {
 		return {
 			search: "",
 			headers: [
-				{ title: "Identity", key: "identity", align: "start", cellProps: { class: "df-identity" } },
+				{ title: "Identity", key: "identity", cellProps: { class: "df-identity" } },
 				{ title: "Name", key: "name", align: "start" },
 				{ title: "", key: "actions", align: "end", sortable: false }
 			],
