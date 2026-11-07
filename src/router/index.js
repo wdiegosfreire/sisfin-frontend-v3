@@ -6,6 +6,7 @@ import Supermarket from "@/pages/supermarket/Supermarket.vue";
 
 import Brand from "@/pages/supermarket/brand/Brand.vue";
 import Company from "@/pages/supermarket/company/Company.vue";
+import Product from "@/pages/supermarket/product/Product.vue";
 import ProductCategory from "@/pages/supermarket/productCategory/ProductCategory.vue";
 import ProductProperty from "@/pages/supermarket/productProperty/ProductProperty.vue";
 import MeasurementUnit from "@/pages/supermarket/measurementUnit/MeasurementUnit.vue";
@@ -42,6 +43,7 @@ const routes = [
 
 	{ path: "/supermarket/brand", name: "brand", component: Brand },
 	{ path: "/supermarket/company", name: "company", component: Company },
+	{ path: "/supermarket/product", name: "product", component: Product },
 	{ path: "/supermarket/productCategory", name: "productCategory", component: ProductCategory },
 	{ path: "/supermarket/productProperty", name: "productProperty", component: ProductProperty },
 	{ path: "/supermarket/measurementUnit", name: "measurementUnit", component: MeasurementUnit },

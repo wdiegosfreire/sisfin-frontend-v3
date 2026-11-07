@@ -43,6 +43,9 @@ declare module 'vue-router/auto-routes' {
     '/supermarket/measurementUnit/MeasurementUnit': RouteRecordInfo<'/supermarket/measurementUnit/MeasurementUnit', '/supermarket/measurementUnit/MeasurementUnit', Record<never, never>, Record<never, never>>,
     '/supermarket/measurementUnit/MeasurementUnitForm': RouteRecordInfo<'/supermarket/measurementUnit/MeasurementUnitForm', '/supermarket/measurementUnit/MeasurementUnitForm', Record<never, never>, Record<never, never>>,
     '/supermarket/measurementUnit/MeasurementUnitResult': RouteRecordInfo<'/supermarket/measurementUnit/MeasurementUnitResult', '/supermarket/measurementUnit/MeasurementUnitResult', Record<never, never>, Record<never, never>>,
+    '/supermarket/product/Product': RouteRecordInfo<'/supermarket/product/Product', '/supermarket/product/Product', Record<never, never>, Record<never, never>>,
+    '/supermarket/product/ProductForm': RouteRecordInfo<'/supermarket/product/ProductForm', '/supermarket/product/ProductForm', Record<never, never>, Record<never, never>>,
+    '/supermarket/product/ProductResult': RouteRecordInfo<'/supermarket/product/ProductResult', '/supermarket/product/ProductResult', Record<never, never>, Record<never, never>>,
     '/supermarket/productCategory/ProductCategory': RouteRecordInfo<'/supermarket/productCategory/ProductCategory', '/supermarket/productCategory/ProductCategory', Record<never, never>, Record<never, never>>,
     '/supermarket/productCategory/ProductCategoryForm': RouteRecordInfo<'/supermarket/productCategory/ProductCategoryForm', '/supermarket/productCategory/ProductCategoryForm', Record<never, never>, Record<never, never>>,
     '/supermarket/productCategory/ProductCategoryResult': RouteRecordInfo<'/supermarket/productCategory/ProductCategoryResult', '/supermarket/productCategory/ProductCategoryResult', Record<never, never>, Record<never, never>>,
@@ -179,6 +182,18 @@ declare module 'vue-router/auto-routes' {
     }
     'src/pages/supermarket/measurementUnit/MeasurementUnitResult.vue': {
       routes: '/supermarket/measurementUnit/MeasurementUnitResult'
+      views: never
+    }
+    'src/pages/supermarket/product/Product.vue': {
+      routes: '/supermarket/product/Product'
+      views: never
+    }
+    'src/pages/supermarket/product/ProductForm.vue': {
+      routes: '/supermarket/product/ProductForm'
+      views: never
+    }
+    'src/pages/supermarket/product/ProductResult.vue': {
+      routes: '/supermarket/product/ProductResult'
       views: never
     }
     'src/pages/supermarket/productCategory/ProductCategory.vue': {
