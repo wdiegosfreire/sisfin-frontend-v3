@@ -49,6 +49,9 @@ declare module 'vue-router/auto-routes' {
     '/supermarket/productCategory/ProductCategory': RouteRecordInfo<'/supermarket/productCategory/ProductCategory', '/supermarket/productCategory/ProductCategory', Record<never, never>, Record<never, never>>,
     '/supermarket/productCategory/ProductCategoryForm': RouteRecordInfo<'/supermarket/productCategory/ProductCategoryForm', '/supermarket/productCategory/ProductCategoryForm', Record<never, never>, Record<never, never>>,
     '/supermarket/productCategory/ProductCategoryResult': RouteRecordInfo<'/supermarket/productCategory/ProductCategoryResult', '/supermarket/productCategory/ProductCategoryResult', Record<never, never>, Record<never, never>>,
+    '/supermarket/productCompany/ProductCompany': RouteRecordInfo<'/supermarket/productCompany/ProductCompany', '/supermarket/productCompany/ProductCompany', Record<never, never>, Record<never, never>>,
+    '/supermarket/productCompany/ProductCompanyForm': RouteRecordInfo<'/supermarket/productCompany/ProductCompanyForm', '/supermarket/productCompany/ProductCompanyForm', Record<never, never>, Record<never, never>>,
+    '/supermarket/productCompany/ProductCompanyResult': RouteRecordInfo<'/supermarket/productCompany/ProductCompanyResult', '/supermarket/productCompany/ProductCompanyResult', Record<never, never>, Record<never, never>>,
     '/supermarket/productProperty/ProductProperty': RouteRecordInfo<'/supermarket/productProperty/ProductProperty', '/supermarket/productProperty/ProductProperty', Record<never, never>, Record<never, never>>,
     '/supermarket/productProperty/ProductPropertyForm': RouteRecordInfo<'/supermarket/productProperty/ProductPropertyForm', '/supermarket/productProperty/ProductPropertyForm', Record<never, never>, Record<never, never>>,
     '/supermarket/productProperty/ProductPropertyResult': RouteRecordInfo<'/supermarket/productProperty/ProductPropertyResult', '/supermarket/productProperty/ProductPropertyResult', Record<never, never>, Record<never, never>>,
@@ -206,6 +209,18 @@ declare module 'vue-router/auto-routes' {
     }
     'src/pages/supermarket/productCategory/ProductCategoryResult.vue': {
       routes: '/supermarket/productCategory/ProductCategoryResult'
+      views: never
+    }
+    'src/pages/supermarket/productCompany/ProductCompany.vue': {
+      routes: '/supermarket/productCompany/ProductCompany'
+      views: never
+    }
+    'src/pages/supermarket/productCompany/ProductCompanyForm.vue': {
+      routes: '/supermarket/productCompany/ProductCompanyForm'
+      views: never
+    }
+    'src/pages/supermarket/productCompany/ProductCompanyResult.vue': {
+      routes: '/supermarket/productCompany/ProductCompanyResult'
       views: never
     }
     'src/pages/supermarket/productProperty/ProductProperty.vue': {

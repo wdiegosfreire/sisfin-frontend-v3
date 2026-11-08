@@ -77,6 +77,7 @@
 					<v-list-item link @click="accessModuleBrand()" prepend-icon="mdi-tag-outline">Brands</v-list-item>
 					<v-list-item link @click="accessModuleCompany()" prepend-icon="mdi-domain">Companies</v-list-item>
 					<v-list-item link @click="accessModuleProduct()" prepend-icon="mdi-package-variant-closed">Products</v-list-item>
+					<v-list-item link @click="accessModuleProductCompany()" prepend-icon="mdi-store-outline">Product Companies</v-list-item>
 					<v-list-item link @click="accessModuleProductCategory()" prepend-icon="mdi-shape-outline">Product Categories</v-list-item>
 					<v-list-item link @click="accessModuleProductProperty()" prepend-icon="mdi-format-list-checks">Product Properties</v-list-item>
 					<v-list-item link @click="accessModuleMeasurementUnit()" prepend-icon="mdi-scale-balance">Measurement Units</v-list-item>
@@ -243,6 +244,7 @@ export default {
 		accessModuleBrand() { this.navigateTo("/supermarket/brand"); },
 		accessModuleCompany() { this.navigateTo("/supermarket/company"); },
 		accessModuleProduct() { this.navigateTo("/supermarket/product"); },
+		accessModuleProductCompany() { this.navigateTo("/supermarket/productCompany"); },
 		accessModuleProductCategory() { this.navigateTo("/supermarket/productCategory"); },
 		accessModuleProductProperty() { this.navigateTo("/supermarket/productProperty"); },
 		accessModuleMeasurementUnit() { this.navigateTo("/supermarket/measurementUnit"); },
