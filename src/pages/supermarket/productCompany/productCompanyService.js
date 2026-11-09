@@ -14,8 +14,7 @@ export default {
 		return {
 			productCompanyForm: {},
 			productCompanyListResult: [],
-			companyListCombo: [],
-			productListCombo: [],
+			productListTable: [],
 		};
 	},
 
@@ -34,46 +33,18 @@ export default {
 			}
 		},
 
-		async accessRegistration() {
+		async accessEdition(productCompany) {
 			try {
-				let productCompany = {
+				let productCompanyEddited = {
+					identity: productCompany.identity,
 					userIdentity: this.appStore.userIdentity
 				};
 
-				const response = await this.$_transaction_post("/productCompany/accessRegistration", productCompany);
-				this.companyListCombo = response.data.map.companyListCombo;
-				this.productListCombo = response.data.map.productListCombo;
-
-				this.appStore.showGlobalDialog(true);
-			}
-			catch (error) {
-				this.$_message_handleError(error);
-			}
-		},
-
-		async accessEdition(productCompany) {
-			try {
-				productCompany.userIdentity = this.appStore.userIdentity;
-				const response = await this.$_transaction_post("/productCompany/accessEdition", productCompany);
+				const response = await this.$_transaction_post("/productCompany/accessEdition", productCompanyEddited);
 				this.productCompanyForm = response.data.map.productCompany;
-				this.companyListCombo = response.data.map.companyListCombo;
-				this.productListCombo = response.data.map.productListCombo;
+				this.productListTable = response.data.map.productListTable;
 
 				this.appStore.showGlobalDialog(true);
-			}
-			catch (error) {
-				this.$_message_handleError(error);
-			}
-		},
-
-		async executeRegistration(productCompany) {
-			try {
-				productCompany.userIdentity = this.appStore.userIdentity;
-				await this.$_transaction_post("/productCompany/executeRegistration", productCompany);
-
-				this.closeForm(productCompany);
-				this.$_message_showSuccess();
-				this.accessModule();
 			}
 			catch (error) {
 				this.$_message_handleError(error);
