@@ -20,9 +20,7 @@
 								<v-list-item @click="$emit('accessEdition', objective)" append-icon="mdi-file-document-edit-outline">
 									<v-list-item-title>Edit</v-list-item-title>
 								</v-list-item>
-								<v-list-item @click="$emit('executeExclusion', objective)" append-icon="mdi-trash-can-outline">
-									<v-list-item-title>Delete</v-list-item-title>
-								</v-list-item>
+								<v-list-item @click="$emit('executeExclusion', item)" title="Delete" append-icon="mdi-trash-can-outline"></v-list-item>
 							</v-list>
 						</v-menu>
 					</v-card-title>

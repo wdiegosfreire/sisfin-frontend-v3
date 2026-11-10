@@ -14,9 +14,7 @@
 							<v-list-item @click="$emit('accessEdition', item)" append-icon="mdi-file-document-edit-outline">
 								<v-list-item-title>Edit</v-list-item-title>
 							</v-list-item>
-							<v-list-item v-if="!item.accountListChild || item.accountListChild.length == 0" @click="$emit('executeExclusion', item)" append-icon="mdi-trash-can-outline">
-								<v-list-item-title>Delete</v-list-item-title>
-							</v-list-item>
+							<v-list-item v-if="!item.accountListChild || item.accountListChild.length == 0" @click="$emit('executeExclusion', item)" title="Delete" append-icon="mdi-trash-can-outline"></v-list-item>
 						</v-list>
 					</v-menu>
 				</div>
