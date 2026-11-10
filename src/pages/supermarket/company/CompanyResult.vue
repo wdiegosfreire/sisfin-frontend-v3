@@ -32,6 +32,9 @@
 					<v-list-item @click="$emit('accessEdition', item)" append-icon="mdi-file-document-edit-outline">
 						<v-list-item-title>Edit</v-list-item-title>
 					</v-list-item>
+					<v-list-item :href="buildMapUrl(item.address)" :disabled="!buildMapUrl(item.address)" target="_blank" rel="noopener noreferrer" append-icon="mdi-map-marker-outline">
+						<v-list-item-title>Map</v-list-item-title>
+					</v-list-item>
 					<v-list-item @click="$emit('executeExclusion', item)" append-icon="mdi-trash-can-outline">
 						<v-list-item-title>Delete</v-list-item-title>
 					</v-list-item>
@@ -74,6 +77,20 @@ export default {
 				{ value: -1, title: "All" }
 			]
 		};
+	},
+
+	methods: {
+		buildMapUrl(address) {
+			if (!address) return null;
+
+			const streetLine = [address.street, address.number].filter(Boolean).join(", ");
+			const parts = [streetLine, address.neighborhood, address.city, address.zipCode].filter(Boolean);
+
+			if (parts.length === 0) return null;
+
+			const query = [...parts, "Brasil"].join(", ");
+			return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
+		}
 	}
 };
 </script>
