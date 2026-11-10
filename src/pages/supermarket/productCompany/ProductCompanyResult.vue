@@ -55,7 +55,7 @@ export default {
 				{ title: "Company", key: "company", align: "start", value: item => item.company?.fantasyName || item.company?.name || "" },
 				{ title: "Code", key: "code", align: "start" },
 				{ title: "Description", key: "description", align: "start" },
-				{ title: "Product Details", key: "productCategoryName", align: "start", value: item => `${item.product?.productCategory?.name ?? ""} ${item.product?.brand?.name ?? ""} ${item.product?.quantityPerItem ?? ""} ${item.product?.measurementUnit?.acronym ?? ""}` },
+				{ title: "Product Details", key: "productCategoryName", align: "start", value: item => `${item.product?.productCategory?.name ?? ""} ${item.product?.brand?.name ?? ""} ${item.product?.quantityPerItem ?? ""}${item.product?.measurementUnit?.acronym ?? ""}` },
 				{ title: "Barcode", key: "product", align: "start", value: item => item.product?.barcode ?? "" },
 				{ title: "", key: "actions", align: "end", sortable: false }
 			],
