@@ -18,6 +18,10 @@
 			<span :title="item.identity">{{ item.identity?.split("-")[0] }}</span>
 		</template>
 
+		<template v-slot:[`item.barcode`]="{ value }">
+			<df-output-barcode v-if="value" :value="value" />
+		</template>
+
 		<template v-slot:[`item.isFavorite`]="{ item }">
 			<v-icon v-if="item.isFavorite" icon="mdi-star" color="amber" size="small" />
 		</template>
@@ -41,8 +45,12 @@
 </template>
 
 <script>
+import DfOutputBarcode from "@/components/df-output/OutputBarcode.vue";
+
 export default {
 	name: "ProductResult",
+
+	components: { DfOutputBarcode },
 
 	props: {
 		collection: {

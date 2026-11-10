@@ -18,6 +18,10 @@
 			<span :title="item.identity">{{ item.identity?.split("-")[0] }}</span>
 		</template>
 
+		<template v-slot:[`item.barcode`]="{ value }">
+			<df-output-barcode v-if="value" :value="value" />
+		</template>
+
 		<template v-slot:[`item.actions`]="{ item }">
 			<v-menu>
 				<template v-slot:activator="{ props }">
@@ -37,8 +41,12 @@
 </template>
 
 <script>
+import DfOutputBarcode from "@/components/df-output/OutputBarcode.vue";
+
 export default {
 	name: "ProductCompanyResult",
+
+	components: { DfOutputBarcode },
 
 	props: {
 		collection: {
@@ -56,7 +64,7 @@ export default {
 				{ title: "Code", key: "code", align: "start" },
 				{ title: "Description", key: "description", align: "start" },
 				{ title: "Product Details", key: "productCategoryName", align: "start", value: item => `${item.product?.productCategory?.name ?? ""} ${item.product?.brand?.name ?? ""} ${item.product?.quantityPerItem ?? ""}${item.product?.measurementUnit?.acronym ?? ""}` },
-				{ title: "Barcode", key: "product", align: "start", value: item => item.product?.barcode ?? "" },
+				{ title: "Barcode", key: "barcode", align: "start", value: item => item.product?.barcode ?? "" },
 				{ title: "", key: "actions", align: "end", sortable: false }
 			],
 			itemsPerPageOptions: [
