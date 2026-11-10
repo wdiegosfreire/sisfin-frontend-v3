@@ -1,5 +1,5 @@
 <template>
-	<v-dialog v-model="appStore.globalDialog" width="800">
+	<v-dialog v-model="appStore.globalDialog" width="1000">
 		<v-card class="mb-3">
 			<v-toolbar>
 				<v-toolbar-title>
@@ -13,18 +13,20 @@
 					<v-text-field label="Identity" readonly v-model="product.identity" />
 				</df-grid>
 				<df-grid>
-					<v-text-field label="Barcode" v-model="product.barcode" autofocus />
+					<v-autocomplete label="Product Category" v-model="product.productCategory" item-title="name" item-value="identity" :items="productCategoryListCombo" return-object autofocus />
 				</df-grid>
 				<df-grid>
 					<v-autocomplete label="Brand" v-model="product.brand" item-title="name" item-value="identity" :items="brandListCombo" return-object />
 				</df-grid>
 				<df-grid>
-					<v-autocomplete label="Product Category" v-model="product.productCategory" item-title="name" item-value="identity" :items="productCategoryListCombo" return-object />
-				</df-grid>
-				<df-grid>
-					<v-text-field label="Items per Barcode" type="number" min="1" v-model.number="product.itemPerBarcode" />
-					<v-text-field label="Quantity per Item" type="number" min="1" v-model.number="product.quantityPerItem" />
-					<v-autocomplete label="Measurement Unit" v-model="product.measurementUnit" :item-title="traceMeasurementUnit" item-value="identity" :items="measurementUnitListCombo" return-object />
+					<df-grid column="fixed-2">
+						<v-text-field label="Items per Barcode" type="number" min="1" v-model.number="product.itemPerBarcode" />
+						<v-text-field label="Quantity per Item" type="number" min="1" v-model.number="product.quantityPerItem" />
+					</df-grid>
+					<df-grid column="fixed-2">
+						<v-autocomplete label="Measurement Unit" v-model="product.measurementUnit" :item-title="traceMeasurementUnit" item-value="identity" :items="measurementUnitListCombo" return-object />
+						<v-text-field label="Barcode" v-model="product.barcode" />
+					</df-grid>
 				</df-grid>
 				<df-grid>
 					<v-checkbox label="Favorite" v-model="product.isFavorite" />
