@@ -19,7 +19,7 @@
 					</v-menu>
 				</v-card-title>
 
-				<v-divider></v-divider>
+				<v-divider />
 
 				<v-card-text>
 					<df-grid column="auto-sm">

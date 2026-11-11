@@ -19,7 +19,7 @@
 			<v-list-item-title>{{ computedName }}</v-list-item-title>
 		</v-list-item>
 
-		<v-divider></v-divider>
+		<v-divider />
 
 		<v-list density="compact">
 			<v-list-item>
@@ -93,12 +93,12 @@
 				<v-list-item link @click="accessModuleVehicle()" prepend-icon="mdi-car">Car Management</v-list-item>
 			</v-list-group>
 
-			<v-divider></v-divider>
+			<v-divider />
 
 			<v-list-item link @click="executeBackendAppStart()" prepend-icon="mdi-play-circle-outline">Start</v-list-item>
 			<v-list-item link @click="executeBackendAppStop()" prepend-icon="mdi-stop-circle-outline">Stop</v-list-item>
 
-			<v-divider></v-divider>
+			<v-divider />
 
 			<v-list-item link @click="executeLogout()" prepend-icon="mdi-logout">Log Out</v-list-item>
 		</v-list>
