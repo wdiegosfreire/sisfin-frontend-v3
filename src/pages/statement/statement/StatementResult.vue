@@ -7,7 +7,7 @@
 				<v-card-title class="d-flex align-center">
 					<span>{{ statement.month }}/{{ statement.year }} :: {{ statement.statementType ? statement.statementType.bank.name : "" }} :: {{ statement.statementType ? statement.statementType.name : "" }}</span>
 
-					<v-spacer></v-spacer>
+					<v-spacer />
 					<v-menu>
 						<template v-slot:activator="{ props }">
 							<v-btn v-bind="props" variant="text" icon="mdi-menu" />

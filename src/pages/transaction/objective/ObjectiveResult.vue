@@ -11,7 +11,7 @@
 							<v-icon icon="mdi-arrow-right-thin" /> {{ objective.description }}: R$ {{ currency(objectiveMovement.value) }}
 						</span>
 
-						<v-spacer></v-spacer>
+						<v-spacer />
 						<v-menu>
 							<template v-slot:activator="{ props }">
 								<v-btn v-bind="props" variant="text" icon="mdi-menu" />

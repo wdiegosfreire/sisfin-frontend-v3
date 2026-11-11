@@ -5,7 +5,7 @@
 			<v-date-picker v-model="selectedDate" @update:model-value="updateDate"></v-date-picker>
 
 			<v-card-actions>
-				<v-spacer></v-spacer>
+				<v-spacer />
 				<v-btn text color="primary" @click="dialog = false">Fechar</v-btn>
 			</v-card-actions>
 		</v-card>
