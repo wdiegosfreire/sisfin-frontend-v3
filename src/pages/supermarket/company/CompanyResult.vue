@@ -29,9 +29,7 @@
 					<v-btn v-bind="props" variant="text" icon="mdi-menu" />
 				</template>
 				<v-list width="150">
-					<v-list-item @click="$emit('accessEdition', item)" append-icon="mdi-file-document-edit-outline">
-						<v-list-item-title>Edit</v-list-item-title>
-					</v-list-item>
+					<v-list-item @click="$emit('accessEdition', item)" title="Edit" append-icon="mdi-file-document-edit-outline"></v-list-item>
 					<v-list-item :href="buildMapUrl(item.address)" :disabled="!buildMapUrl(item.address)" target="_blank" rel="noopener noreferrer" append-icon="mdi-map-marker-outline">
 						<v-list-item-title>Map</v-list-item-title>
 					</v-list-item>

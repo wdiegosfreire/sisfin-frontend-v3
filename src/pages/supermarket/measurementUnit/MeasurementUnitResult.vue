@@ -24,9 +24,7 @@
 					<v-btn v-bind="props" variant="text" icon="mdi-menu" />
 				</template>
 				<v-list width="150">
-					<v-list-item @click="$emit('accessEdition', item)" append-icon="mdi-file-document-edit-outline">
-						<v-list-item-title>Edit</v-list-item-title>
-					</v-list-item>
+					<v-list-item @click="$emit('accessEdition', item)" title="Edit" append-icon="mdi-file-document-edit-outline"></v-list-item>
 					<v-list-item @click="$emit('executeExclusion', item)" title="Delete" append-icon="mdi-trash-can-outline"></v-list-item>
 				</v-list>
 			</v-menu>
