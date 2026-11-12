@@ -17,6 +17,7 @@
 		:brand-list-combo="brandListCombo"
 		:product-category-list-combo="productCategoryListCombo"
 		:measurement-unit-list-combo="measurementUnitListCombo"
+		:product-property-list-table="productPropertyListTable"
 
 		@executeRegistration="executeRegistration"
 		@executeEdition="executeEdition"

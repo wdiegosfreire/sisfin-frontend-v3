@@ -17,6 +17,7 @@ export default {
 			brandListCombo: [],
 			productCategoryListCombo: [],
 			measurementUnitListCombo: [],
+			productPropertyListTable: [],
 		};
 	},
 
@@ -45,6 +46,7 @@ export default {
 				this.brandListCombo = response.data.map.brandListCombo;
 				this.productCategoryListCombo = response.data.map.productCategoryListCombo;
 				this.measurementUnitListCombo = response.data.map.measurementUnitListCombo;
+				this.productPropertyListTable = response.data.map.productPropertyListTable ?? [];
 
 				this.appStore.showGlobalDialog(true);
 			}
@@ -61,6 +63,7 @@ export default {
 				this.brandListCombo = response.data.map.brandListCombo;
 				this.productCategoryListCombo = response.data.map.productCategoryListCombo;
 				this.measurementUnitListCombo = response.data.map.measurementUnitListCombo;
+				this.productPropertyListTable = response.data.map.productPropertyListTable ?? [];
 
 				this.appStore.showGlobalDialog(true);
 			}
@@ -121,6 +124,7 @@ export default {
 			product.brand = undefined;
 			product.productCategory = undefined;
 			product.measurementUnit = undefined;
+			product.productInfoList = [];
 
 			this.appStore.showGlobalDialog(false);
 		}
