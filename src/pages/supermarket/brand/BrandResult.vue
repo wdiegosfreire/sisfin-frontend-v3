@@ -18,6 +18,14 @@
 			<span :title="item.identity">{{ item.identity?.split("-")[0] }}</span>
 		</template>
 
+		<template v-slot:[`item.email`]="{ value }">
+			<a v-if="value" :href="`mailto:${value}`">{{ value }}</a>
+		</template>
+
+		<template v-slot:[`item.website`]="{ value }">
+			<a v-if="value" :href="websiteUrl(value)" target="_blank" rel="noopener noreferrer">{{ value }}</a>
+		</template>
+
 		<template v-slot:[`item.actions`]="{ item }">
 			<v-menu>
 				<template v-slot:activator="{ props }">
@@ -60,6 +68,12 @@ export default {
 				{ value: -1, title: "All" }
 			]
 		};
+	},
+
+	methods: {
+		websiteUrl(website) {
+			return /^https?:\/\//i.test(website) ? website : `https://${website}`;
+		}
 	}
 };
 </script>

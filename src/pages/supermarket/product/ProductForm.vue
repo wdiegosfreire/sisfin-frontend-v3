@@ -56,7 +56,11 @@
 					:items-per-page="-1"
 				>
 					<template v-slot:[`item.actions`]="{ item }">
-						<v-btn @click="removeProductInfo(item)" title="Remove" icon="mdi-trash-can-outline" variant="text" size="small" />
+						<div class="d-flex justify-end">
+							<v-btn :disabled="isFirstProductInfo(item)" @click="moveProductInfoUp(item)" title="Move up" icon="mdi-arrow-up" variant="text" size="small" />
+							<v-btn :disabled="isLastProductInfo(item)" @click="moveProductInfoDown(item)" title="Move down" icon="mdi-arrow-down" variant="text" size="small" />
+							<v-btn @click="removeProductInfo(item)" title="Remove" icon="mdi-trash-can-outline" variant="text" size="small" />
+						</div>
 					</template>
 				</v-data-table>
 			</v-card-text>
@@ -121,7 +125,7 @@ export default {
 				{ title: "Order", key: "order", align: "end", width: 100, sortable: false },
 				{ title: "Property", key: "productProperty", align: "start", sortable: false, value: item => item.productProperty?.name ?? "" },
 				{ title: "Description", key: "description", align: "start", sortable: false },
-				{ title: "", key: "actions", align: "end", sortable: false, width: 60 }
+				{ title: "", key: "actions", align: "end", sortable: false, width: 140 }
 			]
 		}
 	},
@@ -251,6 +255,33 @@ export default {
 				this.product.productInfoList.splice(index, 1);
 				this.reorderProductInfoList();
 			}
+		},
+
+		isFirstProductInfo(item) {
+			return this.product.productInfoList.indexOf(item) === 0;
+		},
+
+		isLastProductInfo(item) {
+			return this.product.productInfoList.indexOf(item) === this.product.productInfoList.length - 1;
+		},
+
+		moveProductInfoUp(item) {
+			this.swapProductInfo(this.product.productInfoList.indexOf(item), -1);
+		},
+
+		moveProductInfoDown(item) {
+			this.swapProductInfo(this.product.productInfoList.indexOf(item), 1);
+		},
+
+		swapProductInfo(index, offset) {
+			const list = this.product.productInfoList;
+			const target = index + offset;
+
+			if (index < 0 || target < 0 || target >= list.length)
+				return;
+
+			[list[index], list[target]] = [list[target], list[index]];
+			this.reorderProductInfoList();
 		},
 
 		traceMeasurementUnit(item) {
