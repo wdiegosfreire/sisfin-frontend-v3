@@ -57,9 +57,9 @@
 				>
 					<template v-slot:[`item.actions`]="{ item }">
 						<div class="d-flex justify-end">
-							<v-btn :disabled="isFirstProductInfo(item)" @click="moveProductInfoUp(item)" title="Move up" icon="mdi-arrow-up" variant="text" size="small" />
-							<v-btn :disabled="isLastProductInfo(item)" @click="moveProductInfoDown(item)" title="Move down" icon="mdi-arrow-down" variant="text" size="small" />
-							<v-btn @click="removeProductInfo(item)" title="Remove" icon="mdi-trash-can-outline" variant="text" size="small" />
+							<v-btn :disabled="isFirstProductInfo(item)" @click="moveProductInfoUp(item)" title="Move up" icon="mdi-arrow-up" variant="text" size="small" tabindex="-1" />
+							<v-btn :disabled="isLastProductInfo(item)" @click="moveProductInfoDown(item)" title="Move down" icon="mdi-arrow-down" variant="text" size="small" tabindex="-1" />
+							<v-btn @click="removeProductInfo(item)" title="Remove" icon="mdi-trash-can-outline" variant="text" size="small" tabindex="-1" />
 						</div>
 					</template>
 				</v-data-table>

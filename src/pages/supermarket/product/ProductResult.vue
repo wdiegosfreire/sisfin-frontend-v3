@@ -80,8 +80,8 @@ export default {
 				{ title: "Identity", key: "identity", cellProps: { class: "df-identity" } },
 				{ title: "Category", key: "productCategory", align: "start", value: item => item.productCategory?.name ?? "" },
 				{ title: "Brand", key: "brand", align: "start", value: item => item.brand?.name ?? "" },
-				{ title: "Quantity per Item", key: "quantityPerItem", align: "end", value: item => `${item.quantityPerItem ?? ""} ${item.measurementUnit?.acronym ?? ""}`.trim() },
-				{ title: "Items per Barcode", key: "itemPerBarcode", align: "end" },
+				{ title: "Quantity/Item", key: "quantityPerItem", align: "end", value: item => `${item.quantityPerItem ?? ""} ${item.measurementUnit?.acronym ?? ""}`.trim() },
+				{ title: "Items/Barcode", key: "itemPerBarcode", align: "end" },
 				{ title: "Barcode", key: "barcode", align: "start" },
 				{ title: "Favorite", key: "isFavorite", align: "center" },
 				{ title: "", key: "actions", align: "end", sortable: false }
