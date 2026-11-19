@@ -23,7 +23,7 @@
 
 		<v-list density="compact">
 			<v-list-item>
-				<v-autocomplete v-model="themeSelected" label="Theme" :items="themeList" item-title="name" item-value="value" @update:modelValue="themeChange();" return-object />
+				<v-autocomplete v-model="themeSelected" label="Theme" :items="themeList" item-title="name" item-value="value" @update:modelValue="themeChange();" />
 				<v-autocomplete v-model="themeDark" label="Dark Theme" :items="decisionList" item-title="label" item-value="value" @update:modelValue="themeChange();" />
 			</v-list-item>
 
@@ -109,6 +109,7 @@
 <script>
 import { useTheme } from 'vuetify';
 import { useAppStore } from '@/stores/app';
+import { DEFAULT_THEME, loadThemePreference, saveThemePreference, themeList, themeName } from '@/plugins/themes';
 
 import maintenanceApi from "../../components/axios/maintenance/maintenanceApi.js";
 import message from "../../components/mixins/message";
@@ -124,7 +125,7 @@ export default {
 			showNavigationDrawer: false,
 
 			themeDark: false,
-			themeSelected: {},
+			themeSelected: DEFAULT_THEME,
 			themeRef: null,
 
 			decisionList: [
@@ -132,50 +133,7 @@ export default {
 				{ label: 'Yes', value: true }
 			],
 
-			themeList: [
-				{
-					name: "Blue",
-					value: "blue",
-					light: { primary: '#2196F3', secondary: '#BBDEFB', accent: '#E91E63', success: '#4CAF50', info: '#2196F3', warning: '#FB8C00', error: '#FF5252' },
-					dark: { primary: '#2196F3', secondary: '#BBDEFB', accent: '#E91E63', success: '#4CAF50', info: '#2196F3', warning: '#FB8C00', error: '#FF5252' }
-				},
-				{
-					name: "Cyan",
-					value: "cyan",
-					light: { primary: '#00BCD4', secondary: '#80DEEA', accent: '#E0F7FA', success: '#4CAF50', info: '#2196F3', warning: '#FFC107', error: '#D32F2F' },
-					dark: { primary: '#00BCD4', secondary: '#80DEEA', accent: '#E0F7FA', success: '#4CAF50', info: '#2196F3', warning: '#FFC107', error: '#D32F2F' }
-				},
-				{
-					name: "Blue Gray",
-					value: "blueGray",
-					light: { primary: '#607D8B', secondary: '#FFC107', accent: '#FF5722', success: '#4CAF50', info: '#03A9F4', warning: '#FF9800', error: '#F44336' },
-					dark: { primary: '#607D8B', secondary: '#FFC107', accent: '#FF5722', success: '#4CAF50', info: '#03A9F4', warning: '#FF9800', error: '#F44336' }
-				},
-				{
-					name: "Deep Purple",
-					value: "deepPurple",
-					light: { primary: '#673AB7', secondary: '#9575CD', accent: '#D1C4E9', success: '#4CAF50', info: '#29B6F6', warning: '#FFC107', error: '#D32F2F' },
-					dark: { primary: '#673AB7', secondary: '#9575CD', accent: '#D1C4E9', success: '#4CAF50', info: '#29B6F6', warning: '#FFC107', error: '#D32F2F' }
-				},
-				{
-					name: "Deep Orange",
-					value: "deepOrange",
-					light: { primary: '#FF5722', secondary: '#FFC107', accent: '#4CAF50', success: '#8BC34A', info: '#2196F3', warning: '#FF9800', error: '#D32F2F' },
-					dark: { primary: '#FF5722', secondary: '#795548', accent: '#FF9800', error: '#D32F2F', warning: '#FF9800', info: '#2196F3', success: '#8BC34A' }
-				},
-				{
-					name: "Pink",
-					value: "pink",
-					light: { primary: '#E91E63', secondary: '#9C27B0', accent: '#FF9800', error: '#F44336', warning: '#FFC107', info: '#2196F3', success: '#4CAF50' },
-					dark: { primary: '#E91E63', secondary: '#673AB7', accent: '#FF5722', error: '#D32F2F', warning: '#FF9800', info: '#03A9F4', success: '#8BC34A' }
-				},
-				{
-					name: "Gray",
-					value: "gray",
-					light: { primary: '#9E9E9E', secondary: '#607D8B', accent: '#FF9800', error: '#F44336', warning: '#FFC107', info: '#2196F3', success: '#4CAF50' },
-					dark: { primary: '#9E9E9E', secondary: '#455A64', accent: '#FF5722', error: '#D32F2F', warning: '#FF9800', info: '#03A9F4', success: '#8BC34A' }
-				},
-			],
+			themeList,
 		}
 	},
 
@@ -293,37 +251,18 @@ export default {
 			if (!this.themeRef)
 				return;
 
-			this.themeRef.change(this.themeDark ? 'dark' : 'light');
-
-			this.themeRef.themes.light.colors.primary = this.themeSelected.light.primary;
-			this.themeRef.themes.light.colors.secondary = this.themeSelected.light.secondary;
-			this.themeRef.themes.light.colors.accent = this.themeSelected.light.accent;
-			this.themeRef.themes.light.colors.success = this.themeSelected.light.success;
-			this.themeRef.themes.light.colors.info = this.themeSelected.light.info;
-			this.themeRef.themes.light.colors.warning = this.themeSelected.light.warning;
-			this.themeRef.themes.light.colors.error = this.themeSelected.light.error;
-
-			this.themeRef.themes.dark.colors.primary = this.themeSelected.dark.primary;
-			this.themeRef.themes.dark.colors.secondary = this.themeSelected.dark.secondary;
-			this.themeRef.themes.dark.colors.accent = this.themeSelected.dark.accent;
-			this.themeRef.themes.dark.colors.success = this.themeSelected.dark.success;
-			this.themeRef.themes.dark.colors.info = this.themeSelected.dark.info;
-			this.themeRef.themes.dark.colors.warning = this.themeSelected.dark.warning;
-			this.themeRef.themes.dark.colors.error = this.themeSelected.dark.error;
-
-			localStorage.setItem('themeSelected', this.themeSelected.value);
-			localStorage.setItem('themeDark', String(this.themeDark));
+			this.themeRef.change(themeName(this.themeSelected, this.themeDark));
+			saveThemePreference(this.themeSelected, this.themeDark);
 		},
 	},
 
 	created() {
 		this.themeRef = useTheme();
 
-		const savedTheme = localStorage.getItem('themeSelected');
-		this.themeSelected = this.themeList.find(theme => theme.value === savedTheme) ?? this.themeList[3];
-		this.themeDark = localStorage.getItem('themeDark') === 'true';
-
-		this.themeChange();
+		// The saved theme is already applied by plugins/vuetify.js; here it only syncs the selection fields.
+		const themePreference = loadThemePreference();
+		this.themeSelected = themePreference.value;
+		this.themeDark = themePreference.dark;
 
 		this.executeBackendAppStart();
 	},
