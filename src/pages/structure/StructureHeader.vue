@@ -310,12 +310,19 @@ export default {
 			this.themeRef.themes.dark.colors.info = this.themeSelected.dark.info;
 			this.themeRef.themes.dark.colors.warning = this.themeSelected.dark.warning;
 			this.themeRef.themes.dark.colors.error = this.themeSelected.dark.error;
+
+			localStorage.setItem('themeSelected', this.themeSelected.value);
+			localStorage.setItem('themeDark', String(this.themeDark));
 		},
 	},
 
 	created() {
 		this.themeRef = useTheme();
-		this.themeSelected = this.themeList[3];
+
+		const savedTheme = localStorage.getItem('themeSelected');
+		this.themeSelected = this.themeList.find(theme => theme.value === savedTheme) ?? this.themeList[3];
+		this.themeDark = localStorage.getItem('themeDark') === 'true';
+
 		this.themeChange();
 
 		this.executeBackendAppStart();
