@@ -14,8 +14,6 @@
 				</df-grid>
 				<df-grid>
 					<v-autocomplete label="Product Category" v-model="product.productCategory" item-title="name" item-value="identity" :items="productCategoryListCombo" return-object autofocus />
-				</df-grid>
-				<df-grid>
 					<v-autocomplete label="Brand" v-model="product.brand" item-title="name" item-value="identity" :items="brandListCombo" return-object />
 				</df-grid>
 				<df-grid>
@@ -36,16 +34,28 @@
 
 				<div class="text-subtitle-1 mb-3">Product Information</div>
 
-				<df-grid>
-					<df-grid column="fixed-2">
-						<v-text-field label="Order" :model-value="nextProductInfoOrder()" readonly />
+				<v-row dense>
+					<v-col cols="3" md="1">
+						<v-text-field label="Order" :model-value="nextProductInfoOrder()" tabindex="-1" readonly />
+					</v-col>
+					<v-col cols="9" md="3">
 						<v-autocomplete label="Property" v-model="productInfo.productProperty" item-title="name" item-value="identity" :items="productPropertyListTable" return-object />
-					</df-grid>
-					<df-grid column="fixed-2">
+					</v-col>
+					<v-col cols="12" md="4">
 						<v-text-field label="Description" v-model="productInfo.description" @keyup.enter="addProductInfo" />
-						<v-btn class="mt-2" height="40" @click="addProductInfo" variant="tonal" color="primary" prepend-icon="mdi-plus">Add</v-btn>
-					</df-grid>
-				</df-grid>
+					</v-col>
+					<v-col cols="6" md="2">
+						<v-switch label="Show Info" v-model="productInfo.showInfo" color="primary" true-icon="mdi-check" false-icon="mdi-close" inset />
+					</v-col>
+					<v-col cols="6" md="2">
+						<v-switch label="Show Label" v-model="productInfo.showLabel" color="primary" true-icon="mdi-check" false-icon="mdi-close" inset />
+					</v-col>
+				</v-row>
+				<v-row dense justify="end" class="mb-3">
+					<v-col cols="auto">
+						<v-btn height="40" @click="addProductInfo" variant="tonal" color="primary" prepend-icon="mdi-plus">Add</v-btn>
+					</v-col>
+				</v-row>
 
 				<v-data-table
 					:headers="productInfoHeaders"
@@ -55,6 +65,12 @@
 					hide-default-footer
 					:items-per-page="-1"
 				>
+					<template v-slot:[`item.showInfo`]="{ item }">
+						<v-icon v-if="item.showInfo" icon="mdi-check" color="primary" size="small" />
+					</template>
+					<template v-slot:[`item.showLabel`]="{ item }">
+						<v-icon v-if="item.showLabel" icon="mdi-check" color="primary" size="small" />
+					</template>
 					<template v-slot:[`item.actions`]="{ item }">
 						<div class="d-flex justify-end">
 							<v-btn :disabled="isFirstProductInfo(item)" @click="moveProductInfoUp(item)" title="Move up" icon="mdi-arrow-up" variant="text" size="small" tabindex="-1" />
@@ -125,6 +141,8 @@ export default {
 				{ title: "Order", key: "order", align: "end", width: 100, sortable: false },
 				{ title: "Property", key: "productProperty", align: "start", sortable: false, value: item => item.productProperty?.name ?? "" },
 				{ title: "Description", key: "description", align: "start", sortable: false },
+				{ title: "Show Info", key: "showInfo", align: "center", width: 110, sortable: false },
+				{ title: "Show Label", key: "showLabel", align: "center", width: 110, sortable: false },
 				{ title: "", key: "actions", align: "end", sortable: false, width: 140 }
 			]
 		}
@@ -138,6 +156,11 @@ export default {
 		if (!Array.isArray(this.product.productInfoList)) {
 			this.product.productInfoList = [];
 		}
+
+		this.product.productInfoList.forEach(item => {
+			item.showInfo = item.showInfo ?? false;
+			item.showLabel = item.showLabel ?? false;
+		});
 
 		this.product.productInfoList.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
 	},
@@ -215,7 +238,7 @@ export default {
 		},
 
 		newProductInfo() {
-			return { description: "", productProperty: undefined };
+			return { description: "", productProperty: undefined, showInfo: false, showLabel: false };
 		},
 
 		nextProductInfoOrder() {
@@ -242,7 +265,9 @@ export default {
 			this.product.productInfoList.push({
 				order: this.nextProductInfoOrder(),
 				description: this.productInfo.description.trim(),
-				productProperty: this.productInfo.productProperty
+				productProperty: this.productInfo.productProperty,
+				showInfo: !!this.productInfo.showInfo,
+				showLabel: !!this.productInfo.showLabel
 			});
 
 			this.productInfo = this.newProductInfo();

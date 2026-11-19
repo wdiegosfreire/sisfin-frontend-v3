@@ -39,7 +39,14 @@
 		<template v-slot:expanded-row="{ columns, item }">
 			<tr v-if="hasProductInfo(item)">
 				<td :colspan="columns.length" class="pa-4">
-					<v-data-table :items="sortedProductInfoList(item)" :headers="productInfoHeaders" :items-per-page="-1" density="compact" hide-default-footer />
+					<v-data-table :items="sortedProductInfoList(item)" :headers="productInfoHeaders" :items-per-page="-1" density="compact" hide-default-footer>
+						<template v-slot:[`item.showInfo`]="{ item: info }">
+							<v-icon v-if="info.showInfo" icon="mdi-check" color="primary" size="small" />
+						</template>
+						<template v-slot:[`item.showLabel`]="{ item: info }">
+							<v-icon v-if="info.showLabel" icon="mdi-check" color="primary" size="small" />
+						</template>
+					</v-data-table>
 				</td>
 			</tr>
 		</template>
@@ -60,6 +67,8 @@
 
 <script>
 import DfOutputBarcode from "@/components/df-output/OutputBarcode.vue";
+
+import { traceProductDetails } from "@/utils/filters.js";
 
 export default {
 	name: "ProductResult",
@@ -82,6 +91,7 @@ export default {
 				{ title: "Brand", key: "brand", align: "start", value: item => item.brand?.name ?? "" },
 				{ title: "Quantity/Item", key: "quantityPerItem", align: "end", value: item => `${item.quantityPerItem ?? ""} ${item.measurementUnit?.acronym ?? ""}`.trim() },
 				{ title: "Items/Barcode", key: "itemPerBarcode", align: "end" },
+				{ title: "Product Details", key: "productDetails", align: "start", value: item => traceProductDetails(item) },
 				{ title: "Barcode", key: "barcode", align: "start" },
 				{ title: "Favorite", key: "isFavorite", align: "center" },
 				{ title: "", key: "actions", align: "end", sortable: false }
@@ -89,7 +99,9 @@ export default {
 			productInfoHeaders: [
 				{ title: "Order", key: "order", align: "end", width: 100, sortable: false },
 				{ title: "Property", key: "productProperty", align: "start", sortable: false, value: info => info.productProperty?.name ?? "" },
-				{ title: "Description", key: "description", align: "start", sortable: false }
+				{ title: "Description", key: "description", align: "start", sortable: false },
+				{ title: "Show Info", key: "showInfo", align: "center", width: 110, sortable: false },
+				{ title: "Show Label", key: "showLabel", align: "center", width: 110, sortable: false }
 			],
 			itemsPerPageOptions: [
 				{ value: 10, title: "10" },

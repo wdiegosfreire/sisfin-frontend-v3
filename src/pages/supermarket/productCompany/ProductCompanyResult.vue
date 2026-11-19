@@ -44,7 +44,14 @@
 
 			<v-card-text>
 				<div v-if="selectedItem" class="text-subtitle-1 mb-3">{{ selectedItem.description }}</div>
-				<v-data-table :items="selectedProductInfoList" :headers="productInfoHeaders" :items-per-page="-1" density="compact" no-data-text="No information added." hide-default-footer />
+				<v-data-table :items="selectedProductInfoList" :headers="productInfoHeaders" :items-per-page="-1" density="compact" no-data-text="No information added." hide-default-footer>
+					<template v-slot:[`item.showInfo`]="{ item: info }">
+						<v-icon v-if="info.showInfo" icon="mdi-check" color="primary" size="small" />
+					</template>
+					<template v-slot:[`item.showLabel`]="{ item: info }">
+						<v-icon v-if="info.showLabel" icon="mdi-check" color="primary" size="small" />
+					</template>
+				</v-data-table>
 			</v-card-text>
 
 			<v-card-actions>
@@ -56,6 +63,8 @@
 
 <script>
 import DfOutputBarcode from "@/components/df-output/OutputBarcode.vue";
+
+import { traceProductDetails } from "@/utils/filters.js";
 
 export default {
 	name: "ProductCompanyResult",
@@ -79,14 +88,16 @@ export default {
 				{ title: "Company", key: "company", align: "start", value: item => item.company?.fantasyName || item.company?.name || "" },
 				{ title: "Code", key: "code", align: "start" },
 				{ title: "Description", key: "description", align: "start" },
-				{ title: "Product Details", key: "productCategoryName", align: "start", value: item => `${item.product?.productCategory?.name ?? ""} ${item.product?.brand?.name && item.product?.brand?.name !== "N/A" ? item.product?.brand?.name : ""} ${item.product?.quantityPerItem ?? ""}${item.product?.measurementUnit?.acronym ?? ""}` },
+				{ title: "Product Details", key: "productCategoryName", align: "start", value: item => traceProductDetails(item.product) },
 				{ title: "Barcode", key: "barcode", align: "start", value: item => item.product?.barcode ?? "" },
 				{ title: "", key: "actions", align: "end", sortable: false }
 			],
 			productInfoHeaders: [
 				{ title: "Order", key: "order", align: "end", width: 100, sortable: false },
 				{ title: "Property", key: "productProperty", align: "start", sortable: false, value: info => info.productProperty?.name ?? "" },
-				{ title: "Description", key: "description", align: "start", sortable: false }
+				{ title: "Description", key: "description", align: "start", sortable: false },
+				{ title: "Show Info", key: "showInfo", align: "center", width: 110, sortable: false },
+				{ title: "Show Label", key: "showLabel", align: "center", width: 110, sortable: false }
 			],
 			itemsPerPageOptions: [
 				{ value: 10, title: "10" },

@@ -56,6 +56,8 @@ import DfGrid from "@/components/grid/Grid.vue";
 
 import message from "@/components/mixins/message.js";
 
+import { traceProductDetails } from "@/utils/filters.js";
+
 export default {
 	name: "ProductCompanyForm",
 
@@ -82,9 +84,7 @@ export default {
 			productSearch: "",
 			productHeaders: [
 				{ title: "Identity", key: "identity", cellProps: { class: "df-identity" } },
-				{ title: "Category", key: "productCategory", align: "start", value: item => item.productCategory?.name ?? "" },
-				{ title: "Brand", key: "brand", align: "start", value: item => item.brand?.name ?? "" },
-				{ title: "Quantity per Item", key: "quantityPerItem", align: "end", value: item => `${item.quantityPerItem ?? ""} ${item.measurementUnit?.acronym ?? ""}`.trim() },
+				{ title: "Product Details", key: "productDetails", align: "start", value: item => traceProductDetails(item) },
 				{ title: "Barcode", key: "barcode", align: "start" }
 			],
 			itemsPerPageOptions: [
