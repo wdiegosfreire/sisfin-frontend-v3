@@ -19,12 +19,14 @@ const semanticColors = {
 // Light variants use 700-ish tones (readable with white text); dark variants use 200-300 tones (readable on dark surfaces).
 const palettes = [
 	{ name: 'Blue', value: 'blue', light: { primary: '#1976D2', secondary: '#64B5F6' }, dark: { primary: '#64B5F6', secondary: '#90CAF9' } },
-	{ name: 'Cyan', value: 'cyan', light: { primary: '#00838F', secondary: '#4DD0E1' }, dark: { primary: '#4DD0E1', secondary: '#80DEEA' } },
-	{ name: 'Blue Gray', value: 'blueGray', light: { primary: '#546E7A', secondary: '#90A4AE' }, dark: { primary: '#90A4AE', secondary: '#B0BEC5' } },
+	{ name: 'Indigo', value: 'indigo', light: { primary: '#3949AB', secondary: '#7986CB' }, dark: { primary: '#9FA8DA', secondary: '#C5CAE9' } },
+	{ name: 'Teal', value: 'teal', light: { primary: '#00796B', secondary: '#4DB6AC' }, dark: { primary: '#80CBC4', secondary: '#B2DFDB' } },
 	{ name: 'Deep Purple', value: 'deepPurple', light: { primary: '#673AB7', secondary: '#9575CD' }, dark: { primary: '#B39DDB', secondary: '#D1C4E9' } },
-	{ name: 'Deep Orange', value: 'deepOrange', light: { primary: '#D84315', secondary: '#FF8A65' }, dark: { primary: '#FF8A65', secondary: '#FFAB91' } },
-	{ name: 'Pink', value: 'pink', light: { primary: '#C2185B', secondary: '#F06292' }, dark: { primary: '#F06292', secondary: '#F48FB1' } },
-	{ name: 'Gray', value: 'gray', light: { primary: '#616161', secondary: '#9E9E9E' }, dark: { primary: '#BDBDBD', secondary: '#E0E0E0' } },
+	{ name: 'Plum', value: 'plum', light: { primary: '#6A1B5A', secondary: '#9C4A8B' }, dark: { primary: '#D8A6CC', secondary: '#E8C8E0' } },
+	{ name: 'Wine', value: 'wine', light: { primary: '#880E4F', secondary: '#C2185B' }, dark: { primary: '#F48FB1', secondary: '#F8BBD0' } },
+	{ name: 'Brown', value: 'brown', light: { primary: '#6D4C41', secondary: '#A1887F' }, dark: { primary: '#BCAAA4', secondary: '#D7CCC8' } },
+	{ name: 'Slate', value: 'slate', light: { primary: '#37474F', secondary: '#78909C' }, dark: { primary: '#B0BEC5', secondary: '#CFD8DC' } },
+	{ name: 'Graphite', value: 'graphite', light: { primary: '#2B2B2B', secondary: '#616161' }, dark: { primary: '#E0E0E0', secondary: '#BDBDBD' } },
 ];
 
 export const themeList = palettes.map(({ name, value }) => ({ name, value }));
