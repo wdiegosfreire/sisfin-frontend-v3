@@ -27,7 +27,7 @@
 					</df-grid>
 				</df-grid>
 				<df-grid>
-					<v-checkbox label="Favorite" v-model="product.isFavorite" />
+					<v-switch label="Favorite" v-model="product.isFavorite" color="primary" true-icon="mdi-check" false-icon="mdi-close" inset />
 				</df-grid>
 
 				<v-divider class="my-4" />

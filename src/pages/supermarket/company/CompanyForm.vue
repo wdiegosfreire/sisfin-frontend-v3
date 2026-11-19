@@ -22,9 +22,8 @@
 					<v-text-field label="Fantasy Name" v-model="company.fantasyName" />
 				</df-grid>
 				<df-grid>
-					<v-checkbox label="Inactive" v-model="company.isInactive" />
+					<v-switch label="Inactive" v-model="company.isInactive" color="primary" true-icon="mdi-check" false-icon="mdi-close" inset />
 				</df-grid>
-
 				<df-grid>
 					<v-text-field label="Street" v-model="company.address.street" />
 					<v-text-field label="Number" v-model="company.address.number" />
