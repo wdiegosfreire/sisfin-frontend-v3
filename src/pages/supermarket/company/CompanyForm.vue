@@ -9,30 +9,39 @@
 			</v-toolbar>
 
 			<v-card-text>
-				<df-grid v-if="company.identity">
-					<v-text-field label="Identity" readonly v-model="company.identity" />
-				</df-grid>
-				<df-grid>
-					<df-input-mask label="Tax Number" v-model="company.taxNumber" mask="##.###.###/####-##" autofocus />
-				</df-grid>
-				<df-grid>
-					<v-text-field label="Name" v-model="company.name" />
-				</df-grid>
-				<df-grid>
-					<v-text-field label="Fantasy Name" v-model="company.fantasyName" />
-				</df-grid>
-				<df-grid>
-					<v-switch label="Inactive" v-model="company.isInactive" color="primary" true-icon="mdi-check" false-icon="mdi-close" inset />
-				</df-grid>
-				<df-grid>
-					<v-text-field label="Street" v-model="company.address.street" />
-					<v-text-field label="Number" v-model="company.address.number" />
-				</df-grid>
-				<df-grid>
-					<v-text-field label="Neighborhood" v-model="company.address.neighborhood" />
-					<df-input-mask label="Zip Code" v-model="company.address.zipCode" mask="#####-###" />
-					<v-text-field label="City" v-model="company.address.city" />
-				</df-grid>
+				<v-row dense>
+					<v-col v-if="company.identity" cols="12">
+						<v-text-field v-model="company.identity" label="Identity" tabindex="-1" readonly />
+					</v-col>
+					<v-col cols="12" md="9">
+						<v-text-field label="Fantasy Name" v-model="company.fantasyName" autofocus />
+					</v-col>
+					<v-col cols="12" md="3">
+						<v-switch v-model="company.isInactive" label="Inactive" color="primary" true-icon="mdi-check" false-icon="mdi-close" inset />
+					</v-col>
+					<v-col cols="12" md="9">
+						<v-text-field v-model="company.name" label="Name" :tabindex="!!company.identity ? -1 : ''" :readonly="!!company.identity" />
+					</v-col>
+					<v-col cols="12" md="3">
+						<df-input-mask v-model="company.taxNumber" label="Tax Number" :tabindex="!!company.identity ? -1 : ''" mask="##.###.###/####-##" :readonly="!!company.identity" />
+					</v-col>
+					<v-col cols="9">
+						<v-text-field v-model="company.address.street" label="Street" />
+					</v-col>
+					<v-col cols="3">
+						<v-text-field v-model="company.address.number" label="Number" />
+					</v-col>
+
+					<v-col cols="12" md="6">
+						<v-text-field v-model="company.address.neighborhood" label="Neighborhood" />
+					</v-col>
+					<v-col cols="6" md="3">
+						<df-input-mask v-model="company.address.zipCode" label="Zip Code" mask="#####-###" />
+					</v-col>
+					<v-col cols="6" md="3">
+						<v-text-field v-model="company.address.city" label="City" />
+					</v-col>
+				</v-row>
 			</v-card-text>
 
 			<v-card-actions>
@@ -49,7 +58,6 @@
 <script>
 import { useAppStore } from '@/stores/app';
 
-import DfGrid from "@/components/grid/Grid.vue";
 import DfInputMask from "@/components/df-input/InputMask.vue";
 
 import message from "@/components/mixins/message.js";
@@ -57,7 +65,7 @@ import message from "@/components/mixins/message.js";
 export default {
 	name: "CompanyForm",
 
-	components: { DfGrid, DfInputMask },
+	components: { DfInputMask },
 
 	mixins: [ message],
 

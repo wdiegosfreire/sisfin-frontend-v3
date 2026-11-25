@@ -52,6 +52,7 @@ declare module 'vue-router/auto-routes' {
     '/supermarket/productCompany/ProductCompany': RouteRecordInfo<'/supermarket/productCompany/ProductCompany', '/supermarket/productCompany/ProductCompany', Record<never, never>, Record<never, never>>,
     '/supermarket/productCompany/ProductCompanyForm': RouteRecordInfo<'/supermarket/productCompany/ProductCompanyForm', '/supermarket/productCompany/ProductCompanyForm', Record<never, never>, Record<never, never>>,
     '/supermarket/productCompany/ProductCompanyResult': RouteRecordInfo<'/supermarket/productCompany/ProductCompanyResult', '/supermarket/productCompany/ProductCompanyResult', Record<never, never>, Record<never, never>>,
+    '/supermarket/productCompany/ProductCompanyTaxCouponForm': RouteRecordInfo<'/supermarket/productCompany/ProductCompanyTaxCouponForm', '/supermarket/productCompany/ProductCompanyTaxCouponForm', Record<never, never>, Record<never, never>>,
     '/supermarket/productProperty/ProductProperty': RouteRecordInfo<'/supermarket/productProperty/ProductProperty', '/supermarket/productProperty/ProductProperty', Record<never, never>, Record<never, never>>,
     '/supermarket/productProperty/ProductPropertyForm': RouteRecordInfo<'/supermarket/productProperty/ProductPropertyForm', '/supermarket/productProperty/ProductPropertyForm', Record<never, never>, Record<never, never>>,
     '/supermarket/productProperty/ProductPropertyResult': RouteRecordInfo<'/supermarket/productProperty/ProductPropertyResult', '/supermarket/productProperty/ProductPropertyResult', Record<never, never>, Record<never, never>>,
@@ -221,6 +222,10 @@ declare module 'vue-router/auto-routes' {
     }
     'src/pages/supermarket/productCompany/ProductCompanyResult.vue': {
       routes: '/supermarket/productCompany/ProductCompanyResult'
+      views: never
+    }
+    'src/pages/supermarket/productCompany/ProductCompanyTaxCouponForm.vue': {
+      routes: '/supermarket/productCompany/ProductCompanyTaxCouponForm'
       views: never
     }
     'src/pages/supermarket/productProperty/ProductProperty.vue': {

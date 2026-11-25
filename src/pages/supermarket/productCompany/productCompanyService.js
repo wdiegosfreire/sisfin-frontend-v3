@@ -15,6 +15,7 @@ export default {
 			productCompanyForm: {},
 			productCompanyListResult: [],
 			productListTable: [],
+			formType: "",
 		};
 	},
 
@@ -33,6 +34,11 @@ export default {
 			}
 		},
 
+		accessRegistration() {
+			this.formType = "taxCoupon";
+			this.appStore.showGlobalDialog(true);
+		},
+
 		async accessEdition(productCompany) {
 			try {
 				let productCompanyEddited = {
@@ -44,6 +50,7 @@ export default {
 				this.productCompanyForm = response.data.map.productCompany;
 				this.productListTable = response.data.map.productListTable;
 
+				this.formType = "edition";
 				this.appStore.showGlobalDialog(true);
 			}
 			catch (error) {
@@ -57,6 +64,33 @@ export default {
 				await this.$_transaction_post("/productCompany/executeEdition", productCompany);
 
 				this.closeForm(productCompany);
+				this.$_message_showSuccess();
+				this.accessModule();
+			}
+			catch (error) {
+				this.$_message_handleError(error);
+			}
+		},
+
+		async executeRegistration(file) {
+			try {
+				const toBase64 = file => new Promise((resolve, reject) => {
+					const reader = new FileReader();
+					reader.readAsDataURL(file);
+					reader.onload = () => resolve(reader.result);
+					reader.onerror = reject;
+				});
+
+				let productCompany = {
+					userIdentity: this.appStore.userIdentity,
+					props: {
+						taxCouponFile: await toBase64(file)
+					}
+				};
+
+				await this.$_transaction_post("/productCompany/executeRegistration", productCompany);
+
+				this.closeTaxCouponForm();
 				this.$_message_showSuccess();
 				this.accessModule();
 			}
@@ -87,6 +121,10 @@ export default {
 			productCompany.company = undefined;
 			productCompany.product = undefined;
 
+			this.appStore.showGlobalDialog(false);
+		},
+
+		closeTaxCouponForm() {
 			this.appStore.showGlobalDialog(false);
 		}
 	},
