@@ -1,0 +1,90 @@
+<template>
+	<v-data-table
+		:headers="headers"
+		:items="collection"
+		:search="search"
+		:items-per-page="10"
+		:items-per-page-options="itemsPerPageOptions"
+		item-value="identity"
+		density="comfortable"
+		no-data-text="No results found."
+		hover >
+
+		<template v-slot:top>
+			<v-text-field v-model="search" label="Filter" prepend-inner-icon="mdi-magnify" variant="outlined" density="compact" hide-details clearable class="mb-4" />
+		</template>
+
+		<template v-slot:[`item.identity`]="{ item }">
+			<span :title="item.identity">{{ item.identity?.split("-")[0] }}</span>
+		</template>
+
+		<template v-slot:[`item.isInactive`]="{ item }">
+			<span v-if="item.isInactive">Inactive</span>
+			<span v-else>Active</span>
+		</template>
+
+		<template v-slot:[`item.actions`]="{ item }">
+			<v-menu>
+				<template v-slot:activator="{ props }">
+					<v-btn v-bind="props" variant="text" icon="mdi-menu" />
+				</template>
+				<v-list width="150">
+					<v-list-item @click="$emit('accessEdition', item)" title="Edit" append-icon="mdi-file-document-edit-outline" />
+					<v-list-item :href="buildMapUrl(item.address)" title="Map" :disabled="!buildMapUrl(item.address)" target="_blank" rel="noopener noreferrer" append-icon="mdi-map-marker-outline" />
+					<v-list-item @click="$emit('executeExclusion', item)" title="Delete" append-icon="mdi-trash-can-outline" />
+				</v-list>
+			</v-menu>
+		</template>
+	</v-data-table>
+</template>
+
+<script>
+export default {
+	name: "CompanyResult",
+
+	props: {
+		collection: {
+			type: Array,
+			required: true
+		}
+	},
+
+	data() {
+		return {
+			search: "",
+			headers: [
+				{ title: "Identity", key: "identity", cellProps: { class: "df-identity" } },
+				{ title: "Fantasy Name", key: "fantasyName", align: "start" },
+				{ title: "Name", key: "name", align: "start" },
+				{ title: "Tax Number", key: "taxNumber", align: "start", width: "180px" },
+				{ title: "Street", key: "address.street", align: "start" },
+				{ title: "Number", key: "address.number", align: "start" },
+				{ title: "Neighborhood", key: "address.neighborhood", align: "start" },
+				{ title: "City", key: "address.city", align: "start" },
+				{ title: "Status", key: "isInactive", align: "start" },
+				{ title: "", key: "actions", align: "end", sortable: false }
+			],
+			itemsPerPageOptions: [
+				{ value: 10, title: "10" },
+				{ value: 50, title: "50" },
+				{ value: 100, title: "100" },
+				{ value: -1, title: "All" }
+			]
+		};
+	},
+
+	methods: {
+		buildMapUrl(address) {
+			if (!address) return null;
+
+			const streetLine = [address.street, address.number].filter(Boolean).join(", ");
+			const parts = [streetLine, address.neighborhood, address.city, address.zipCode].filter(Boolean);
+
+			if (parts.length === 0) return null;
+
+			const query = [...parts, "Brasil"].join(", ");
+			return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
+		}
+	}
+};
+</script>

@@ -10,21 +10,15 @@ import 'vuetify/styles'
 
 // Composables
 import { createVuetify } from 'vuetify'
+import { loadThemePreference, themeName, vuetifyThemes } from './themes'
+
+const themePreference = loadThemePreference()
 
 // https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
 export default createVuetify({
 	theme: {
-		defaultTheme: 'light',
-		themes: {
-			light: {
-				dark: false,
-				colors: { primary: '#2196F3', secondary: '#BBDEFB', accent: '#E91E63', success: '#4CAF50', info: '#2196F3', warning: '#FB8C00', error: '#FF5252' }
-			},
-			dark: {
-				dark: true,
-				colors: { primary: '#272727', secondary: '#FFE18D', accent: '#FF4081', success: '#4CAF50', info: '#2196F3', warning: '#FB8C00', error: '#FF5252' }
-			}
-		}
+		defaultTheme: themeName(themePreference.value, themePreference.dark),
+		themes: vuetifyThemes
 	},
 
 	defaults: {

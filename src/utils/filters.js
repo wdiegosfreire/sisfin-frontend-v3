@@ -49,3 +49,35 @@ export function toUtcDate(dateStr) {
 
 	return new Date(year, month - 1, day);
 }
+
+function traceProductInfo(info) {
+	if (!info.showInfo)
+		return "";
+
+	const description = info.description ?? "";
+
+	return info.showLabel && info.productProperty?.name
+		? `${info.productProperty.name} ${description}`
+		: description;
+}
+
+export function traceProductDetails(product) {
+	const brandName = product?.brand?.name && product.brand.name !== "N/A" ? product.brand.name : "";
+	const quantity = `${product?.quantityPerItem ?? ""}${product?.measurementUnit?.acronym ?? ""}`;
+
+	const infoList = Array.isArray(product?.productInfoList)
+		? [...product.productInfoList]
+			.sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
+			.map(traceProductInfo)
+		: [];
+
+	const baseText = [product?.productCategory?.name ?? "", brandName]
+		.map(part => part.trim())
+		.filter(part => part)
+		.join(" ");
+
+	return [baseText, ...infoList, quantity]
+		.map(part => part.trim())
+		.filter(part => part)
+		.join(", ");
+}
