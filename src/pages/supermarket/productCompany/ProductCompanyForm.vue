@@ -31,7 +31,7 @@
 					@click:row="selectProductRow"
 				>
 					<template v-slot:top>
-						<v-text-field v-model="productSearch" label="Filter products" prepend-inner-icon="mdi-magnify" variant="outlined" density="compact" hide-details clearable class="mb-4" />
+						<v-text-field v-model="productSearch" label="Filter products" prepend-inner-icon="mdi-magnify" variant="outlined" density="compact" autofocus hide-details clearable class="mb-4" />
 					</template>
 
 					<template v-slot:[`item.identity`]="{ item }">
