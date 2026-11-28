@@ -1,0 +1,11 @@
+/**
+ * src/styles/global.css
+ *
+ * Global utility classes available on every page.
+ */
+
+.df-identity {
+	width: 125px;
+	font-size: 0.8rem;
+	font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", Consolas, "Courier New", monospace;
+}

@@ -14,18 +14,26 @@
 			<v-text-field v-model="search" label="Filter" prepend-inner-icon="mdi-magnify" variant="outlined" density="compact" hide-details clearable class="mb-4" />
 		</template>
 
+		<template v-slot:[`item.identity`]="{ item }">
+			<span :title="item.identity">{{ item.identity?.split("-")[0] }}</span>
+		</template>
+
+		<template v-slot:[`item.email`]="{ value }">
+			<a v-if="value" :href="`mailto:${value}`">{{ value }}</a>
+		</template>
+
+		<template v-slot:[`item.website`]="{ value }">
+			<a v-if="value" :href="websiteUrl(value)" target="_blank" rel="noopener noreferrer">{{ value }}</a>
+		</template>
+
 		<template v-slot:[`item.actions`]="{ item }">
 			<v-menu>
 				<template v-slot:activator="{ props }">
 					<v-btn v-bind="props" variant="text" icon="mdi-menu" />
 				</template>
 				<v-list width="150">
-					<v-list-item @click="$emit('accessEdition', item)" append-icon="mdi-file-document-edit-outline">
-						<v-list-item-title>Edit</v-list-item-title>
-					</v-list-item>
-					<v-list-item @click="$emit('executeExclusion', item)" append-icon="mdi-trash-can-outline">
-						<v-list-item-title>Delete</v-list-item-title>
-					</v-list-item>
+					<v-list-item @click="$emit('accessEdition', item)" title="Edit" append-icon="mdi-file-document-edit-outline" />
+					<v-list-item @click="$emit('executeExclusion', item)" title="Delete" append-icon="mdi-trash-can-outline" />
 				</v-list>
 			</v-menu>
 		</template>
@@ -47,7 +55,7 @@ export default {
 		return {
 			search: "",
 			headers: [
-				{ title: "Identity", key: "identity", align: "start", width: "300px" },
+				{ title: "Identity", key: "identity", cellProps: { class: "df-identity" } },
 				{ title: "Name", key: "name", align: "start" },
 				{ title: "Email", key: "email", align: "start" },
 				{ title: "Website", key: "website", align: "start" },
@@ -60,6 +68,12 @@ export default {
 				{ value: -1, title: "All" }
 			]
 		};
+	},
+
+	methods: {
+		websiteUrl(website) {
+			return /^https?:\/\//i.test(website) ? website : `https://${website}`;
+		}
 	}
 };
 </script>

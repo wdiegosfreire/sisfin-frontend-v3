@@ -11,23 +11,19 @@
 							<v-icon icon="mdi-arrow-right-thin" /> {{ objective.description }}: R$ {{ currency(objectiveMovement.value) }}
 						</span>
 
-						<v-spacer></v-spacer>
+						<v-spacer />
 						<v-menu>
 							<template v-slot:activator="{ props }">
 								<v-btn v-bind="props" variant="text" icon="mdi-menu" />
 							</template>
 							<v-list width="150">
-								<v-list-item @click="$emit('accessEdition', objective)" append-icon="mdi-file-document-edit-outline">
-									<v-list-item-title>Edit</v-list-item-title>
-								</v-list-item>
-								<v-list-item @click="$emit('executeExclusion', objective)" append-icon="mdi-trash-can-outline">
-									<v-list-item-title>Delete</v-list-item-title>
-								</v-list-item>
+								<v-list-item @click="$emit('accessEdition', objective)" title="Edit" append-icon="mdi-file-document-edit-outline" />
+								<v-list-item @click="$emit('executeExclusion', item)" title="Delete" append-icon="mdi-trash-can-outline" />
 							</v-list>
 						</v-menu>
 					</v-card-title>
 
-					<v-divider></v-divider>
+					<v-divider />
 
 					<v-card-text>
 						<df-grid spaced>

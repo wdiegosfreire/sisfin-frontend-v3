@@ -37,6 +37,25 @@ declare module 'vue-router/auto-routes' {
     '/supermarket/brand/Brand': RouteRecordInfo<'/supermarket/brand/Brand', '/supermarket/brand/Brand', Record<never, never>, Record<never, never>>,
     '/supermarket/brand/BrandForm': RouteRecordInfo<'/supermarket/brand/BrandForm', '/supermarket/brand/BrandForm', Record<never, never>, Record<never, never>>,
     '/supermarket/brand/BrandResult': RouteRecordInfo<'/supermarket/brand/BrandResult', '/supermarket/brand/BrandResult', Record<never, never>, Record<never, never>>,
+    '/supermarket/company/Company': RouteRecordInfo<'/supermarket/company/Company', '/supermarket/company/Company', Record<never, never>, Record<never, never>>,
+    '/supermarket/company/CompanyForm': RouteRecordInfo<'/supermarket/company/CompanyForm', '/supermarket/company/CompanyForm', Record<never, never>, Record<never, never>>,
+    '/supermarket/company/CompanyResult': RouteRecordInfo<'/supermarket/company/CompanyResult', '/supermarket/company/CompanyResult', Record<never, never>, Record<never, never>>,
+    '/supermarket/measurementUnit/MeasurementUnit': RouteRecordInfo<'/supermarket/measurementUnit/MeasurementUnit', '/supermarket/measurementUnit/MeasurementUnit', Record<never, never>, Record<never, never>>,
+    '/supermarket/measurementUnit/MeasurementUnitForm': RouteRecordInfo<'/supermarket/measurementUnit/MeasurementUnitForm', '/supermarket/measurementUnit/MeasurementUnitForm', Record<never, never>, Record<never, never>>,
+    '/supermarket/measurementUnit/MeasurementUnitResult': RouteRecordInfo<'/supermarket/measurementUnit/MeasurementUnitResult', '/supermarket/measurementUnit/MeasurementUnitResult', Record<never, never>, Record<never, never>>,
+    '/supermarket/product/Product': RouteRecordInfo<'/supermarket/product/Product', '/supermarket/product/Product', Record<never, never>, Record<never, never>>,
+    '/supermarket/product/ProductForm': RouteRecordInfo<'/supermarket/product/ProductForm', '/supermarket/product/ProductForm', Record<never, never>, Record<never, never>>,
+    '/supermarket/product/ProductResult': RouteRecordInfo<'/supermarket/product/ProductResult', '/supermarket/product/ProductResult', Record<never, never>, Record<never, never>>,
+    '/supermarket/productCategory/ProductCategory': RouteRecordInfo<'/supermarket/productCategory/ProductCategory', '/supermarket/productCategory/ProductCategory', Record<never, never>, Record<never, never>>,
+    '/supermarket/productCategory/ProductCategoryForm': RouteRecordInfo<'/supermarket/productCategory/ProductCategoryForm', '/supermarket/productCategory/ProductCategoryForm', Record<never, never>, Record<never, never>>,
+    '/supermarket/productCategory/ProductCategoryResult': RouteRecordInfo<'/supermarket/productCategory/ProductCategoryResult', '/supermarket/productCategory/ProductCategoryResult', Record<never, never>, Record<never, never>>,
+    '/supermarket/productCompany/ProductCompany': RouteRecordInfo<'/supermarket/productCompany/ProductCompany', '/supermarket/productCompany/ProductCompany', Record<never, never>, Record<never, never>>,
+    '/supermarket/productCompany/ProductCompanyForm': RouteRecordInfo<'/supermarket/productCompany/ProductCompanyForm', '/supermarket/productCompany/ProductCompanyForm', Record<never, never>, Record<never, never>>,
+    '/supermarket/productCompany/ProductCompanyResult': RouteRecordInfo<'/supermarket/productCompany/ProductCompanyResult', '/supermarket/productCompany/ProductCompanyResult', Record<never, never>, Record<never, never>>,
+    '/supermarket/productCompany/ProductCompanyTaxCouponForm': RouteRecordInfo<'/supermarket/productCompany/ProductCompanyTaxCouponForm', '/supermarket/productCompany/ProductCompanyTaxCouponForm', Record<never, never>, Record<never, never>>,
+    '/supermarket/productProperty/ProductProperty': RouteRecordInfo<'/supermarket/productProperty/ProductProperty', '/supermarket/productProperty/ProductProperty', Record<never, never>, Record<never, never>>,
+    '/supermarket/productProperty/ProductPropertyForm': RouteRecordInfo<'/supermarket/productProperty/ProductPropertyForm', '/supermarket/productProperty/ProductPropertyForm', Record<never, never>, Record<never, never>>,
+    '/supermarket/productProperty/ProductPropertyResult': RouteRecordInfo<'/supermarket/productProperty/ProductPropertyResult', '/supermarket/productProperty/ProductPropertyResult', Record<never, never>, Record<never, never>>,
     '/supermarket/Supermarket': RouteRecordInfo<'/supermarket/Supermarket', '/supermarket/Supermarket', Record<never, never>, Record<never, never>>,
     '/transaction/account/Account': RouteRecordInfo<'/transaction/account/Account', '/transaction/account/Account', Record<never, never>, Record<never, never>>,
     '/transaction/account/AccountForm': RouteRecordInfo<'/transaction/account/AccountForm', '/transaction/account/AccountForm', Record<never, never>, Record<never, never>>,
@@ -143,6 +162,82 @@ declare module 'vue-router/auto-routes' {
     }
     'src/pages/supermarket/brand/BrandResult.vue': {
       routes: '/supermarket/brand/BrandResult'
+      views: never
+    }
+    'src/pages/supermarket/company/Company.vue': {
+      routes: '/supermarket/company/Company'
+      views: never
+    }
+    'src/pages/supermarket/company/CompanyForm.vue': {
+      routes: '/supermarket/company/CompanyForm'
+      views: never
+    }
+    'src/pages/supermarket/company/CompanyResult.vue': {
+      routes: '/supermarket/company/CompanyResult'
+      views: never
+    }
+    'src/pages/supermarket/measurementUnit/MeasurementUnit.vue': {
+      routes: '/supermarket/measurementUnit/MeasurementUnit'
+      views: never
+    }
+    'src/pages/supermarket/measurementUnit/MeasurementUnitForm.vue': {
+      routes: '/supermarket/measurementUnit/MeasurementUnitForm'
+      views: never
+    }
+    'src/pages/supermarket/measurementUnit/MeasurementUnitResult.vue': {
+      routes: '/supermarket/measurementUnit/MeasurementUnitResult'
+      views: never
+    }
+    'src/pages/supermarket/product/Product.vue': {
+      routes: '/supermarket/product/Product'
+      views: never
+    }
+    'src/pages/supermarket/product/ProductForm.vue': {
+      routes: '/supermarket/product/ProductForm'
+      views: never
+    }
+    'src/pages/supermarket/product/ProductResult.vue': {
+      routes: '/supermarket/product/ProductResult'
+      views: never
+    }
+    'src/pages/supermarket/productCategory/ProductCategory.vue': {
+      routes: '/supermarket/productCategory/ProductCategory'
+      views: never
+    }
+    'src/pages/supermarket/productCategory/ProductCategoryForm.vue': {
+      routes: '/supermarket/productCategory/ProductCategoryForm'
+      views: never
+    }
+    'src/pages/supermarket/productCategory/ProductCategoryResult.vue': {
+      routes: '/supermarket/productCategory/ProductCategoryResult'
+      views: never
+    }
+    'src/pages/supermarket/productCompany/ProductCompany.vue': {
+      routes: '/supermarket/productCompany/ProductCompany'
+      views: never
+    }
+    'src/pages/supermarket/productCompany/ProductCompanyForm.vue': {
+      routes: '/supermarket/productCompany/ProductCompanyForm'
+      views: never
+    }
+    'src/pages/supermarket/productCompany/ProductCompanyResult.vue': {
+      routes: '/supermarket/productCompany/ProductCompanyResult'
+      views: never
+    }
+    'src/pages/supermarket/productCompany/ProductCompanyTaxCouponForm.vue': {
+      routes: '/supermarket/productCompany/ProductCompanyTaxCouponForm'
+      views: never
+    }
+    'src/pages/supermarket/productProperty/ProductProperty.vue': {
+      routes: '/supermarket/productProperty/ProductProperty'
+      views: never
+    }
+    'src/pages/supermarket/productProperty/ProductPropertyForm.vue': {
+      routes: '/supermarket/productProperty/ProductPropertyForm'
+      views: never
+    }
+    'src/pages/supermarket/productProperty/ProductPropertyResult.vue': {
+      routes: '/supermarket/productProperty/ProductPropertyResult'
       views: never
     }
     'src/pages/supermarket/Supermarket.vue': {

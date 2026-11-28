@@ -7,23 +7,19 @@
 				<v-card-title class="d-flex align-center">
 					<span>{{ statement.month }}/{{ statement.year }} :: {{ statement.statementType ? statement.statementType.bank.name : "" }} :: {{ statement.statementType ? statement.statementType.name : "" }}</span>
 
-					<v-spacer></v-spacer>
+					<v-spacer />
 					<v-menu>
 						<template v-slot:activator="{ props }">
 							<v-btn v-bind="props" variant="text" icon="mdi-menu" />
 						</template>
 						<v-list width="150">
-							<v-list-item @click="$emit('accessEdition', statement)">
-								<v-list-item-title>Edit</v-list-item-title>
-							</v-list-item>
-							<v-list-item @click="$emit('executeExclusion', statement)">
-								<v-list-item-title>Delete</v-list-item-title>
-							</v-list-item>
+							<v-list-item @click="$emit('accessEdition', statement)" title="Edit" append-icon="mdi-file-document-edit-outline" />
+							<v-list-item @click="$emit('executeExclusion', statement)" title="Delete" append-icon="mdi-trash-can-outline" />
 						</v-list>
 					</v-menu>
 				</v-card-title>
 
-				<v-divider></v-divider>
+				<v-divider />
 
 				<v-card-text>
 					<df-grid column="auto-sm">
